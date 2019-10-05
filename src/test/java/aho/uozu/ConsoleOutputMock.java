@@ -16,7 +16,7 @@ public class ConsoleOutputMock implements ConsoleOutput {
         lines.add(value);
     }
 
-    public String getOutputLine(int lineNumber) {
-        return lines.get(lineNumber);
+    public String getLastLine() {
+        return lines.get(lines.size() - 1);
     }
 }

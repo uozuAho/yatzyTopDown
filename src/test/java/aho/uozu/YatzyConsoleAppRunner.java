@@ -16,20 +16,20 @@ public class YatzyConsoleAppRunner {
         game = new YatzyConsoleApp(consoleOutput);
     }
 
-    public void displaysRoll() {
-        assertEquals(consoleOutput.getOutputLine(0), "you rolled: 1, 1, 1, 1, 1");
+    public void displayedRoll() {
+        assertEquals(consoleOutput.getLastLine(), "you rolled: 1, 1, 1, 1, 1");
     }
 
-    public void displaysScore() {
-        assertEquals(consoleOutput.getOutputLine(1), "your score: 0");
+    public void displayedScore() {
+        assertEquals(consoleOutput.getLastLine(), "your score: 0");
     }
 
     public void gameIsOver() {
         assertTrue(game.isFinished());
     }
 
-    public void promptsPlayerForCategory() {
-        throw new IllegalStateException("not implemented");
+    public void promptedPlayerForCategory() {
+        assertEquals(consoleOutput.getLastLine(), "enter scoring category");
     }
 
     public void receivedCategory(ScoreCategory category) {
