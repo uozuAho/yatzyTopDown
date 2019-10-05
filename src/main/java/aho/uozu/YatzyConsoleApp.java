@@ -2,13 +2,12 @@ package aho.uozu;
 
 public class YatzyConsoleApp
 {
-    public YatzyConsoleApp(ConsoleOutput consoleOutput) {
-
+    public static void main(String[] args)
+    {
+        var app = new YatzyConsoleApp(System.out::println);
     }
 
-    public static void main(String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public YatzyConsoleApp(ConsoleOutput consoleOutput) {
     }
 
     public boolean isFinished() {

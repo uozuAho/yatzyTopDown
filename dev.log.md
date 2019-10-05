@@ -13,4 +13,12 @@ bothered figuring out how I'd do this, so I'll stick to running the
 YatzyConsoleApp class. I note at this point that I'm not really doing this.
 Most of the e2e test actions don't interact with the game. To make the e2e
 test closer to the 'end', I should run the YatzyConsoleApp class via its
-main() method. 
+main() method.
+
+Hmm "do the simplest thing that will pass the test" seems like the wrong
+strategy when writing the skeleton. I've made the skeleton e2e test pass by
+doing the simplest thing - putting all the expected console output directly
+in the mock console output. I think this is defeating the purpose of the
+skeleton, which is to hook up a minimal working set of _real_ application
+classes. So for now I'll add a constraint that the "simplest thing" must be
+done with real application classes, not mocks :)
