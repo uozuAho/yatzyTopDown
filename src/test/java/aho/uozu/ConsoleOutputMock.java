@@ -19,4 +19,8 @@ public class ConsoleOutputMock implements ConsoleOutput {
     public String getLastLine() {
         return lines.get(lines.size() - 1);
     }
+
+    public String getSecondLastLine() {
+        return lines.get(lines.size() - 2);
+    }
 }

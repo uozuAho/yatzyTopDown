@@ -17,8 +17,9 @@ public class YatzyConsoleAppRunner {
         game = new YatzyConsoleApp(consoleOutput);
     }
 
-    public void displayedRoll() {
-        assertThat(consoleOutput.getLastLine(), is(equalTo("you rolled: 1, 1, 1, 1, 1")));
+    public void displayedRollAndPromptedUserForCategory() {
+        assertThat(consoleOutput.getSecondLastLine(), is(equalTo("you rolled: 1, 1, 1, 1, 1")));
+        assertThat(consoleOutput.getLastLine(), is(equalTo("enter a category")));
     }
 
     public void displayedScore() {
@@ -27,10 +28,6 @@ public class YatzyConsoleAppRunner {
 
     public void gameIsOver() {
         assertTrue(game.isFinished());
-    }
-
-    public void promptedPlayerForCategory() {
-        assertEquals(consoleOutput.getLastLine(), is(equalTo("enter scoring category")));
     }
 
     public void receivedCategory(ScoreCategory category) {
