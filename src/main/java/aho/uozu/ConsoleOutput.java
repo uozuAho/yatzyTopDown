@@ -1,5 +1,5 @@
 package aho.uozu;
 
 public interface ConsoleOutput {
-    void write(String value);
+    void writeLine(String value);
 }

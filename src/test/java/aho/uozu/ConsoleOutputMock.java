@@ -1,15 +1,22 @@
 package aho.uozu;
 
-public class ConsoleOutputMock implements ConsoleOutput {
-    @Override
-    public void write(String value) {
+import java.util.ArrayList;
+import java.util.List;
 
+public class ConsoleOutputMock implements ConsoleOutput {
+
+    private final List<String> lines;
+
+    ConsoleOutputMock() {
+        lines = new ArrayList<>();
     }
 
-    public String[] getOutputLines() {
-        return new String[] {
-                "you rolled: 1, 1, 1, 1, 1",
-                "your score: 0"
-        };
+    @Override
+    public void writeLine(String value) {
+        lines.add(value);
+    }
+
+    public String getOutputLine(int lineNumber) {
+        return lines.get(lineNumber);
     }
 }

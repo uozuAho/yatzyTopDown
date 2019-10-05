@@ -13,14 +13,14 @@ public class YatzyConsoleAppRunner {
     }
 
     public void displaysRoll() {
-        assertEquals(consoleOutput.getOutputLines()[0], "you rolled: 1, 1, 1, 1, 1");
+        assertEquals(consoleOutput.getOutputLine(0), "you rolled: 1, 1, 1, 1, 1");
     }
 
     public void playerChoosesCategory(ScoreCategory category) {
     }
 
     public void displaysScore() {
-        assertEquals(consoleOutput.getOutputLines()[1], "your score: 0");
+        assertEquals(consoleOutput.getOutputLine(1), "your score: 0");
     }
 
     public void gameIsOver() {
