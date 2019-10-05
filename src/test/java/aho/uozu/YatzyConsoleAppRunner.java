@@ -16,11 +16,10 @@ public class YatzyConsoleAppRunner {
     }
 
     public void playerChoosesCategory(ScoreCategory category) {
-        throw new IllegalStateException("not implemented");
     }
 
     public void displaysScore() {
-        throw new IllegalStateException("not implemented");
+        assertEquals(consoleOutput.getOutputLines()[1], "your score: 0");
     }
 
     public void isFinished() {

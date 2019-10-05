@@ -7,6 +7,9 @@ public class ConsoleOutputMock implements ConsoleOutput {
     }
 
     public String[] getOutputLines() {
-        return new String[] {"you rolled: 1, 1, 1, 1, 1"};
+        return new String[] {
+                "you rolled: 1, 1, 1, 1, 1",
+                "your score: 0"
+        };
     }
 }
