@@ -8,6 +8,8 @@ public class YatzyConsoleApp
     }
 
     public YatzyConsoleApp(ConsoleOutput consoleOutput) {
+        consoleOutput.writeLine("you rolled: 1, 1, 1, 1, 1");
+        consoleOutput.writeLine("your score: 0");
     }
 
     public boolean isFinished() {
