@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 public class YatzyConsoleAppRunner {
     private YatzyConsoleApp game;
     private ConsoleOutputMock consoleOutput;
+    private ConsoleInputMock consoleInput;
 
     public YatzyConsoleAppRunner(PlayerMock player) {
 
@@ -31,6 +32,8 @@ public class YatzyConsoleAppRunner {
     }
 
     public void receivedCategory(ScoreCategory category) {
-        throw new IllegalStateException("not implemented");
+        game.waitForUserInput();
+        var lastInput = consoleInput.getLastLine();
+        assertThat(ScoreCategory.fromString(lastInput), is(equalTo(category)));
     }
 }

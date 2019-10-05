@@ -16,4 +16,8 @@ public class YatzyConsoleApp
     public boolean isFinished() {
         return true;
     }
+
+    public void waitForUserInput() {
+
+    }
 }
