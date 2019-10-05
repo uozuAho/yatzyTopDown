@@ -22,3 +22,9 @@ in the mock console output. I think this is defeating the purpose of the
 skeleton, which is to hook up a minimal working set of _real_ application
 classes. So for now I'll add a constraint that the "simplest thing" must be
 done with real application classes, not mocks :)
+
+----
+
+Well it's been 3h, and I still don't have a working console app! The TDD book
+guys express the constant surprise at how long the skeleton step takes, so that
+gives me some comfort.
