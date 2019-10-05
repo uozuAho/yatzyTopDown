@@ -1,6 +1,7 @@
 package aho.uozu;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class YatzyConsoleAppRunner {
     private YatzyConsoleApp game;
@@ -22,7 +23,7 @@ public class YatzyConsoleAppRunner {
         assertEquals(consoleOutput.getOutputLines()[1], "your score: 0");
     }
 
-    public void isFinished() {
-        throw new IllegalStateException("not implemented");
+    public void gameIsOver() {
+        assertTrue(game.isFinished());
     }
 }

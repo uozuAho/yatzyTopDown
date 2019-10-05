@@ -12,6 +12,6 @@ public class YatzyConsoleAppEndToEndTest
         game.displaysRoll();
         game.playerChoosesCategory(ScoreCategory.CHANCE);
         game.displaysScore();
-        game.isFinished();
+        game.gameIsOver();
     }
 }

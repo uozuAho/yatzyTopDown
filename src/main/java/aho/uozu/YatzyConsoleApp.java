@@ -10,4 +10,8 @@ public class YatzyConsoleApp
     {
         System.out.println( "Hello World!" );
     }
+
+    public boolean isFinished() {
+        return true;
+    }
 }
