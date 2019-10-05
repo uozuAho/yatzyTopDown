@@ -5,7 +5,7 @@ import org.junit.Test;
 public class YatzyConsoleAppEndToEndTest
 {
     @Test
-    public void shouldAnswerWithTrue()
+    public void shouldScoreOneCategoryThenFinish()
     {
         var game = new YatzyConsoleAppRunner();
         game.start();
