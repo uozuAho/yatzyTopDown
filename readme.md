@@ -9,7 +9,9 @@ Relax and play a game of Yatzy.
 
 # Play the game
 
-TODO: how to play?
+Run `run_game.sh` or `run_game.bat`. This will run whatever was built
+last time `mvn package` was run. Make sure to run `mvn pacakage` before
+running the game, to play the latest version.
 
 # Run all tests
 
