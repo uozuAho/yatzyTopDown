@@ -1,11 +1,11 @@
 package aho.uozu;
 
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class TextOutputMock implements TextOutput {
 
-    private final Deque<String> lines;
+    private final Queue<String> lines;
 
     TextOutputMock() {
         lines = new LinkedList<>();
@@ -17,6 +17,6 @@ public class TextOutputMock implements TextOutput {
     }
 
     public String readNextLine() {
-        return lines.pop();
+        return lines.remove();
     }
 }
