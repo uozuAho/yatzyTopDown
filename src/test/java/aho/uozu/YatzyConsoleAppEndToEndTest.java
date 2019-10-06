@@ -9,9 +9,10 @@ public class YatzyConsoleAppEndToEndTest
     {
         var player = new PlayerMock();
         var game = new YatzyConsoleAppRunner(player);
+        player.willEnterCategory(ScoreCategory.CHANCE);
         game.start();
         game.displayedRollAndPromptedUserForCategory();
-        player.willEnterCategory(ScoreCategory.CHANCE);
+        game.waitForPlayerInput();
         game.receivedCategory(ScoreCategory.CHANCE);
         game.displayedScore();
         game.gameIsOver();

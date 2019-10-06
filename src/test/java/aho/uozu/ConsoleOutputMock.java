@@ -1,14 +1,14 @@
 package aho.uozu;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class ConsoleOutputMock implements ConsoleOutput {
 
-    private final List<String> lines;
+    private final Deque<String> lines;
 
     ConsoleOutputMock() {
-        lines = new ArrayList<>();
+        lines = new LinkedList<>();
     }
 
     @Override
@@ -16,11 +16,7 @@ public class ConsoleOutputMock implements ConsoleOutput {
         lines.add(value);
     }
 
-    public String getLastLine() {
-        return lines.get(lines.size() - 1);
-    }
-
-    public String getSecondLastLine() {
-        return lines.get(lines.size() - 2);
+    public String readNextLine() {
+        return lines.pop();
     }
 }
