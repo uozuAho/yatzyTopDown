@@ -7,15 +7,14 @@ import static org.junit.Assert.*;
 public class YatzyConsoleAppRunner {
     private YatzyConsoleApp game;
     private ConsoleOutputMock consoleOutput;
-    private ConsoleInputMock consoleInput;
+    private ConsoleInput consoleInput;
 
-    public YatzyConsoleAppRunner(PlayerMock player) {
-
+    public YatzyConsoleAppRunner(ConsoleInput input) {
+        consoleInput = input;
     }
 
     public void start() {
         consoleOutput = new ConsoleOutputMock();
-        consoleInput = new ConsoleInputMock();
         game = new YatzyConsoleApp(consoleInput, consoleOutput);
     }
 
@@ -30,15 +29,5 @@ public class YatzyConsoleAppRunner {
 
     public void gameIsOver() {
         assertTrue(game.isFinished());
-    }
-
-    public void receivedCategory(ScoreCategory category) {
-        game.waitForUserInput();
-        var lastInput = consoleInput.getLastLine();
-        assertThat(ScoreCategory.fromString(lastInput), is(equalTo(category)));
-    }
-
-    public void waitForPlayerInput() {
-        consoleInput.readLine();
     }
 }

@@ -7,13 +7,11 @@ public class YatzyConsoleAppEndToEndTest
     @Test
     public void shouldScoreOneCategoryThenFinish()
     {
-        var player = new PlayerMock();
-        var game = new YatzyConsoleAppRunner(player);
-        player.willEnterCategory(ScoreCategory.CHANCE);
+        var input = new ConsoleInputMock();
+        var game = new YatzyConsoleAppRunner(input);
+        input.addInputLine("chance");
         game.start();
         game.displayedRollAndPromptedUserForCategory();
-        game.waitForPlayerInput();
-        game.receivedCategory(ScoreCategory.CHANCE);
         game.displayedScore();
         game.gameIsOver();
     }

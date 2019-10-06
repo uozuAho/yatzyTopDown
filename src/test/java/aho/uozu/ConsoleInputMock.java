@@ -1,12 +1,25 @@
 package aho.uozu;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ConsoleInputMock implements ConsoleInput {
-    @Override
-    public String readLine() {
-        return null;
+
+    private final Queue<String> lines;
+
+    ConsoleInputMock() {
+        lines = new LinkedList<>();
     }
 
-    public String getLastLine() {
-        return "todo: implement me";
+    @Override
+    public String readLine() {
+        if (lines.size() == 0) {
+            throw new IllegalStateException("no input to read");
+        }
+        return lines.remove();
+    }
+
+    public void addInputLine(String line) {
+        lines.add(line);
     }
 }
