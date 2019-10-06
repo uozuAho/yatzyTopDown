@@ -11,11 +11,12 @@ public class YatzyConsoleAppRunner {
 
     public YatzyConsoleAppRunner(TextInput input) {
         consoleInput = input;
+        consoleOutput = new TextOutputMock();
+        game = new YatzyConsoleApp(consoleInput, consoleOutput);
     }
 
     public void start() {
-        consoleOutput = new TextOutputMock();
-        game = new YatzyConsoleApp(consoleInput, consoleOutput);
+        game.start();
     }
 
     public void displayedRollAndPromptedUserForCategory() {

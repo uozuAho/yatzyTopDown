@@ -8,12 +8,15 @@ public class YatzyConsoleApp
     public static void main(String[] args)
     {
         var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println);
+        app.start();
     }
 
     public YatzyConsoleApp(TextInput input, TextOutput output) {
         this.input = input;
         this.output = output;
+    }
 
+    public void start() {
         output.writeLine("you rolled: 1, 1, 1, 1, 1");
         output.writeLine("enter a category");
         waitForUserInput();
