@@ -11,7 +11,9 @@ public class YatzyConsoleAppEndToEndTest
         var game = new YatzyConsoleAppRunner(input);
         input.addInputLine("chance");
         game.start();
-        game.displayedRollAndPromptedUserForCategory();
+        game.displayedRoll();
+        game.promptedUserForCategory();
+        // todo: can we make it clearer that input was received here?
         game.displayedScore();
         game.gameIsOver();
     }
