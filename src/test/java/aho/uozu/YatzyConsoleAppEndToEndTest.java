@@ -7,11 +7,14 @@ public class YatzyConsoleAppEndToEndTest
     @Test
     public void shouldScoreOneCategoryThenFinish()
     {
-        var game = new YatzyConsoleAppRunner();
+        var input = new TextInputMock();
+        var game = new YatzyConsoleAppRunner(input);
+        input.addInputLine("chance");
         game.start();
-        game.displaysRoll();
-        game.playerChoosesCategory(ScoreCategory.CHANCE);
-        game.displaysScore();
+        game.displayedRoll();
+        game.promptedUserForCategory();
+        // todo: can we make it clearer that input was received here?
+        game.displayedScore();
         game.gameIsOver();
     }
 }
