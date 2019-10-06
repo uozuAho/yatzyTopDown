@@ -2,22 +2,22 @@ package aho.uozu;
 
 public class YatzyConsoleApp
 {
-    private final ConsoleInput consoleInput;
-    private final ConsoleOutput consoleOutput;
+    private final TextInput input;
+    private final TextOutput output;
 
     public static void main(String[] args)
     {
         var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println);
     }
 
-    public YatzyConsoleApp(ConsoleInput consoleInput, ConsoleOutput consoleOutput) {
-        this.consoleInput = consoleInput;
-        this.consoleOutput = consoleOutput;
+    public YatzyConsoleApp(TextInput input, TextOutput output) {
+        this.input = input;
+        this.output = output;
 
-        consoleOutput.writeLine("you rolled: 1, 1, 1, 1, 1");
-        consoleOutput.writeLine("enter a category");
+        output.writeLine("you rolled: 1, 1, 1, 1, 1");
+        output.writeLine("enter a category");
         waitForUserInput();
-        consoleOutput.writeLine("your score: 0");
+        output.writeLine("your score: 0");
     }
 
     public boolean isFinished() {
@@ -25,6 +25,6 @@ public class YatzyConsoleApp
     }
 
     public void waitForUserInput() {
-        consoleInput.readLine();
+        input.readLine();
     }
 }

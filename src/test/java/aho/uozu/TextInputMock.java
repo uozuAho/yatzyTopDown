@@ -3,11 +3,11 @@ package aho.uozu;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class ConsoleInputMock implements ConsoleInput {
+public class TextInputMock implements TextInput {
 
     private final Queue<String> lines;
 
-    ConsoleInputMock() {
+    TextInputMock() {
         lines = new LinkedList<>();
     }
 

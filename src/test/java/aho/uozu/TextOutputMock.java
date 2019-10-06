@@ -3,11 +3,11 @@ package aho.uozu;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class ConsoleOutputMock implements ConsoleOutput {
+public class TextOutputMock implements TextOutput {
 
     private final Deque<String> lines;
 
-    ConsoleOutputMock() {
+    TextOutputMock() {
         lines = new LinkedList<>();
     }
 

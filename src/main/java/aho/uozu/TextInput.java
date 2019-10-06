@@ -1,5 +1,5 @@
 package aho.uozu;
 
-public interface ConsoleInput {
+public interface TextInput {
     String readLine();
 }

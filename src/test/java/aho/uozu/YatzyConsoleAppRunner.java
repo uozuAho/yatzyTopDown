@@ -6,15 +6,15 @@ import static org.junit.Assert.*;
 
 public class YatzyConsoleAppRunner {
     private YatzyConsoleApp game;
-    private ConsoleOutputMock consoleOutput;
-    private ConsoleInput consoleInput;
+    private TextOutputMock consoleOutput;
+    private TextInput consoleInput;
 
-    public YatzyConsoleAppRunner(ConsoleInput input) {
+    public YatzyConsoleAppRunner(TextInput input) {
         consoleInput = input;
     }
 
     public void start() {
-        consoleOutput = new ConsoleOutputMock();
+        consoleOutput = new TextOutputMock();
         game = new YatzyConsoleApp(consoleInput, consoleOutput);
     }
 

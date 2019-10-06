@@ -7,7 +7,7 @@ public class YatzyConsoleAppEndToEndTest
     @Test
     public void shouldScoreOneCategoryThenFinish()
     {
-        var input = new ConsoleInputMock();
+        var input = new TextInputMock();
         var game = new YatzyConsoleAppRunner(input);
         input.addInputLine("chance");
         game.start();
