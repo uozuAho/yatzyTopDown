@@ -8,12 +8,12 @@ public class YatzyConsoleAppRunner {
     private YatzyConsoleApp game;
     private TextOutputMock consoleOutput;
     private TextInput consoleInput;
-    private DiceRollerMock diceRoller;
+    private DiceRoller _diceRoller;
 
-    public YatzyConsoleAppRunner(TextInput input) {
+    public YatzyConsoleAppRunner(TextInput input, DiceRoller diceRoller) {
         consoleInput = input;
         consoleOutput = new TextOutputMock();
-        diceRoller = new DiceRollerMock();
+        _diceRoller = diceRoller;
         game = new YatzyConsoleApp(consoleInput, consoleOutput, diceRoller);
     }
 
@@ -35,9 +35,5 @@ public class YatzyConsoleAppRunner {
 
     public void gameIsOver() {
         assertTrue(game.isFinished());
-    }
-
-    public void setNextDiceRoll(Roll roll) {
-        diceRoller.setNextRoll(roll);
     }
 }

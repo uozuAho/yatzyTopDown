@@ -8,10 +8,13 @@ public class YatzyConsoleAppEndToEndTest
     public void shouldScoreOneCategoryThenFinish()
     {
         var input = new TextInputMock();
-        var game = new YatzyConsoleAppRunner(input);
         input.addInputLine("chance");
+        var diceRoller = new DiceRollerMock();
         var nextDiceRoll = new Roll(new int[] {1, 1, 1, 1, 1});
-        game.setNextDiceRoll(nextDiceRoll);
+        diceRoller.setNextRoll(nextDiceRoll);
+
+        var game = new YatzyConsoleAppRunner(input, diceRoller);
+
         game.start();
         game.displayedRoll(nextDiceRoll);
         game.promptedUserForCategory();
@@ -24,10 +27,13 @@ public class YatzyConsoleAppEndToEndTest
     public void withADifferentRoll_shouldScoreOneCategoryThenFinish()
     {
         var input = new TextInputMock();
-        var game = new YatzyConsoleAppRunner(input);
         input.addInputLine("chance");
+        var diceRoller = new DiceRollerMock();
         var nextDiceRoll = new Roll(new int[] {2, 2, 2, 2, 2});
-        game.setNextDiceRoll(nextDiceRoll);
+        diceRoller.setNextRoll(nextDiceRoll);
+
+        var game = new YatzyConsoleAppRunner(input, diceRoller);
+
         game.start();
         game.displayedRoll(nextDiceRoll);
         game.promptedUserForCategory();
