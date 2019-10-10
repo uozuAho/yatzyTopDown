@@ -8,7 +8,7 @@ public class YatzyConsoleApp
 
     public static void main(String[] args)
     {
-        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println, () -> new Roll(new int[] {1, 1, 1, 1, 1}));
+        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println, new RandomDiceRoller());
         app.start();
     }
 

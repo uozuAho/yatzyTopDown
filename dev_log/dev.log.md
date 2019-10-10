@@ -89,8 +89,15 @@ as the console app. This is a good sign.
 
 I injected DiceRoller into the game, and now the console app is working again.
 
+I added RandomDiceRoller, which currently returns the same roll every time. I don't
+really know how to test this class, as testing for randomness is prone to flakiness.
+Thus, we have passing e2e tests, but the game isn't really correct. I figure this
+is because we haven't implemented enough features yet, so I'll forgive that for 
+now. I am a little worried though.
+
 # todo
 
 - reduce visibility of classes/methods
 - consistent naming: private fields with _leadingUnderscore
+- randomise RandomDiceRoller!
 - next slice: display correct score
