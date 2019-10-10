@@ -4,23 +4,25 @@ public class YatzyConsoleApp
 {
     private final TextInput input;
     private final TextOutput output;
+    private final DiceRoller diceRoller;
 
     public static void main(String[] args)
     {
-        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println);
+        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println, new RandomDiceRoller());
         app.start();
     }
 
-    public YatzyConsoleApp(TextInput input, TextOutput output) {
+    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller) {
         this.input = input;
         this.output = output;
+        this.diceRoller = diceRoller;
     }
 
     public void start() {
-        output.writeLine("you rolled: 1, 1, 1, 1, 1");
+        output.writeLine("you rolled: " + this.diceRoller.nextRoll().toString());
         output.writeLine("enter a category");
         waitForUserInput();
-        output.writeLine("your score: 0");
+        output.writeLine("your score: 5");
     }
 
     public boolean isFinished() {

@@ -55,9 +55,49 @@ git commit: `3bcb501`
 Now the console app behaves as the e2e test describes, but the whole thing is a bit
 ugly. I think it's time for some refactoring to make things clearer.
 
-git commit: `dc5a7c7`
+git tag: `02_better_skeleton`
 
 The e2e test reads reasonably well, and the console app behaves accordingly. There's
 a few things that aren't quite right, like, where's the dice? However, this is a
 decent skeleton. We can mock input/output, and the app runs as expected. Let's
 figure out the next slice next time.
+
+
+## Next slice: add dice
+
+I added a dice roll to the e2e test. The test failed. All I had to do to get
+it to pass was to change the canned output coming from YatzyConsoleApp.
+That feels like cheating. Let's add another test to prevent that cheating!
+
+I originally decided to add dice and show the correct score for this slice,
+but it quickly became evident that that was too big a slice. I put the score
+display in the todo list.
+
+So I've added the ability to set the next dice roll in the game, and the roll
+is correctly displayed. I did it in quite a barbaric way, and now it's time to 
+refactor.
+
+<5 minutes later>
+
+I just checked the console app, and it fails with a null pointer exception.
+So much for an 'end to end' test! I feel like I've broken some kind of rule
+here though, since the code I've added to pass the test is _very_ hacky. I didn't
+keep enough separation between the test and the application code.
+
+I added DiceRoller. Now the tests are failing the same null pointer exception
+as the console app. This is a good sign.
+
+I injected DiceRoller into the game, and now the console app is working again.
+
+I added RandomDiceRoller, which currently returns the same roll every time. I don't
+really know how to test this class, as testing for randomness is prone to flakiness.
+Thus, we have passing e2e tests, but the game isn't really correct. I figure this
+is because we haven't implemented enough features yet, so I'll forgive that for 
+now. I am a little worried though.
+
+# todo
+
+- reduce visibility of classes/methods
+- consistent naming: private fields with _leadingUnderscore
+- randomise RandomDiceRoller!
+- next slice: display correct score

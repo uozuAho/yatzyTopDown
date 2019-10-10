@@ -9,18 +9,18 @@ public class YatzyConsoleAppRunner {
     private TextOutputMock consoleOutput;
     private TextInput consoleInput;
 
-    public YatzyConsoleAppRunner(TextInput input) {
+    public YatzyConsoleAppRunner(TextInput input, DiceRoller diceRoller) {
         consoleInput = input;
         consoleOutput = new TextOutputMock();
-        game = new YatzyConsoleApp(consoleInput, consoleOutput);
+        game = new YatzyConsoleApp(consoleInput, consoleOutput, diceRoller);
     }
 
     public void start() {
         game.start();
     }
 
-    public void displayedRoll() {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("you rolled: 1, 1, 1, 1, 1")));
+    public void displayedRoll(Roll roll) {
+        assertThat(consoleOutput.readNextLine(), is(equalTo("you rolled: " + roll.toString())));
     }
 
     public void promptedUserForCategory() {
@@ -28,7 +28,7 @@ public class YatzyConsoleAppRunner {
     }
 
     public void displayedScore() {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: 0")));
+        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: 5")));
     }
 
     public void gameIsOver() {
