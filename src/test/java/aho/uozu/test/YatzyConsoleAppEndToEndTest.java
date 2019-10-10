@@ -1,5 +1,6 @@
-package aho.uozu;
+package aho.uozu.test;
 
+import aho.uozu.Roll;
 import org.junit.Test;
 
 public class YatzyConsoleAppEndToEndTest

@@ -1,4 +1,7 @@
-package aho.uozu;
+package aho.uozu.test;
+
+import aho.uozu.DiceRoller;
+import aho.uozu.Roll;
 
 public class ConstantDiceRoller implements DiceRoller {
 

@@ -18,14 +18,14 @@ public class YatzyConsoleApp
         this.diceRoller = diceRoller;
     }
 
-    void start() {
+    public void start() {
         output.writeLine("you rolled: " + this.diceRoller.nextRoll().toString());
         output.writeLine("enter a category");
         waitForUserInput();
         output.writeLine("your score: 5");
     }
 
-    boolean isFinished() {
+    public boolean isFinished() {
         return true;
     }
 

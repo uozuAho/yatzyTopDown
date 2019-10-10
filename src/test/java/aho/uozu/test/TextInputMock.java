@@ -1,4 +1,6 @@
-package aho.uozu;
+package aho.uozu.test;
+
+import aho.uozu.TextInput;
 
 import java.util.LinkedList;
 import java.util.Queue;

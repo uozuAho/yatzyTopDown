@@ -1,4 +1,9 @@
-package aho.uozu;
+package aho.uozu.test;
+
+import aho.uozu.DiceRoller;
+import aho.uozu.Roll;
+import aho.uozu.TextInput;
+import aho.uozu.YatzyConsoleApp;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.is;
