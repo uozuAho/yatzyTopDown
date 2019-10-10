@@ -84,6 +84,9 @@ So much for an 'end to end' test! I feel like I've broken some kind of rule
 here though, since the code I've added to pass the test is _very_ hacky. I didn't
 keep enough separation between the test and the application code.
 
+I added DiceRoller. Now the tests are failing the same null pointer exception
+as the console app. This is a good sign.
+
 # todo
 
 - reduce visibility of classes/methods
