@@ -87,7 +87,10 @@ keep enough separation between the test and the application code.
 I added DiceRoller. Now the tests are failing the same null pointer exception
 as the console app. This is a good sign.
 
+I injected DiceRoller into the game, and now the console app is working again.
+
 # todo
 
 - reduce visibility of classes/methods
+- consistent naming: private fields with _leadingUnderscore
 - next slice: display correct score

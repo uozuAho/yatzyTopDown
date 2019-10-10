@@ -14,9 +14,7 @@ public class YatzyConsoleAppRunner {
         consoleInput = input;
         consoleOutput = new TextOutputMock();
         diceRoller = new DiceRollerMock();
-        game = new YatzyConsoleApp(consoleInput, consoleOutput);
-        // todo: inject diceRoller:
-        // game = new YatzyConsoleApp(consoleInput, consoleOutput, diceRoller);
+        game = new YatzyConsoleApp(consoleInput, consoleOutput, diceRoller);
     }
 
     public void start() {

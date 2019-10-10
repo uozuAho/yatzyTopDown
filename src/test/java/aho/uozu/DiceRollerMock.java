@@ -5,7 +5,7 @@ public class DiceRollerMock implements DiceRoller {
 
     @Override
     public Roll nextRoll() {
-        return null;
+        return _roll;
     }
 
     public void setNextRoll(Roll roll) {

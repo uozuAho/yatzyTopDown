@@ -4,21 +4,22 @@ public class YatzyConsoleApp
 {
     private final TextInput input;
     private final TextOutput output;
-    private Roll _nextRoll;
+    private final DiceRoller diceRoller;
 
     public static void main(String[] args)
     {
-        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println);
+        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println, () -> new Roll(new int[] {1, 1, 1, 1, 1}));
         app.start();
     }
 
-    public YatzyConsoleApp(TextInput input, TextOutput output) {
+    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller) {
         this.input = input;
         this.output = output;
+        this.diceRoller = diceRoller;
     }
 
     public void start() {
-        output.writeLine("you rolled: " + _nextRoll.toString());
+        output.writeLine("you rolled: " + this.diceRoller.nextRoll().toString());
         output.writeLine("enter a category");
         waitForUserInput();
         output.writeLine("your score: 5");
@@ -30,9 +31,5 @@ public class YatzyConsoleApp
 
     public void waitForUserInput() {
         input.readLine();
-    }
-
-    public void setNextRoll(Roll roll) {
-        _nextRoll = roll;
     }
 }
