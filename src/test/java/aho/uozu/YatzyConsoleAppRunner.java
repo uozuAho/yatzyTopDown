@@ -19,8 +19,8 @@ public class YatzyConsoleAppRunner {
         game.start();
     }
 
-    public void displayedRoll(Roll nextDiceRoll) {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("you rolled: 1, 1, 1, 1, 1")));
+    public void displayedRoll(Roll roll) {
+        assertThat(consoleOutput.readNextLine(), is(equalTo("you rolled: " + roll.toString())));
     }
 
     public void promptedUserForCategory() {
