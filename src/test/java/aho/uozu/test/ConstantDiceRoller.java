@@ -7,7 +7,7 @@ public class ConstantDiceRoller implements DiceRoller {
 
     private final Roll _roll;
 
-    ConstantDiceRoller(Roll roll) {
+    public ConstantDiceRoller(Roll roll) {
         _roll = roll;
     }
 

@@ -9,7 +9,7 @@ public class TextInputMock implements TextInput {
 
     private final Queue<String> lines;
 
-    TextInputMock() {
+    public TextInputMock() {
         lines = new LinkedList<>();
     }
 

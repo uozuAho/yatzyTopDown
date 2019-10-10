@@ -1,6 +1,9 @@
-package aho.uozu.test;
+package aho.uozu.test.tests;
 
 import aho.uozu.Roll;
+import aho.uozu.test.ConstantDiceRoller;
+import aho.uozu.test.TextInputMock;
+import aho.uozu.test.YatzyConsoleAppRunner;
 import org.junit.Test;
 
 public class YatzyConsoleAppEndToEndTest
