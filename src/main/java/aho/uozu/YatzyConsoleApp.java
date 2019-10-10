@@ -20,7 +20,7 @@ public class YatzyConsoleApp
         output.writeLine("you rolled: 1, 1, 1, 1, 1");
         output.writeLine("enter a category");
         waitForUserInput();
-        output.writeLine("your score: 0");
+        output.writeLine("your score: 5");
     }
 
     public boolean isFinished() {
