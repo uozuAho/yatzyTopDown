@@ -9,14 +9,13 @@ public class YatzyConsoleAppEndToEndTest
     {
         var input = new TextInputMock();
         input.addInputLine("chance");
-        var diceRoller = new DiceRollerMock();
-        var nextDiceRoll = new Roll(new int[] {1, 1, 1, 1, 1});
-        diceRoller.setNextRoll(nextDiceRoll);
+        final var constantRoll = new Roll(new int[] {1, 1, 1, 1, 1});
+        var diceRoller = new ConstantDiceRoller(constantRoll);
 
         var game = new YatzyConsoleAppRunner(input, diceRoller);
 
         game.start();
-        game.displayedRoll(nextDiceRoll);
+        game.displayedRoll(constantRoll);
         game.promptedUserForCategory();
         // todo: can we make it clearer that input was received here?
         game.displayedScore();
@@ -28,14 +27,13 @@ public class YatzyConsoleAppEndToEndTest
     {
         var input = new TextInputMock();
         input.addInputLine("chance");
-        var diceRoller = new DiceRollerMock();
-        var nextDiceRoll = new Roll(new int[] {2, 2, 2, 2, 2});
-        diceRoller.setNextRoll(nextDiceRoll);
+        final var constantRoll = new Roll(new int[] {2, 2, 2, 2, 2});
+        var diceRoller = new ConstantDiceRoller(constantRoll);
 
         var game = new YatzyConsoleAppRunner(input, diceRoller);
 
         game.start();
-        game.displayedRoll(nextDiceRoll);
+        game.displayedRoll(constantRoll);
         game.promptedUserForCategory();
         // todo: can we make it clearer that input was received here?
         game.displayedScore();

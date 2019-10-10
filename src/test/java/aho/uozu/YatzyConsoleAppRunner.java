@@ -8,12 +8,10 @@ public class YatzyConsoleAppRunner {
     private YatzyConsoleApp game;
     private TextOutputMock consoleOutput;
     private TextInput consoleInput;
-    private DiceRoller _diceRoller;
 
     public YatzyConsoleAppRunner(TextInput input, DiceRoller diceRoller) {
         consoleInput = input;
         consoleOutput = new TextOutputMock();
-        _diceRoller = diceRoller;
         game = new YatzyConsoleApp(consoleInput, consoleOutput, diceRoller);
     }
 
