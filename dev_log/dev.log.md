@@ -63,14 +63,17 @@ decent skeleton. We can mock input/output, and the app runs as expected. Let's
 figure out the next slice next time.
 
 
-## Next slice: add dice, show correct score
+## Next slice: add dice
 
-I added a dice roll and an expected score to the e2e test. The test failed.
-All I had to do to get it to pass was to change the canned output coming from
-YatzyConsoleApp. That feels like cheating. Let's add another test to prevent
-that cheating!
+I added a dice roll to the e2e test. The test failed. All I had to do to get
+it to pass was to change the canned output coming from YatzyConsoleApp.
+That feels like cheating. Let's add another test to prevent that cheating!
 
+I originally decided to add dice and show the correct score for this slice,
+but it quickly became evident that that was too big a slice. I put the score
+display in the todo list.
 
 # todo
 
 - reduce visibility of classes/methods
+- next slice: display correct score

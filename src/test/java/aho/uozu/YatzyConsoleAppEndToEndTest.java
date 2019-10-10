@@ -16,7 +16,7 @@ public class YatzyConsoleAppEndToEndTest
         game.displayedRoll(nextDiceRoll);
         game.promptedUserForCategory();
         // todo: can we make it clearer that input was received here?
-        game.displayedScore(5);
+        game.displayedScore();
         game.gameIsOver();
     }
 
@@ -32,7 +32,7 @@ public class YatzyConsoleAppEndToEndTest
         game.displayedRoll(nextDiceRoll);
         game.promptedUserForCategory();
         // todo: can we make it clearer that input was received here?
-        game.displayedScore(10);
+        game.displayedScore();
         game.gameIsOver();
     }
 }

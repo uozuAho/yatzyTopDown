@@ -27,8 +27,8 @@ public class YatzyConsoleAppRunner {
         assertThat(consoleOutput.readNextLine(), is(equalTo("enter a category")));
     }
 
-    public void displayedScore(int i) {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: " + i)));
+    public void displayedScore() {
+        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: 5")));
     }
 
     public void gameIsOver() {
