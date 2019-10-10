@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Roll {
     private final int[] _diceValues;
 
-    public Roll(int[] diceValues) {
+    Roll(int[] diceValues) {
         _diceValues = diceValues;
     }
 
