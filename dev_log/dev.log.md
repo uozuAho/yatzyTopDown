@@ -73,6 +73,17 @@ I originally decided to add dice and show the correct score for this slice,
 but it quickly became evident that that was too big a slice. I put the score
 display in the todo list.
 
+So I've added the ability to set the next dice roll in the game, and the roll
+is correctly displayed. I did it in quite a barbaric way, and now it's time to 
+refactor.
+
+<5 minutes later>
+
+I just checked the console app, and it fails with a null pointer exception.
+So much for an 'end to end' test! I feel like I've broken some kind of rule
+here though, since the code I've added to pass the test is _very_ hacky. I didn't
+keep enough separation between the test and the application code.
+
 # todo
 
 - reduce visibility of classes/methods
