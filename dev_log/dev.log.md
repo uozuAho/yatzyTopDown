@@ -95,6 +95,17 @@ Thus, we have passing e2e tests, but the game isn't really correct. I figure thi
 is because we haven't implemented enough features yet, so I'll forgive that for 
 now. I am a little worried though.
 
+git tag: `03_add_dice`
+
+OK, we have dice. Nice.
+
+
+## Next slice: score based on roll
+
+Before we start, time for a bit of cleanup (see todo). I forgot to do that at
+the end of the last slice.
+
+
 # todo
 
 - reduce visibility of classes/methods
