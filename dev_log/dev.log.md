@@ -55,9 +55,12 @@ git commit: `3bcb501`
 Now the console app behaves as the e2e test describes, but the whole thing is a bit
 ugly. I think it's time for some refactoring to make things clearer.
 
-git commit: `dc5a7c7`
+git tag: `02_better_skeleton`
 
 The e2e test reads reasonably well, and the console app behaves accordingly. There's
 a few things that aren't quite right, like, where's the dice? However, this is a
 decent skeleton. We can mock input/output, and the app runs as expected. Let's
 figure out the next slice next time.
+
+
+## Next slice: add dice, show correct score

@@ -19,7 +19,7 @@ public class YatzyConsoleAppRunner {
         game.start();
     }
 
-    public void displayedRoll() {
+    public void displayedRoll(Roll nextDiceRoll) {
         assertThat(consoleOutput.readNextLine(), is(equalTo("you rolled: 1, 1, 1, 1, 1")));
     }
 
@@ -27,11 +27,14 @@ public class YatzyConsoleAppRunner {
         assertThat(consoleOutput.readNextLine(), is(equalTo("enter a category")));
     }
 
-    public void displayedScore() {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: 0")));
+    public void displayedScore(int i) {
+        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: " + i)));
     }
 
     public void gameIsOver() {
         assertTrue(game.isFinished());
+    }
+
+    public void rollDice(Roll roll) {
     }
 }
