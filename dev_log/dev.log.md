@@ -69,3 +69,8 @@ I added a dice roll and an expected score to the e2e test. The test failed.
 All I had to do to get it to pass was to change the canned output coming from
 YatzyConsoleApp. That feels like cheating. Let's add another test to prevent
 that cheating!
+
+
+# todo
+
+- reduce visibility of classes/methods

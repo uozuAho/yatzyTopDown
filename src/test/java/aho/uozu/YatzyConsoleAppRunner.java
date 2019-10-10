@@ -35,6 +35,7 @@ public class YatzyConsoleAppRunner {
         assertTrue(game.isFinished());
     }
 
-    public void rollDice(Roll roll) {
+    public void setNextDiceRoll(Roll roll) {
+        game.setNextRoll(roll);
     }
 }

@@ -10,9 +10,9 @@ public class YatzyConsoleAppEndToEndTest
         var input = new TextInputMock();
         var game = new YatzyConsoleAppRunner(input);
         input.addInputLine("chance");
-        game.start();
         var nextDiceRoll = new Roll(new int[] {1, 1, 1, 1, 1});
-        game.rollDice(nextDiceRoll);
+        game.setNextDiceRoll(nextDiceRoll);
+        game.start();
         game.displayedRoll(nextDiceRoll);
         game.promptedUserForCategory();
         // todo: can we make it clearer that input was received here?
@@ -26,9 +26,9 @@ public class YatzyConsoleAppEndToEndTest
         var input = new TextInputMock();
         var game = new YatzyConsoleAppRunner(input);
         input.addInputLine("chance");
-        game.start();
         var nextDiceRoll = new Roll(new int[] {2, 2, 2, 2, 2});
-        game.rollDice(nextDiceRoll);
+        game.setNextDiceRoll(nextDiceRoll);
+        game.start();
         game.displayedRoll(nextDiceRoll);
         game.promptedUserForCategory();
         // todo: can we make it clearer that input was received here?

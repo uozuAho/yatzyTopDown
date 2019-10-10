@@ -4,6 +4,7 @@ public class YatzyConsoleApp
 {
     private final TextInput input;
     private final TextOutput output;
+    private Roll _nextRoll;
 
     public static void main(String[] args)
     {
@@ -17,7 +18,7 @@ public class YatzyConsoleApp
     }
 
     public void start() {
-        output.writeLine("you rolled: 1, 1, 1, 1, 1");
+        output.writeLine("you rolled: " + _nextRoll.toString());
         output.writeLine("enter a category");
         waitForUserInput();
         output.writeLine("your score: 5");
@@ -29,5 +30,9 @@ public class YatzyConsoleApp
 
     public void waitForUserInput() {
         input.readLine();
+    }
+
+    public void setNextRoll(Roll roll) {
+        _nextRoll = roll;
     }
 }
