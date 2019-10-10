@@ -7,18 +7,18 @@ import java.util.Queue;
 
 public class TextOutputMock implements TextOutput {
 
-    private final Queue<String> lines;
+    private final Queue<String> _lines;
 
     TextOutputMock() {
-        lines = new LinkedList<>();
+        _lines = new LinkedList<>();
     }
 
     @Override
     public void writeLine(String value) {
-        lines.add(value);
+        _lines.add(value);
     }
 
     public String readNextLine() {
-        return lines.remove();
+        return _lines.remove();
     }
 }

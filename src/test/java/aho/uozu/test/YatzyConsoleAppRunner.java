@@ -10,33 +10,33 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class YatzyConsoleAppRunner {
-    private YatzyConsoleApp game;
-    private TextOutputMock consoleOutput;
-    private TextInput consoleInput;
+    private YatzyConsoleApp _game;
+    private TextOutputMock _consoleOutput;
+    private TextInput _consoleInput;
 
     public YatzyConsoleAppRunner(TextInput input, DiceRoller diceRoller) {
-        consoleInput = input;
-        consoleOutput = new TextOutputMock();
-        game = new YatzyConsoleApp(consoleInput, consoleOutput, diceRoller);
+        _consoleInput = input;
+        _consoleOutput = new TextOutputMock();
+        _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller);
     }
 
     public void start() {
-        game.start();
+        _game.start();
     }
 
     public void displayedRoll(Roll roll) {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("you rolled: " + roll.toString())));
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("you rolled: " + roll.toString())));
     }
 
     public void promptedUserForCategory() {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("enter a category")));
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("enter a category")));
     }
 
     public void displayedScore() {
-        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: 5")));
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("your score: 5")));
     }
 
     public void gameIsOver() {
-        assertTrue(game.isFinished());
+        assertTrue(_game.isFinished());
     }
 }

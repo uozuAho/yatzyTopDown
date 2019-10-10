@@ -108,6 +108,4 @@ the end of the last slice.
 
 # todo
 
-- consistent naming: private fields with _leadingUnderscore
 - randomise RandomDiceRoller!
-- next slice: display correct score

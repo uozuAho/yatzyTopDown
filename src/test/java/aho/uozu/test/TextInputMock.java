@@ -7,21 +7,21 @@ import java.util.Queue;
 
 public class TextInputMock implements TextInput {
 
-    private final Queue<String> lines;
+    private final Queue<String> _lines;
 
     public TextInputMock() {
-        lines = new LinkedList<>();
+        _lines = new LinkedList<>();
     }
 
     @Override
     public String readLine() {
-        if (lines.size() == 0) {
+        if (_lines.size() == 0) {
             throw new IllegalStateException("no input to read");
         }
-        return lines.remove();
+        return _lines.remove();
     }
 
     public void addInputLine(String line) {
-        lines.add(line);
+        _lines.add(line);
     }
 }
