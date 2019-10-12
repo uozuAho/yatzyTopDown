@@ -1,9 +1,6 @@
 package aho.uozu.test;
 
-import aho.uozu.DiceRoller;
-import aho.uozu.Roll;
-import aho.uozu.TextInput;
-import aho.uozu.YatzyConsoleApp;
+import aho.uozu.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -17,7 +14,7 @@ public class YatzyConsoleAppRunner {
     public YatzyConsoleAppRunner(TextInput input, DiceRoller diceRoller) {
         _consoleInput = input;
         _consoleOutput = new TextOutputMock();
-        _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller);
+        _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller, new ScoreCalculator());
     }
 
     public void start() {

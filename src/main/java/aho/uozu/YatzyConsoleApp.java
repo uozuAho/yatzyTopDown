@@ -7,17 +7,23 @@ public class YatzyConsoleApp
     private final TextInput _input;
     private final TextOutput _output;
     private final DiceRoller _diceRoller;
+    private final ScoreCalculator _scoreCalculator;
 
     public static void main(String[] args)
     {
-        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println, new RandomDiceRoller());
+        var app = new YatzyConsoleApp(
+                () -> System.console().readLine(),
+                System.out::println,
+                new RandomDiceRoller(),
+                new ScoreCalculator());
         app.start();
     }
 
-    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller) {
+    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller, ScoreCalculator scoreCalculator) {
         _input = input;
         _output = output;
         _diceRoller = diceRoller;
+        _scoreCalculator = scoreCalculator;
     }
 
     public void start() {
@@ -34,12 +40,7 @@ public class YatzyConsoleApp
     }
 
     private int calculateScore(Roll roll, ScoreCategory category) {
-        if (category == ScoreCategory.CHANCE)
-            return Arrays.stream(roll.getValues()).sum();
-        if (category == ScoreCategory.YATZY)
-            return 50;
-
-        throw new IllegalStateException("Unknown category: " + category);
+        return _scoreCalculator.calculateScore(roll.getValues(), category);
     }
 
     private ScoreCategory waitForCategoryInput() {
@@ -47,3 +48,4 @@ public class YatzyConsoleApp
         return ScoreCategory.fromString(input);
     }
 }
+

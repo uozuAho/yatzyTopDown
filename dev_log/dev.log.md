@@ -111,4 +111,5 @@ Well that was easy. Next!
 # todo
 
 - put on github
+- handle bad input from user
 - randomise RandomDiceRoller!
