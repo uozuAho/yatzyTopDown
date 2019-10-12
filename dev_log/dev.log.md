@@ -102,10 +102,9 @@ OK, we have dice. Nice.
 
 ## Next slice: score based on roll
 
-Before we start, time for a bit of cleanup (see todo). I forgot to do that at
-the end of the last slice.
 
 
 # todo
 
+- put on github
 - randomise RandomDiceRoller!
