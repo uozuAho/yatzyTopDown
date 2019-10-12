@@ -3,9 +3,9 @@ package aho.uozu;
 import java.util.Arrays;
 
 public class ScoreCalculator {
-    int calculateScore(int[] diceValues, ScoreCategory category) {
+    int calculateScore(Roll roll, ScoreCategory category) {
         if (category == ScoreCategory.CHANCE)
-            return Arrays.stream(diceValues).sum();
+            return Arrays.stream(roll.getValues()).sum();
         if (category == ScoreCategory.YATZY)
             return 50;
 

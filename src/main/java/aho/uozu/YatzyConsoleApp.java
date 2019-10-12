@@ -1,7 +1,5 @@
 package aho.uozu;
 
-import java.util.Arrays;
-
 public class YatzyConsoleApp
 {
     private final TextInput _input;
@@ -40,7 +38,7 @@ public class YatzyConsoleApp
     }
 
     private int calculateScore(Roll roll, ScoreCategory category) {
-        return _scoreCalculator.calculateScore(roll.getValues(), category);
+        return _scoreCalculator.calculateScore(roll, category);
     }
 
     private ScoreCategory waitForCategoryInput() {
