@@ -1,5 +1,7 @@
 package aho.uozu;
 
+import java.util.Arrays;
+
 public class YatzyConsoleApp
 {
     private final TextInput _input;
@@ -19,14 +21,20 @@ public class YatzyConsoleApp
     }
 
     public void start() {
-        _output.writeLine("you rolled: " + _diceRoller.nextRoll().toString());
+        var roll = _diceRoller.nextRoll();
+        _output.writeLine("you rolled: " + roll);
         _output.writeLine("enter a category");
         waitForUserInput();
-        _output.writeLine("your score: 5");
+        var score = calculateScore(roll);
+        _output.writeLine("your score: " + score);
     }
 
     public boolean isFinished() {
         return true;
+    }
+
+    private int calculateScore(Roll roll) {
+        return Arrays.stream(roll.getValues()).sum();
     }
 
     private void waitForUserInput() {

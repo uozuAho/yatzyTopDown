@@ -16,4 +16,8 @@ public class Roll {
                 .mapToObj(String::valueOf)
                 .collect(Collectors.joining(", "));
     }
+
+    int[] getValues() {
+        return _diceValues;
+    }
 }

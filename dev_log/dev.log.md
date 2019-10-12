@@ -102,7 +102,7 @@ OK, we have dice. Nice.
 
 ## Next slice: score based on roll
 
-
+Well that was easy. Next!
 
 # todo
 
