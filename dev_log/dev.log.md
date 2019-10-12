@@ -102,7 +102,11 @@ OK, we have dice. Nice.
 
 ## Next slice: score based on roll
 
+git tag: `04_score_roll`
+
 Well that was easy. Next!
+
+## Next slice: add a category
 
 # todo
 

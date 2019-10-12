@@ -11,17 +11,16 @@ public class YatzyConsoleAppEndToEndTest
     @Test
     public void shouldScoreOneCategoryThenFinish()
     {
-        var input = new TextInputMock();
-        input.addInputLine("chance");
+        var playerInput = new TextInputMock();
+        playerInput.addInputLine("chance");
         final var constantRoll = new Roll(new int[] {1, 1, 1, 1, 1});
         var diceRoller = new ConstantDiceRoller(constantRoll);
 
-        var game = new YatzyConsoleAppRunner(input, diceRoller);
+        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
 
         game.start();
         game.displayedRoll(constantRoll);
         game.promptedUserForCategory();
-        // todo: can we make it clearer that input was received here?
         game.displayedScore(5);
         game.gameIsOver();
     }
@@ -29,17 +28,16 @@ public class YatzyConsoleAppEndToEndTest
     @Test
     public void withADifferentRoll_shouldScoreOneCategoryThenFinish()
     {
-        var input = new TextInputMock();
-        input.addInputLine("chance");
+        var playerInput = new TextInputMock();
+        playerInput.addInputLine("chance");
         final var constantRoll = new Roll(new int[] {2, 2, 2, 2, 2});
         var diceRoller = new ConstantDiceRoller(constantRoll);
 
-        var game = new YatzyConsoleAppRunner(input, diceRoller);
+        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
 
         game.start();
         game.displayedRoll(constantRoll);
         game.promptedUserForCategory();
-        // todo: can we make it clearer that input was received here?
         game.displayedScore(10);
         game.gameIsOver();
     }
