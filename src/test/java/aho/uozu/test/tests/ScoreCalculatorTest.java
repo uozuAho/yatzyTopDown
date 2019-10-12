@@ -24,7 +24,14 @@ public class ScoreCalculatorTest {
     @Parameterized.Parameters(name = "score({0}, {1}) = {2}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][] {
+                // chance
                 { new Roll(new int[] {1, 1, 1, 1, 1}), ScoreCategory.CHANCE, 5 },
+                { new Roll(new int[] {1, 2, 3, 4, 5}), ScoreCategory.CHANCE, 15 },
+
+                // yatzy
+                { new Roll(new int[] {1, 1, 1, 1, 1}), ScoreCategory.YATZY, 50 },
+                { new Roll(new int[] {1, 1, 1, 1, 2}), ScoreCategory.YATZY, 0 },
+                { new Roll(new int[] {2, 2, 2, 2, 2}), ScoreCategory.YATZY, 50 },
         });
     }
 
