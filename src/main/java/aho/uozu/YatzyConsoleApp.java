@@ -24,8 +24,8 @@ public class YatzyConsoleApp
         var roll = _diceRoller.nextRoll();
         _output.writeLine("you rolled: " + roll);
         _output.writeLine("enter a category");
-        waitForUserInput();
-        var score = calculateScore(roll);
+        var category = waitForCategoryInput();
+        var score = calculateScore(roll, category);
         _output.writeLine("your score: " + score);
     }
 
@@ -33,11 +33,17 @@ public class YatzyConsoleApp
         return true;
     }
 
-    private int calculateScore(Roll roll) {
-        return Arrays.stream(roll.getValues()).sum();
+    private int calculateScore(Roll roll, ScoreCategory category) {
+        if (category == ScoreCategory.CHANCE)
+            return Arrays.stream(roll.getValues()).sum();
+        if (category == ScoreCategory.YATZY)
+            return 50;
+
+        throw new IllegalStateException("Unknown category: " + category);
     }
 
-    private void waitForUserInput() {
-        _input.readLine();
+    private ScoreCategory waitForCategoryInput() {
+        var input = _input.readLine();
+        return ScoreCategory.fromString(input);
     }
 }
