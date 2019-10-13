@@ -38,7 +38,17 @@ public class YatzyConsoleApp
     }
 
     private int calculateScore(Roll roll, ScoreCategory category) {
-        return _scoreCalculator.calculateScore(roll, category);
+        var calculator = calculatorFor(category);
+        return calculator.calculateScore(roll);
+    }
+
+    private IScoreCalculator calculatorFor(ScoreCategory category) {
+        switch (category) {
+            case CHANCE: return new ChanceScoreCalculator();
+            case YATZY: return new YatzyScoreCalculator();
+
+            default: throw new IllegalArgumentException("Unknown category: " + category);
+        }
     }
 
     private ScoreCategory waitForCategoryInput() {
