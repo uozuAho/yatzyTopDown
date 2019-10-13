@@ -1,7 +1,5 @@
 package aho.uozu;
 
-import java.util.Arrays;
-
 public class ScoreCalculator {
     public int calculateScore(Roll roll, ScoreCategory category) {
         if (category == ScoreCategory.CHANCE)
@@ -13,7 +11,8 @@ public class ScoreCalculator {
     }
 
     private int calculateChanceScore(Roll roll) {
-        return Arrays.stream(roll.getValues()).sum();
+        var calculator = new ChanceScoreCalculator();
+        return calculator.calculateScore(roll);
     }
 
     private int calculateYatzyScore(Roll roll) {

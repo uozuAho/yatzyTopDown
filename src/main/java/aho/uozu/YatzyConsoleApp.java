@@ -46,4 +46,3 @@ public class YatzyConsoleApp
         return ScoreCategory.fromString(input);
     }
 }
-
