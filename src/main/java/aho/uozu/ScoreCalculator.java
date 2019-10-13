@@ -1,5 +1,5 @@
 package aho.uozu;
 
-public interface IScoreCalculator {
+public interface ScoreCalculator {
     int calculateScore(Roll roll);
 }

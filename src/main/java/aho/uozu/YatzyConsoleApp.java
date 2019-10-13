@@ -39,7 +39,7 @@ public class YatzyConsoleApp
         return calculator.calculateScore(roll);
     }
 
-    private IScoreCalculator calculatorFor(ScoreCategory category) {
+    private ScoreCalculator calculatorFor(ScoreCategory category) {
         switch (category) {
             case CHANCE: return new ChanceScoreCalculator();
             case YATZY: return new YatzyScoreCalculator();
