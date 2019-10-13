@@ -1,6 +1,6 @@
-package aho.uozu.test.tests;
+package aho.uozu.test.tests.score_calculators;
 
-import aho.uozu.ChanceScoreCalculator;
+import aho.uozu.score_calculators.ChanceScoreCalculator;
 import aho.uozu.Roll;
 import org.junit.Before;
 import org.junit.Test;

@@ -22,7 +22,7 @@ public class Roll {
                 .collect(Collectors.joining(", "));
     }
 
-    int[] getValues() {
+    public int[] getValues() {
         return _diceValues;
     }
 

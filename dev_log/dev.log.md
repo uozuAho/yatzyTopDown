@@ -108,6 +108,9 @@ Well that was easy. Next!
 
 ## Next slice: add a category
 
+Big refactoring happened here: Score calculator strategy pattern. Document at
+some point...
+
 # todo
 
 - put on github

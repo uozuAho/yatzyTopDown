@@ -1,5 +1,9 @@
 package aho.uozu;
 
+import aho.uozu.score_calculators.ChanceScoreCalculator;
+import aho.uozu.score_calculators.ScoreCalculator;
+import aho.uozu.score_calculators.YatzyScoreCalculator;
+
 public class YatzyConsoleApp
 {
     private final TextInput _input;

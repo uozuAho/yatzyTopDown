@@ -1,4 +1,6 @@
-package aho.uozu;
+package aho.uozu.score_calculators;
+
+import aho.uozu.Roll;
 
 import java.util.Arrays;
 

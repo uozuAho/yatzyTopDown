@@ -1,7 +1,7 @@
-package aho.uozu.test.tests;
+package aho.uozu.test.tests.score_calculators;
 
 import aho.uozu.Roll;
-import aho.uozu.YatzyScoreCalculator;
+import aho.uozu.score_calculators.YatzyScoreCalculator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
