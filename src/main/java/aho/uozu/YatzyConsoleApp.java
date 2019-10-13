@@ -5,23 +5,20 @@ public class YatzyConsoleApp
     private final TextInput _input;
     private final TextOutput _output;
     private final DiceRoller _diceRoller;
-    private final ScoreCalculator _scoreCalculator;
 
     public static void main(String[] args)
     {
         var app = new YatzyConsoleApp(
                 () -> System.console().readLine(),
                 System.out::println,
-                new RandomDiceRoller(),
-                new ScoreCalculator());
+                new RandomDiceRoller());
         app.start();
     }
 
-    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller, ScoreCalculator scoreCalculator) {
+    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller) {
         _input = input;
         _output = output;
         _diceRoller = diceRoller;
-        _scoreCalculator = scoreCalculator;
     }
 
     public void start() {

@@ -14,7 +14,7 @@ public class YatzyConsoleAppRunner {
     public YatzyConsoleAppRunner(TextInput input, DiceRoller diceRoller) {
         _consoleInput = input;
         _consoleOutput = new TextOutputMock();
-        _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller, new ScoreCalculator());
+        _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller);
     }
 
     public void start() {
