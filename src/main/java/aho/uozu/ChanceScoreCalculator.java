@@ -1,7 +1,9 @@
 package aho.uozu;
 
+import java.util.Arrays;
+
 public class ChanceScoreCalculator {
     public int calculateScore(Roll roll) {
-        return 0;
+        return Arrays.stream(roll.getValues()).sum();
     }
 }
