@@ -110,7 +110,10 @@ Well that was easy. Next!
 
 git tag: `05_mid_score_calc_refactoring`
 
-A big refactoring is going on here. Here's the current state:
+Adding a category and scoring based on the given category involved some
+refactoring: The ScoreCalculator interface was created, and
+ScoreCalculatorFactory created to keep the responsibility of creating
+calculators separate from the console app class.
 
 ![mid score refactoring](./img/05_mid_score_calc_refactoring.jpg)
 
