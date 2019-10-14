@@ -7,6 +7,11 @@ public class Roll {
     private final int[] _diceValues;
 
     public Roll(int[] diceValues) {
+        if (diceValues == null)     throw new NullPointerException();
+        if (diceValues.length != 5) throw new IllegalArgumentException("must have 5 dice values");
+        if (Arrays.stream(diceValues).anyMatch(value -> !isValidValue(value)))
+            throw new IllegalArgumentException("dice values must be between 1-6");
+
         _diceValues = diceValues;
     }
 
@@ -17,7 +22,11 @@ public class Roll {
                 .collect(Collectors.joining(", "));
     }
 
-    int[] getValues() {
+    public int[] getValues() {
         return _diceValues;
+    }
+
+    private boolean isValidValue(int i) {
+        return i > 0 && i < 7;
     }
 }

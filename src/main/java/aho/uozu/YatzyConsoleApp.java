@@ -1,31 +1,47 @@
 package aho.uozu;
 
-import java.util.Arrays;
+import aho.uozu.score_calculators.*;
 
 public class YatzyConsoleApp
 {
     private final TextInput _input;
     private final TextOutput _output;
     private final DiceRoller _diceRoller;
+    private final ScoreCalculatorFactory _scoreCalculatorFactory;
 
-    public static void main(String[] args)
-    {
-        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println, new RandomDiceRoller());
+    public static void main(String[] args) {
+        var app = new YatzyConsoleApp(
+                () -> System.console().readLine(),
+                System.out::println);
         app.start();
     }
 
+    public YatzyConsoleApp(TextInput input, TextOutput output) {
+        this(input, output, new RandomDiceRoller(), new DefaultScoreCalculatorFactory());
+    }
+
     public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller) {
+        this(input, output, diceRoller, new DefaultScoreCalculatorFactory());
+    }
+
+    private YatzyConsoleApp(
+            TextInput input,
+            TextOutput output,
+            DiceRoller diceRoller,
+            ScoreCalculatorFactory scoreCalculatorFactory)
+    {
         _input = input;
         _output = output;
         _diceRoller = diceRoller;
+        _scoreCalculatorFactory = scoreCalculatorFactory;
     }
 
     public void start() {
         var roll = _diceRoller.nextRoll();
         _output.writeLine("you rolled: " + roll);
         _output.writeLine("enter a category");
-        waitForUserInput();
-        var score = calculateScore(roll);
+        var category = waitForCategoryInput();
+        var score = calculateScore(roll, category);
         _output.writeLine("your score: " + score);
     }
 
@@ -33,11 +49,13 @@ public class YatzyConsoleApp
         return true;
     }
 
-    private int calculateScore(Roll roll) {
-        return Arrays.stream(roll.getValues()).sum();
+    private int calculateScore(Roll roll, ScoreCategory category) {
+        var calculator = _scoreCalculatorFactory.calculatorFor(category);
+        return calculator.calculateScore(roll);
     }
 
-    private void waitForUserInput() {
-        _input.readLine();
+    private ScoreCategory waitForCategoryInput() {
+        var input = _input.readLine();
+        return ScoreCategory.fromString(input);
     }
 }

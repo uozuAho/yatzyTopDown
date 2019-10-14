@@ -108,7 +108,27 @@ Well that was easy. Next!
 
 ## Next slice: add a category
 
+git tag: `05_mid_score_calc_refactoring`
+
+Adding a category and scoring based on the given category involved some
+refactoring: The ScoreCalculator interface was created, and
+ScoreCalculatorFactory created to keep the responsibility of creating
+calculators separate from the console app class.
+
+![mid score refactoring](./img/05_mid_score_calc_refactoring.jpg)
+
+todo:
+- draw the design before refactoring started
+
+I was thinking at this point: Is top-down less amenable to distributing
+work amongst a team? If design is constantly emerging, and pieces of code
+are being ripped apart, there's going to be a lot of merge conflicts. There
+doesn't look to be anything on this in the TDD book, and a quick google
+didn't show any promising results. I guess I'll just have to try it...
+
 # todo
 
 - put on github
+- handle bad input from user
 - randomise RandomDiceRoller!
+- make nice readable github page
