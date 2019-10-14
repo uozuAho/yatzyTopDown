@@ -12,4 +12,8 @@ public enum ScoreCategory {
                 throw new IllegalArgumentException("Unknown score category: " + value);
         }
     }
+
+    public static ScoreCategory[] all() {
+        return ScoreCategory.values();
+    }
 }
