@@ -39,6 +39,10 @@ public class YatzyConsoleApp
     public void start() {
         var roll = _diceRoller.nextRoll();
         _output.writeLine("you rolled: " + roll);
+        _output.writeLine("available categories:");
+        for (var category : ScoreCategory.all()) {
+            _output.writeLine("    " + category);
+        }
         _output.writeLine("enter a category");
         var category = waitForCategoryInput();
         var score = calculateScore(roll, category);
