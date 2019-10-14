@@ -1,28 +1,33 @@
 package aho.uozu;
 
-import aho.uozu.score_calculators.ChanceScoreCalculator;
-import aho.uozu.score_calculators.ScoreCalculator;
-import aho.uozu.score_calculators.YatzyScoreCalculator;
+import aho.uozu.score_calculators.*;
 
 public class YatzyConsoleApp
 {
     private final TextInput _input;
     private final TextOutput _output;
     private final DiceRoller _diceRoller;
+    private final ScoreCalculatorFactory _scoreCalculatorFactory;
 
     public static void main(String[] args)
     {
         var app = new YatzyConsoleApp(
                 () -> System.console().readLine(),
                 System.out::println,
-                new RandomDiceRoller());
+                new RandomDiceRoller(),
+                new DefaultScoreCalculatorFactory());
         app.start();
     }
 
-    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller) {
+    public YatzyConsoleApp(
+            TextInput input,
+            TextOutput output,
+            DiceRoller diceRoller,
+            ScoreCalculatorFactory scoreCalculatorFactory) {
         _input = input;
         _output = output;
         _diceRoller = diceRoller;
+        _scoreCalculatorFactory = scoreCalculatorFactory;
     }
 
     public void start() {
@@ -39,7 +44,7 @@ public class YatzyConsoleApp
     }
 
     private int calculateScore(Roll roll, ScoreCategory category) {
-        var calculator = calculatorFor(category);
+        var calculator = _scoreCalculatorFactory.calculatorFor(category);
         return calculator.calculateScore(roll);
     }
 
