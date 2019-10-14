@@ -48,15 +48,6 @@ public class YatzyConsoleApp
         return calculator.calculateScore(roll);
     }
 
-    private ScoreCalculator calculatorFor(ScoreCategory category) {
-        switch (category) {
-            case CHANCE: return new ChanceScoreCalculator();
-            case YATZY: return new YatzyScoreCalculator();
-
-            default: throw new IllegalArgumentException("Unknown category: " + category);
-        }
-    }
-
     private ScoreCategory waitForCategoryInput() {
         var input = _input.readLine();
         return ScoreCategory.fromString(input);
