@@ -130,6 +130,10 @@ didn't show any promising results. I guess I'll just have to try it...
 
 ## Next slice: show categories and potential scores, then prompt
 
+Got display of available categories working nice and fast, but something's
+not feeling right ... I think I need to separate YatzyGame and YatzyConsoleApp.
+YatzyConsoleApp is currently running the gameplay, and dealing with sending
+& receiving user io. Tune in next time.
 
 
 # todo
