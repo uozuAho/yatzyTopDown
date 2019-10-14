@@ -9,21 +9,27 @@ public class YatzyConsoleApp
     private final DiceRoller _diceRoller;
     private final ScoreCalculatorFactory _scoreCalculatorFactory;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         var app = new YatzyConsoleApp(
                 () -> System.console().readLine(),
-                System.out::println,
-                new RandomDiceRoller(),
-                new DefaultScoreCalculatorFactory());
+                System.out::println);
         app.start();
     }
 
-    public YatzyConsoleApp(
+    public YatzyConsoleApp(TextInput input, TextOutput output) {
+        this(input, output, new RandomDiceRoller(), new DefaultScoreCalculatorFactory());
+    }
+
+    public YatzyConsoleApp(TextInput input, TextOutput output, DiceRoller diceRoller) {
+        this(input, output, diceRoller, new DefaultScoreCalculatorFactory());
+    }
+
+    private YatzyConsoleApp(
             TextInput input,
             TextOutput output,
             DiceRoller diceRoller,
-            ScoreCalculatorFactory scoreCalculatorFactory) {
+            ScoreCalculatorFactory scoreCalculatorFactory)
+    {
         _input = input;
         _output = output;
         _diceRoller = diceRoller;
