@@ -37,26 +37,20 @@ public class YatzyConsoleApp
     }
 
     public void start() {
-        var game = new YatzyGame();
+        var game = new YatzyGame(_scoreCalculatorFactory);
         game.rollDice();
         _output.writeLine("you rolled: " + game.getCurrentRoll());
         _output.writeLine("available categories:");
-        for (var category : ScoreCategory.all()) {
+        for (var category : game.getAvailableCategories()) {
             _output.writeLine("    " + category);
         }
         _output.writeLine("enter a category");
         var category = waitForCategoryInput();
-        var score = calculateScore(game.getCurrentRoll(), category);
-        _output.writeLine("your score: " + score);
+        _output.writeLine("your score: " + game.scoreCurrentRoll(category));
     }
 
     public boolean isFinished() {
         return true;
-    }
-
-    private int calculateScore(Roll roll, ScoreCategory category) {
-        var calculator = _scoreCalculatorFactory.calculatorFor(category);
-        return calculator.calculateScore(roll);
     }
 
     private ScoreCategory waitForCategoryInput() {
@@ -66,6 +60,11 @@ public class YatzyConsoleApp
 
     private class YatzyGame {
         private Roll _currentRoll;
+        private ScoreCalculatorFactory _scoreCalculatorFactory;
+
+        public YatzyGame(ScoreCalculatorFactory scoreCalculatorFactory) {
+            _scoreCalculatorFactory = scoreCalculatorFactory;
+        }
 
         public void rollDice() {
             _currentRoll = _diceRoller.nextRoll();
@@ -73,6 +72,15 @@ public class YatzyConsoleApp
 
         public Roll getCurrentRoll() {
             return _currentRoll;
+        }
+
+        public ScoreCategory[] getAvailableCategories() {
+            return ScoreCategory.all();
+        }
+
+        public int scoreCurrentRoll(ScoreCategory category) {
+            var calculator = _scoreCalculatorFactory.calculatorFor(category);
+            return calculator.calculateScore(_currentRoll);
         }
     }
 }
