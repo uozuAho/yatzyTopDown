@@ -38,25 +38,16 @@ public class YatzyConsoleApp
 
     public void start() {
         var game = new YatzyGame(_diceRoller, _scoreCalculatorFactory);
-        var consoleInterface = new YatzyConsoleInterface(_output);
+        var consoleInterface = new YatzyConsoleInterface(_output, _input);
         game.rollDice();
         consoleInterface.showPlayerRolled(game.getCurrentRoll());
-        _output.writeLine("available categories:");
-        for (var category : game.getAvailableCategories()) {
-            _output.writeLine("    " + category);
-        }
-        _output.writeLine("enter a category");
-        var category = waitForCategoryInput();
-        _output.writeLine("your score: " + game.scoreCurrentRoll(category));
+        consoleInterface.showAvailableCategories(game.getAvailableCategories());
+        var category = consoleInterface.promptForCategoryInput();
+        consoleInterface.showPlayerScore(game.scoreCurrentRoll(category));
     }
 
     public boolean isFinished() {
         return true;
-    }
-
-    private ScoreCategory waitForCategoryInput() {
-        var input = _input.readLine();
-        return ScoreCategory.fromString(input);
     }
 }
 
