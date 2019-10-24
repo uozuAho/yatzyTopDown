@@ -106,6 +106,7 @@ git tag: `04_score_roll`
 
 Well that was easy. Next!
 
+
 ## Next slice: add a category
 
 git tag: `05_mid_score_calc_refactoring`
@@ -125,6 +126,15 @@ work amongst a team? If design is constantly emerging, and pieces of code
 are being ripped apart, there's going to be a lot of merge conflicts. There
 doesn't look to be anything on this in the TDD book, and a quick google
 didn't show any promising results. I guess I'll just have to try it...
+
+
+## Next slice: show categories and potential scores, then prompt
+
+Got display of available categories working nice and fast, but something's
+not feeling right ... I think I need to separate YatzyGame and YatzyConsoleApp.
+YatzyConsoleApp is currently running the gameplay, and dealing with sending
+& receiving user io. Tune in next time.
+
 
 # todo
 

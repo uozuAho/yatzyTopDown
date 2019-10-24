@@ -36,4 +36,11 @@ public class YatzyConsoleAppRunner {
     public void gameIsOver() {
         assertTrue(_game.isFinished());
     }
+
+    public void displayedAvailableCategories(ScoreCategory[] availableCategories) {
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("available categories:")));
+        for (var category : availableCategories) {
+            assertThat(_consoleOutput.readNextLine(), is(equalTo("    " + category)));
+        }
+    }
 }
