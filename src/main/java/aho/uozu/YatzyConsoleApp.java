@@ -37,15 +37,16 @@ public class YatzyConsoleApp
     }
 
     public void start() {
-        var roll = _diceRoller.nextRoll();
-        _output.writeLine("you rolled: " + roll);
+        var game = new YatzyGame();
+        game.rollDice();
+        _output.writeLine("you rolled: " + game.getCurrentRoll());
         _output.writeLine("available categories:");
         for (var category : ScoreCategory.all()) {
             _output.writeLine("    " + category);
         }
         _output.writeLine("enter a category");
         var category = waitForCategoryInput();
-        var score = calculateScore(roll, category);
+        var score = calculateScore(game.getCurrentRoll(), category);
         _output.writeLine("your score: " + score);
     }
 
@@ -61,5 +62,17 @@ public class YatzyConsoleApp
     private ScoreCategory waitForCategoryInput() {
         var input = _input.readLine();
         return ScoreCategory.fromString(input);
+    }
+
+    private class YatzyGame {
+        private Roll _currentRoll;
+
+        public void rollDice() {
+            _currentRoll = _diceRoller.nextRoll();
+        }
+
+        public Roll getCurrentRoll() {
+            return _currentRoll;
+        }
     }
 }
