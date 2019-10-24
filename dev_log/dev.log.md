@@ -135,8 +135,13 @@ not feeling right ... I think I need to separate YatzyGame and YatzyConsoleApp.
 YatzyConsoleApp is currently running the gameplay, and dealing with sending
 & receiving user io. Tune in next time.
 
+OK it's next time.
 
-# todo
+slice todo:
+- game unit tests
+
+
+# long term todo
 
 - put on github
 - handle bad input from user

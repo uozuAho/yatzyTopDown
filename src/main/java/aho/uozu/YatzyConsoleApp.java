@@ -38,8 +38,9 @@ public class YatzyConsoleApp
 
     public void start() {
         var game = new YatzyGame(_diceRoller, _scoreCalculatorFactory);
+        var consoleInterface = new YatzyConsoleInterface(_output);
         game.rollDice();
-        _output.writeLine("you rolled: " + game.getCurrentRoll());
+        consoleInterface.showPlayerRolled(game.getCurrentRoll());
         _output.writeLine("available categories:");
         for (var category : game.getAvailableCategories()) {
             _output.writeLine("    " + category);
