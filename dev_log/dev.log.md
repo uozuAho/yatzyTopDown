@@ -125,7 +125,7 @@ doesn't look to be anything on this in the TDD book, and a quick google
 didn't show any promising results. I guess I'll just have to try it...
 
 
-## Next slice: show categories and potential scores, then prompt
+## Next slice: show available categories, then prompt
 
 git tag: `06_show_categories`
 
@@ -176,6 +176,9 @@ the game logic. However, the logic is quite simple at the moment, and is
 sufficiently covered by the end to end tests.
 
 git tag: `07_extract_game`
+
+
+## Next slice: show potential score with displayed categories
 
 
 # long term todo

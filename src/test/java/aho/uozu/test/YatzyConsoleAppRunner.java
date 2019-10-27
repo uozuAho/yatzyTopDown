@@ -4,6 +4,7 @@ import aho.uozu.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.matchesPattern;
 import static org.junit.Assert.*;
 
 public class YatzyConsoleAppRunner {
@@ -40,7 +41,7 @@ public class YatzyConsoleAppRunner {
     public void displayedAvailableCategories(ScoreCategory[] availableCategories) {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("available categories:")));
         for (var category : availableCategories) {
-            assertThat(_consoleOutput.readNextLine(), is(equalTo("    " + category)));
+            assertThat(_consoleOutput.readNextLine(), matchesPattern("    " + category + ": \\d+ points"));
         }
     }
 }
