@@ -2,6 +2,7 @@ package aho.uozu.test.tests;
 
 import aho.uozu.DiceRoll;
 import aho.uozu.ScoreCategory;
+import aho.uozu.ScoreCategoryWithScore;
 import aho.uozu.test.ConstantDiceRoller;
 import aho.uozu.test.TextInputMock;
 import aho.uozu.test.YatzyConsoleAppRunner;
@@ -21,7 +22,10 @@ public class YatzyConsoleAppEndToEndTest
 
         game.start();
         game.displayedRoll(constantRoll);
-        game.displayedAvailableCategories(ScoreCategory.all());
+        game.displayedAvailableCategories(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.CHANCE, 5),
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, 50)
+        });
         game.promptedUserForCategory();
         game.displayedScore(5);
         game.gameIsOver();
@@ -39,7 +43,10 @@ public class YatzyConsoleAppEndToEndTest
 
         game.start();
         game.displayedRoll(constantRoll);
-        game.displayedAvailableCategories(ScoreCategory.all());
+        game.displayedAvailableCategories(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.CHANCE, 15),
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, 50)
+        });
         game.promptedUserForCategory();
         game.displayedScore(50);
         game.gameIsOver();

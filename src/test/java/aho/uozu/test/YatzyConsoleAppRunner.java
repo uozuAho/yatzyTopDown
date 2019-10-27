@@ -38,10 +38,11 @@ public class YatzyConsoleAppRunner {
         assertTrue(_game.isFinished());
     }
 
-    public void displayedAvailableCategories(ScoreCategory[] availableCategories) {
+    public void displayedAvailableCategories(ScoreCategoryWithScore[] catScores) {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("available categories:")));
-        for (var category : availableCategories) {
-            assertThat(_consoleOutput.readNextLine(), matchesPattern("    " + category + ": \\d+ points"));
+        for (var catScore : catScores) {
+            var expectedDisplay = String.format("    %s: %d points", catScore.category, catScore.score);
+            assertThat(_consoleOutput.readNextLine(), is(equalTo(expectedDisplay)));
         }
     }
 }
