@@ -116,10 +116,7 @@ refactoring: The ScoreCalculator interface was created, and
 ScoreCalculatorFactory created to keep the responsibility of creating
 calculators separate from the console app class.
 
-![mid score refactoring](./img/05_mid_score_calc_refactoring.jpg)
-
-todo:
-- draw the design before refactoring started
+![mid score refactoring](./img/05_score_calculator_factory.jpg)
 
 I was thinking at this point: Is top-down less amenable to distributing
 work amongst a team? If design is constantly emerging, and pieces of code
@@ -130,10 +127,21 @@ didn't show any promising results. I guess I'll just have to try it...
 
 ## Next slice: show categories and potential scores, then prompt
 
+git tag: `06_show_categories`
+
 Got display of available categories working nice and fast, but something's
 not feeling right ... I think I need to separate YatzyGame and YatzyConsoleApp.
 YatzyConsoleApp is currently running the gameplay, and dealing with sending
-& receiving user io. Tune in next time.
+& receiving user io.
+
+The rough idea is to separate the console app into a 'model' and a 'view',
+like in the MVC pattern:
+
+![extract_view](./img/06_game_view_separation.jpg)
+
+Tune in next time.
+
+## Refactor: extract game from console app
 
 OK it's next time.
 
@@ -149,6 +157,16 @@ that I'd expect to find in the game.
 git commit: `76e49d4`
 
 Now console app just sets up the game class with console io. Makes more sense!
+Here's a UML-ish diagram of the classes/concepts at this point:
+
+![player_interface](./img/07_uml-ish.jpg)
+
+Now instead of the view controlling game flow and updating the game state, the
+`YatzyGame` class is now responsible for this. The game is initialised with an
+interface, and uses the interface, rather than the other way around. 
+
+![player_interface](./img/07_game_to_playerInterface.jpg)
+
 I briefly thought that the e2e test should use the game class instead, but
 that would reduce its end-to-end-iness.
 
@@ -157,9 +175,11 @@ YatzyConsolePlayerInterface. YatzyGame probably needs them, since it's implement
 the game logic. However, the logic is quite simple at the moment, and is
 sufficiently covered by the end to end tests.
 
+git tag: `07_extract_game`
+
+
 # long term todo
 
-- put on github
 - handle bad input from user
 - randomise RandomDiceRoller!
 - make nice readable github page
