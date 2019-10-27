@@ -15,6 +15,14 @@ class YatzyGame {
         _playerInterface = playerInterface;
     }
 
+    void start() {
+        rollDice();
+        _playerInterface.showPlayerRolled(getCurrentRoll());
+        _playerInterface.showAvailableCategories(getAvailableCategories());
+        var category = _playerInterface.promptForCategoryInput();
+        _playerInterface.showPlayerScore(scoreCurrentRoll(category));
+    }
+
     void rollDice() {
         _currentRoll = _diceRoller.nextRoll();
     }
