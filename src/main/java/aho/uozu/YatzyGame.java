@@ -35,13 +35,9 @@ class YatzyGame {
         return _currentRoll;
     }
 
-    ScoreCategory[] getAvailableCategories() {
-        return ScoreCategory.all();
-    }
-
     List<ScoreCategoryWithScore> getAvailableCategoriesWithScores() {
         return Arrays.stream(ScoreCategory.all())
-                .map(category -> new ScoreCategoryWithScore(category, 0))
+                .map(category -> new ScoreCategoryWithScore(category, scoreCurrentRoll(category)))
                 .collect(Collectors.toList());
     }
 
