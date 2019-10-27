@@ -2,6 +2,10 @@ package aho.uozu;
 
 import aho.uozu.score_calculators.ScoreCalculatorFactory;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 class YatzyGame {
     private final DiceRoller _diceRoller;
     private final ScoreCalculatorFactory _scoreCalculatorFactory;
@@ -18,7 +22,7 @@ class YatzyGame {
     void start() {
         rollDice();
         _playerInterface.showPlayerRolled(getCurrentRoll());
-        _playerInterface.showAvailableCategories(getAvailableCategories());
+        _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
         var category = _playerInterface.promptForCategoryInput();
         _playerInterface.showPlayerScore(scoreCurrentRoll(category));
     }
@@ -33,6 +37,12 @@ class YatzyGame {
 
     ScoreCategory[] getAvailableCategories() {
         return ScoreCategory.all();
+    }
+
+    List<ScoreCategoryWithScore> getAvailableCategoriesWithScores() {
+        return Arrays.stream(ScoreCategory.all())
+                .map(category -> new ScoreCategoryWithScore(category, 0))
+                .collect(Collectors.toList());
     }
 
     int scoreCurrentRoll(ScoreCategory category) {
