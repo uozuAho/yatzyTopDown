@@ -9,7 +9,7 @@ class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
         _input = input;
     }
 
-    public void showPlayerRolled(Roll roll) {
+    public void showPlayerRolled(DiceRoll roll) {
         _output.writeLine("you rolled: " + roll);
     }
 

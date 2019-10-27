@@ -21,7 +21,7 @@ public class YatzyConsoleAppRunner {
         _game.start();
     }
 
-    public void displayedRoll(Roll roll) {
+    public void displayedRoll(DiceRoll roll) {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("you rolled: " + roll.toString())));
     }
 

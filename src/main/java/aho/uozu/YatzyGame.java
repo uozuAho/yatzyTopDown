@@ -7,7 +7,7 @@ class YatzyGame {
     private final ScoreCalculatorFactory _scoreCalculatorFactory;
     private final YatzyPlayerInterface _playerInterface;
 
-    private Roll _currentRoll;
+    private DiceRoll _currentRoll;
 
     YatzyGame(DiceRoller diceRoller, ScoreCalculatorFactory scoreCalculatorFactory, YatzyPlayerInterface playerInterface) {
         _diceRoller = diceRoller;
@@ -27,7 +27,7 @@ class YatzyGame {
         _currentRoll = _diceRoller.nextRoll();
     }
 
-    Roll getCurrentRoll() {
+    DiceRoll getCurrentRoll() {
         return _currentRoll;
     }
 

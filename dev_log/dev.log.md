@@ -146,6 +146,12 @@ be deciding when to execute game operations, and prompt players for actions etc.
 The controller (console app) is currently implementing a lot of the game logic
 that I'd expect to find in the game.
 
+git commit: `76e49d4`
+
+Now console app just sets up the game class with console io. Makes more sense!
+I briefly thought that the e2e test should use the game class instead, but
+that would reduce its end-to-end-iness.
+
 slice todo:
 - add unit tests for extracted logic
 

@@ -3,10 +3,10 @@ package aho.uozu;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class Roll {
+public class DiceRoll {
     private final int[] _diceValues;
 
-    public Roll(int[] diceValues) {
+    public DiceRoll(int[] diceValues) {
         if (diceValues == null)     throw new NullPointerException();
         if (diceValues.length != 5) throw new IllegalArgumentException("must have 5 dice values");
         if (Arrays.stream(diceValues).anyMatch(value -> !isValidValue(value)))

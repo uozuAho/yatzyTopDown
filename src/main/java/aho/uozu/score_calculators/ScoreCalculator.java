@@ -1,7 +1,7 @@
 package aho.uozu.score_calculators;
 
-import aho.uozu.Roll;
+import aho.uozu.DiceRoll;
 
 public interface ScoreCalculator {
-    int calculateScore(Roll roll);
+    int calculateScore(DiceRoll roll);
 }

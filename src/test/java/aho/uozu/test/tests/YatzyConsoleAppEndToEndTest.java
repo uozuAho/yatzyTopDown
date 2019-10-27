@@ -1,6 +1,6 @@
 package aho.uozu.test.tests;
 
-import aho.uozu.Roll;
+import aho.uozu.DiceRoll;
 import aho.uozu.ScoreCategory;
 import aho.uozu.test.ConstantDiceRoller;
 import aho.uozu.test.TextInputMock;
@@ -14,7 +14,7 @@ public class YatzyConsoleAppEndToEndTest
     {
         var playerInput = new TextInputMock();
         playerInput.addInputLine("chance");
-        final var constantRoll = new Roll(new int[] {1, 1, 1, 1, 1});
+        final var constantRoll = new DiceRoll(new int[] {1, 1, 1, 1, 1});
         var diceRoller = new ConstantDiceRoller(constantRoll);
 
         var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
@@ -32,7 +32,7 @@ public class YatzyConsoleAppEndToEndTest
     {
         var playerInput = new TextInputMock();
         playerInput.addInputLine("yatzy");
-        final var constantRoll = new Roll(new int[] {3, 3, 3, 3, 3});
+        final var constantRoll = new DiceRoll(new int[] {3, 3, 3, 3, 3});
         var diceRoller = new ConstantDiceRoller(constantRoll);
 
         var game = new YatzyConsoleAppRunner(playerInput, diceRoller);

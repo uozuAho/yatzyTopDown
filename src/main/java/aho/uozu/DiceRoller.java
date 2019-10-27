@@ -1,5 +1,5 @@
 package aho.uozu;
 
 public interface DiceRoller {
-    Roll nextRoll();
+    DiceRoll nextRoll();
 }

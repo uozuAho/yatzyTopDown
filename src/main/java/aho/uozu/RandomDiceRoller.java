@@ -2,8 +2,8 @@ package aho.uozu;
 
 public class RandomDiceRoller implements DiceRoller {
     @Override
-    public Roll nextRoll() {
+    public DiceRoll nextRoll() {
         // todo: randomise!
-        return new Roll(new int[] {1, 1, 1, 1, 1});
+        return new DiceRoll(new int[] {1, 1, 1, 1, 1});
     }
 }
