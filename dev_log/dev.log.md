@@ -137,8 +137,17 @@ YatzyConsoleApp is currently running the gameplay, and dealing with sending
 
 OK it's next time.
 
+git commit: `39d720b`
+
+At this point I've got a game, console app, and console interface classes.
+The console app is driving the interface and updating the game. Although
+this seems to fit an MVC model, it doesn't feel right. I think the game should
+be deciding when to execute game operations, and prompt players for actions etc.
+The controller (console app) is currently implementing a lot of the game logic
+that I'd expect to find in the game.
+
 slice todo:
-- game unit tests
+- add unit tests for extracted logic
 
 
 # long term todo

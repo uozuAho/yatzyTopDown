@@ -37,8 +37,8 @@ public class YatzyConsoleApp
     }
 
     public void start() {
-        var game = new YatzyGame(_diceRoller, _scoreCalculatorFactory);
-        var consoleInterface = new YatzyConsoleInterface(_output, _input);
+        var consoleInterface = new YatzyConsolePlayerInterface(_output, _input);
+        var game = new YatzyGame(_diceRoller, _scoreCalculatorFactory, consoleInterface);
         game.rollDice();
         consoleInterface.showPlayerRolled(game.getCurrentRoll());
         consoleInterface.showAvailableCategories(game.getAvailableCategories());
