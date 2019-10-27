@@ -39,4 +39,8 @@ class YatzyGame {
         var calculator = _scoreCalculatorFactory.calculatorFor(category);
         return calculator.calculateScore(_currentRoll);
     }
+
+    public boolean isFinished() {
+        return true;
+    }
 }

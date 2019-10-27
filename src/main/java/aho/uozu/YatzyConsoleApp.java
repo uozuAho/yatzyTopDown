@@ -4,10 +4,7 @@ import aho.uozu.score_calculators.*;
 
 public class YatzyConsoleApp
 {
-    private final TextInput _input;
-    private final TextOutput _output;
-    private final DiceRoller _diceRoller;
-    private final ScoreCalculatorFactory _scoreCalculatorFactory;
+    private final YatzyGame _game;
 
     public static void main(String[] args) {
         var app = new YatzyConsoleApp(
@@ -30,20 +27,14 @@ public class YatzyConsoleApp
             DiceRoller diceRoller,
             ScoreCalculatorFactory scoreCalculatorFactory)
     {
-        _input = input;
-        _output = output;
-        _diceRoller = diceRoller;
-        _scoreCalculatorFactory = scoreCalculatorFactory;
+        _game = new YatzyGame(diceRoller, scoreCalculatorFactory, new YatzyConsolePlayerInterface(output, input));
     }
 
     public void start() {
-        var consoleInterface = new YatzyConsolePlayerInterface(_output, _input);
-        var game = new YatzyGame(_diceRoller, _scoreCalculatorFactory, consoleInterface);
-        game.start();
+        _game.start();
     }
 
     public boolean isFinished() {
-        return true;
+        return _game.isFinished();
     }
 }
-
