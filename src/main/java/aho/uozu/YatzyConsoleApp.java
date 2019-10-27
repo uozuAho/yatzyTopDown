@@ -4,10 +4,7 @@ import aho.uozu.score_calculators.*;
 
 public class YatzyConsoleApp
 {
-    private final TextInput _input;
-    private final TextOutput _output;
-    private final DiceRoller _diceRoller;
-    private final ScoreCalculatorFactory _scoreCalculatorFactory;
+    private final YatzyGame _game;
 
     public static void main(String[] args) {
         var app = new YatzyConsoleApp(
@@ -30,36 +27,14 @@ public class YatzyConsoleApp
             DiceRoller diceRoller,
             ScoreCalculatorFactory scoreCalculatorFactory)
     {
-        _input = input;
-        _output = output;
-        _diceRoller = diceRoller;
-        _scoreCalculatorFactory = scoreCalculatorFactory;
+        _game = new YatzyGame(diceRoller, scoreCalculatorFactory, new YatzyConsolePlayerInterface(output, input));
     }
 
     public void start() {
-        var roll = _diceRoller.nextRoll();
-        _output.writeLine("you rolled: " + roll);
-        _output.writeLine("available categories:");
-        for (var category : ScoreCategory.all()) {
-            _output.writeLine("    " + category);
-        }
-        _output.writeLine("enter a category");
-        var category = waitForCategoryInput();
-        var score = calculateScore(roll, category);
-        _output.writeLine("your score: " + score);
+        _game.start();
     }
 
     public boolean isFinished() {
-        return true;
-    }
-
-    private int calculateScore(Roll roll, ScoreCategory category) {
-        var calculator = _scoreCalculatorFactory.calculatorFor(category);
-        return calculator.calculateScore(roll);
-    }
-
-    private ScoreCategory waitForCategoryInput() {
-        var input = _input.readLine();
-        return ScoreCategory.fromString(input);
+        return _game.isFinished();
     }
 }

@@ -1,7 +1,7 @@
 package aho.uozu.test.tests.score_calculators;
 
 import aho.uozu.score_calculators.ChanceScoreCalculator;
-import aho.uozu.Roll;
+import aho.uozu.DiceRoll;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,18 +18,18 @@ import static org.junit.Assert.assertThat;
 public class ChanceScoreCalculatorTest {
 
     private ChanceScoreCalculator _scoreCalculator;
-    private Roll _roll;
+    private DiceRoll _roll;
     private int _expectedScore;
 
     @Parameterized.Parameters(name = "score({0}) = {1}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                { new Roll(new int[] {1, 1, 1, 1, 1}), 5 },
-                { new Roll(new int[] {1, 2, 3, 4, 5}), 15 },
+                { new DiceRoll(new int[] {1, 1, 1, 1, 1}), 5 },
+                { new DiceRoll(new int[] {1, 2, 3, 4, 5}), 15 },
         });
     }
 
-    public ChanceScoreCalculatorTest(Roll input, int expectedScore) {
+    public ChanceScoreCalculatorTest(DiceRoll input, int expectedScore) {
         _roll = input;
         _expectedScore = expectedScore;
     }

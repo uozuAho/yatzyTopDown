@@ -1,18 +1,18 @@
 package aho.uozu.test;
 
 import aho.uozu.DiceRoller;
-import aho.uozu.Roll;
+import aho.uozu.DiceRoll;
 
 public class ConstantDiceRoller implements DiceRoller {
 
-    private final Roll _roll;
+    private final DiceRoll _roll;
 
-    public ConstantDiceRoller(Roll roll) {
+    public ConstantDiceRoller(DiceRoll roll) {
         _roll = roll;
     }
 
     @Override
-    public Roll nextRoll() {
+    public DiceRoll nextRoll() {
         return _roll;
     }
 }

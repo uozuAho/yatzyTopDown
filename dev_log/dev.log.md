@@ -135,8 +135,29 @@ not feeling right ... I think I need to separate YatzyGame and YatzyConsoleApp.
 YatzyConsoleApp is currently running the gameplay, and dealing with sending
 & receiving user io. Tune in next time.
 
+OK it's next time.
 
-# todo
+git commit: `39d720b`
+
+At this point I've got a game, console app, and console interface classes.
+The console app is driving the interface and updating the game. Although
+this seems to fit an MVC model, it doesn't feel right. I think the game should
+be deciding when to execute game operations, and prompt players for actions etc.
+The controller (console app) is currently implementing a lot of the game logic
+that I'd expect to find in the game.
+
+git commit: `76e49d4`
+
+Now console app just sets up the game class with console io. Makes more sense!
+I briefly thought that the e2e test should use the game class instead, but
+that would reduce its end-to-end-iness.
+
+I also thought about adding some unit tests for the new classes: YatzyGame,
+YatzyConsolePlayerInterface. YatzyGame probably needs them, since it's implementing
+the game logic. However, the logic is quite simple at the moment, and is
+sufficiently covered by the end to end tests.
+
+# long term todo
 
 - put on github
 - handle bad input from user
