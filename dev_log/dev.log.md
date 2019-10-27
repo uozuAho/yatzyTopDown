@@ -152,9 +152,10 @@ Now console app just sets up the game class with console io. Makes more sense!
 I briefly thought that the e2e test should use the game class instead, but
 that would reduce its end-to-end-iness.
 
-slice todo:
-- add unit tests for extracted logic
-
+I also thought about adding some unit tests for the new classes: YatzyGame,
+YatzyConsolePlayerInterface. YatzyGame probably needs them, since it's implementing
+the game logic. However, the logic is quite simple at the moment, and is
+sufficiently covered by the end to end tests.
 
 # long term todo
 
