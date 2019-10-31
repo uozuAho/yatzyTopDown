@@ -6,14 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class YatzyGame {
+public class YatzyGame {
     private final DiceRoller _diceRoller;
     private final ScoreCalculatorFactory _scoreCalculatorFactory;
     private final YatzyPlayerInterface _playerInterface;
 
     private DiceRoll _currentRoll;
 
-    YatzyGame(DiceRoller diceRoller, ScoreCalculatorFactory scoreCalculatorFactory, YatzyPlayerInterface playerInterface) {
+    public YatzyGame(DiceRoller diceRoller, ScoreCalculatorFactory scoreCalculatorFactory, YatzyPlayerInterface playerInterface) {
         _diceRoller = diceRoller;
         _scoreCalculatorFactory = scoreCalculatorFactory;
         _playerInterface = playerInterface;
