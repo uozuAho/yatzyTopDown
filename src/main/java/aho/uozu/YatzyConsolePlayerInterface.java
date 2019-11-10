@@ -1,5 +1,7 @@
 package aho.uozu;
 
+import java.util.List;
+
 class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     private TextOutput _output;
     private TextInput _input;
@@ -13,10 +15,11 @@ class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
         _output.writeLine("you rolled: " + roll);
     }
 
-    public void showAvailableCategories(ScoreCategory[] categories) {
+    public void showAvailableCategories(List<ScoreCategoryWithScore> categories) {
         _output.writeLine("available categories:");
-        for (var category : categories) {
-            _output.writeLine("    " + category);
+        for (var cat : categories) {
+            _output.writeLine(String.format(
+                    "    %s: %d points", cat.category, cat.score));
         }
     }
 

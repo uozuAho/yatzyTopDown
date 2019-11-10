@@ -125,7 +125,7 @@ doesn't look to be anything on this in the TDD book, and a quick google
 didn't show any promising results. I guess I'll just have to try it...
 
 
-## Next slice: show categories and potential scores, then prompt
+## Next slice: show available categories, then prompt
 
 git tag: `06_show_categories`
 
@@ -177,6 +177,17 @@ sufficiently covered by the end to end tests.
 
 git tag: `07_extract_game`
 
+
+## Next slice: show potential score with displayed categories
+
+git commit: `41732488`
+
+I tried using JMock to test output of available categories with their scores. It's
+horrible. Much more verbose and hard to follow than the end to end tests. To the bin!
+I haven't come to terms with the way JMock works yet... So much boilerplate...
+
+Actually I'll keep the YatzyGameTests class for now, since I'll probably want to 
+test the game class more, later, and I don't want to have to re-learn how to use JMock.
 
 # long term todo
 
