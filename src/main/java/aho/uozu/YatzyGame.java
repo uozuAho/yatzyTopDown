@@ -19,7 +19,7 @@ public class YatzyGame {
         _playerInterface = playerInterface;
     }
 
-    void start() {
+    public void start() {
         rollDice();
         _playerInterface.showPlayerRolled(getCurrentRoll());
         _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
