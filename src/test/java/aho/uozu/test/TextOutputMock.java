@@ -9,7 +9,7 @@ public class TextOutputMock implements TextOutput {
 
     private final Queue<String> _lines;
 
-    TextOutputMock() {
+    public TextOutputMock() {
         _lines = new LinkedList<>();
     }
 

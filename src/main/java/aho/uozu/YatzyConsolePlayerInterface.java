@@ -2,11 +2,11 @@ package aho.uozu;
 
 import java.util.List;
 
-class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
+public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     private TextOutput _output;
     private TextInput _input;
 
-    YatzyConsolePlayerInterface(TextOutput output, TextInput input) {
+    public YatzyConsolePlayerInterface(TextOutput output, TextInput input) {
         _output = output;
         _input = input;
     }
@@ -34,6 +34,11 @@ class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
 
     private ScoreCategory waitForCategoryInput() {
         var input = _input.readLine();
-        return ScoreCategory.fromString(input);
+        return parseCategory(input);
+    }
+
+    private ScoreCategory parseCategory(String userInput) {
+        var transformed = userInput.trim().toLowerCase();
+        return ScoreCategory.fromString(transformed);
     }
 }
