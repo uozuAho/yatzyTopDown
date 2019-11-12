@@ -10,7 +10,7 @@ public class YatzyConsoleApp
         var app = new YatzyConsoleApp(
                 () -> System.console().readLine(),
                 System.out::println);
-        app.start();
+        app.run();
     }
 
     public YatzyConsoleApp(TextInput input, TextOutput output) {
@@ -30,8 +30,8 @@ public class YatzyConsoleApp
         _game = new YatzyGame(diceRoller, scoreCalculatorFactory, new YatzyConsolePlayerInterface(output, input));
     }
 
-    public void start() {
-        _game.start();
+    public void run() {
+        _game.run();
     }
 
     public boolean isFinished() {

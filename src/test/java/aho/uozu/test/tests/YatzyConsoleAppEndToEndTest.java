@@ -4,7 +4,6 @@ import aho.uozu.DiceRoll;
 import aho.uozu.ScoreCategory;
 import aho.uozu.ScoreCategoryWithScore;
 import aho.uozu.test.ConstantDiceRoller;
-import aho.uozu.test.TextInputMock;
 import aho.uozu.test.YatzyConsoleAppRunner;
 import org.junit.Test;
 
@@ -21,7 +20,7 @@ public class YatzyConsoleAppEndToEndTest
         player.addNextInput(ScoreCategory.YATZY);
 
         var game = new YatzyConsoleAppRunner(player.textInput(), diceRoller);
-        game.start();
+        game.run();
 
         // turn 1
         game.displayedRoll(constantRoll);

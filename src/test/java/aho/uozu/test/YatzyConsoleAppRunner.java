@@ -17,8 +17,8 @@ public class YatzyConsoleAppRunner {
         _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller);
     }
 
-    public void start() {
-        _game.start();
+    public void run() {
+        _game.run();
     }
 
     public void displayedRoll(DiceRoll roll) {

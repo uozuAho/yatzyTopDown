@@ -22,15 +22,19 @@ public class YatzyGame {
         _availableCategories = new HashSet<>(Set.of(ScoreCategory.all()));
     }
 
-    public void start() {
+    public void run() {
         while(_availableCategories.size() > 0) {
-            rollDice();
-            _playerInterface.showPlayerRolled(getCurrentRoll());
-            _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
-            var category = _playerInterface.promptForCategoryInput();
-            _availableCategories.remove(category);
-            _playerInterface.showPlayerScore(scoreCurrentRoll(category));
+            runNextPlayerTurn();
         }
+    }
+
+    public void runNextPlayerTurn() {
+        rollDice();
+        _playerInterface.showPlayerRolled(getCurrentRoll());
+        _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
+        var category = _playerInterface.promptForCategoryInput();
+        _availableCategories.remove(category);
+        _playerInterface.showPlayerScore(scoreCurrentRoll(category));
     }
 
     void rollDice() {
