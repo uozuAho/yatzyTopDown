@@ -2,14 +2,16 @@ package aho.uozu;
 
 import aho.uozu.score_calculators.ScoreCalculatorFactory;
 
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class YatzyGame {
     private final DiceRoller _diceRoller;
     private final ScoreCalculatorFactory _scoreCalculatorFactory;
     private final YatzyPlayerInterface _playerInterface;
+    private final HashSet<ScoreCategory> _availableCategories;
 
     private DiceRoll _currentRoll;
 
@@ -17,14 +19,18 @@ public class YatzyGame {
         _diceRoller = diceRoller;
         _scoreCalculatorFactory = scoreCalculatorFactory;
         _playerInterface = playerInterface;
+        _availableCategories = new HashSet<>(Set.of(ScoreCategory.all()));
     }
 
     public void start() {
-        rollDice();
-        _playerInterface.showPlayerRolled(getCurrentRoll());
-        _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
-        var category = _playerInterface.promptForCategoryInput();
-        _playerInterface.showPlayerScore(scoreCurrentRoll(category));
+        while(_availableCategories.size() > 0) {
+            rollDice();
+            _playerInterface.showPlayerRolled(getCurrentRoll());
+            _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
+            var category = _playerInterface.promptForCategoryInput();
+            _availableCategories.remove(category);
+            _playerInterface.showPlayerScore(scoreCurrentRoll(category));
+        }
     }
 
     void rollDice() {
@@ -36,7 +42,7 @@ public class YatzyGame {
     }
 
     List<ScoreCategoryWithScore> getAvailableCategoriesWithScores() {
-        return Arrays.stream(ScoreCategory.all())
+        return _availableCategories.stream()
                 .map(category -> new ScoreCategoryWithScore(category, scoreCurrentRoll(category)))
                 .collect(Collectors.toList());
     }

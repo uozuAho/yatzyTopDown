@@ -19,6 +19,8 @@ public class TextOutputMock implements TextOutput {
     }
 
     public String readNextLine() {
+        if (_lines.isEmpty())
+            throw new IllegalStateException("No more lines of output");
         return _lines.remove();
     }
 }

@@ -42,25 +42,4 @@ public class YatzyConsoleAppEndToEndTest
 
         game.gameIsOver();
     }
-
-    @Test
-    public void whenPlayerChoosesYatzy_shouldGetYatzyScore()
-    {
-        var playerInput = new TextInputMock();
-        playerInput.addInputLine("yatzy");
-        final var constantRoll = new DiceRoll(new int[] {3, 3, 3, 3, 3});
-        var diceRoller = new ConstantDiceRoller(constantRoll);
-
-        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
-
-        game.start();
-        game.displayedRoll(constantRoll);
-        game.displayedAvailableCategories(new ScoreCategoryWithScore[] {
-                new ScoreCategoryWithScore(ScoreCategory.CHANCE, 15),
-                new ScoreCategoryWithScore(ScoreCategory.YATZY, 50)
-        });
-        game.promptedUserForCategory();
-        game.displayedScore(50);
-        game.gameIsOver();
-    }
 }

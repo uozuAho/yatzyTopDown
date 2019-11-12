@@ -4,7 +4,6 @@ import aho.uozu.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.matchesPattern;
 import static org.junit.Assert.*;
 
 public class YatzyConsoleAppRunner {
