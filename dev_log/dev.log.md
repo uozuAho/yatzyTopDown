@@ -189,6 +189,9 @@ I haven't come to terms with the way JMock works yet... So much boilerplate...
 Actually I'll keep the YatzyGameTests class for now, since I'll probably want to 
 test the game class more, later, and I don't want to have to re-learn how to use JMock.
 
+
+## Next slice: game continues until player has chosen all categories
+
 # long term todo
 
 - handle bad input from user

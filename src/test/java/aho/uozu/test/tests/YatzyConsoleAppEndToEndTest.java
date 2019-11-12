@@ -11,16 +11,19 @@ import org.junit.Test;
 public class YatzyConsoleAppEndToEndTest
 {
     @Test
-    public void shouldScoreOneCategoryThenFinish()
+    public void gameShouldContinueUntilAllCategoriesAreChosen()
     {
-        var playerInput = new TextInputMock();
-        playerInput.addInputLine("chance");
         final var constantRoll = new DiceRoll(new int[] {1, 1, 1, 1, 1});
         var diceRoller = new ConstantDiceRoller(constantRoll);
+        var player = new YatzyPlayerMock();
 
-        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
+        player.addNextInput(ScoreCategory.CHANCE);
+        player.addNextInput(ScoreCategory.YATZY);
 
+        var game = new YatzyConsoleAppRunner(player.textInput(), diceRoller);
         game.start();
+
+        // turn 1
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategories(new ScoreCategoryWithScore[] {
                 new ScoreCategoryWithScore(ScoreCategory.CHANCE, 5),
@@ -28,6 +31,15 @@ public class YatzyConsoleAppEndToEndTest
         });
         game.promptedUserForCategory();
         game.displayedScore(5);
+
+        // turn 2
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategories(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, 50)
+        });
+        game.promptedUserForCategory();
+        game.displayedScore(50);
+
         game.gameIsOver();
     }
 
