@@ -14,8 +14,10 @@ public class YatzyConsoleAppEndToEndTest
     {
         final var constantRoll = new DiceRoll(new int[] {1, 1, 1, 1, 1});
         var diceRoller = new ConstantDiceRoller(constantRoll);
-        var player = new YatzyPlayerMock();
+        final var chanceScore = 5;
+        final var yatzyScore = 50;
 
+        var player = new YatzyPlayerMock();
         player.addNextInput(ScoreCategory.CHANCE);
         player.addNextInput(ScoreCategory.YATZY);
 
@@ -24,20 +26,20 @@ public class YatzyConsoleAppEndToEndTest
 
         // turn 1
         game.displayedRoll(constantRoll);
-        game.displayedAvailableCategories(new ScoreCategoryWithScore[] {
-                new ScoreCategoryWithScore(ScoreCategory.CHANCE, 5),
-                new ScoreCategoryWithScore(ScoreCategory.YATZY, 50)
+        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
         });
         game.promptedUserForCategory();
-        game.displayedScore(5);
+        game.displayedScore(chanceScore);
 
         // turn 2
         game.displayedRoll(constantRoll);
-        game.displayedAvailableCategories(new ScoreCategoryWithScore[] {
-                new ScoreCategoryWithScore(ScoreCategory.YATZY, 50)
+        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
         });
         game.promptedUserForCategory();
-        game.displayedScore(50);
+        game.displayedScore(yatzyScore);
 
         game.gameIsOver();
     }
