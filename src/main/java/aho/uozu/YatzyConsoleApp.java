@@ -34,6 +34,10 @@ public class YatzyConsoleApp
         _game.run();
     }
 
+    public void doNextTurn() {
+        _game.runNextPlayerTurn();
+    }
+
     public boolean isFinished() {
         return _game.isFinished();
     }

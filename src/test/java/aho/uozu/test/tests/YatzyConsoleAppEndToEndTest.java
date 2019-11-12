@@ -16,15 +16,14 @@ public class YatzyConsoleAppEndToEndTest
         var diceRoller = new ConstantDiceRoller(constantRoll);
         final var chanceScore = 5;
         final var yatzyScore = 50;
-
         var player = new YatzyPlayerMock();
-        player.addNextInput(ScoreCategory.CHANCE);
-        player.addNextInput(ScoreCategory.YATZY);
 
-        var game = new YatzyConsoleAppRunner(player.textInput(), diceRoller);
-        game.run();
+        var game = new YatzyConsoleAppRunner(player, diceRoller);
+        game.isNotOver();
 
         // turn 1
+        player.setNextInput(ScoreCategory.CHANCE);
+        game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
                 new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
@@ -34,6 +33,8 @@ public class YatzyConsoleAppEndToEndTest
         game.displayedScore(chanceScore);
 
         // turn 2
+        player.setNextInput(ScoreCategory.YATZY);
+        game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
                 new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
@@ -41,6 +42,6 @@ public class YatzyConsoleAppEndToEndTest
         game.promptedUserForCategory();
         game.displayedScore(yatzyScore);
 
-        game.gameIsOver();
+        game.isOver();
     }
 }

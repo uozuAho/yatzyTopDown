@@ -19,8 +19,8 @@ public class YatzyConsoleAppRunner {
         _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller);
     }
 
-    public void run() {
-        _game.run();
+    public void doNextTurn() {
+        _game.doNextTurn();
     }
 
     public void displayedRoll(DiceRoll roll) {
@@ -35,8 +35,12 @@ public class YatzyConsoleAppRunner {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("your score: " + score)));
     }
 
-    public void gameIsOver() {
+    public void isOver() {
         assertTrue(_game.isFinished());
+    }
+
+    public void isNotOver() {
+        assertFalse(_game.isFinished());
     }
 
     public void displayedAvailableCategoriesInAnyOrder(ScoreCategoryWithScore[] catScores) {

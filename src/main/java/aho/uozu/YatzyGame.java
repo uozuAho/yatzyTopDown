@@ -23,7 +23,7 @@ public class YatzyGame {
     }
 
     public void run() {
-        while(_availableCategories.size() > 0) {
+        while(!isFinished()) {
             runNextPlayerTurn();
         }
     }
@@ -57,6 +57,6 @@ public class YatzyGame {
     }
 
     public boolean isFinished() {
-        return true;
+        return _availableCategories.size() == 0;
     }
 }
