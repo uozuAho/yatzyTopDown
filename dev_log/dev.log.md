@@ -199,14 +199,15 @@ This breaks the game unit test. Rather than fixing that test, it seems more usef
 to be able to step the game through from the outside, rather than having it run the
 entire game in a closed manner.
 
-todo
+
+## Next slice: game continues until player has chosen all categories
+
+
+
+# todo
 - playability on console
     - handle bad input from user
     - only allow valid category input from user
     - show running total score
 - design: YatzyPlayerMock implementing TextInput seems wrong
-
-# long term todo
-
-- randomise RandomDiceRoller!
 - make nice readable github page
