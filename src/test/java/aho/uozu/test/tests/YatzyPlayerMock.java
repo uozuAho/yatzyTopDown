@@ -1,18 +1,22 @@
 package aho.uozu.test.tests;
 
-import aho.uozu.ScoreCategory;
 import aho.uozu.TextInput;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class YatzyPlayerMock implements TextInput {
 
-    private ScoreCategory _nextInput;
+    private Queue<String> _inputs = new LinkedList<>();
 
-    public void setNextInput(ScoreCategory category) {
-        _nextInput = category;
+    public void enqueueInput(String... inputs) {
+        for (var input : inputs) {
+            _inputs.add(input);
+        }
     }
 
     @Override
     public String readLine() {
-        return _nextInput.toString();
+        return _inputs.remove();
     }
 }

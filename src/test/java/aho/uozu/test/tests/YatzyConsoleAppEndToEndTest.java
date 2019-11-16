@@ -22,7 +22,10 @@ public class YatzyConsoleAppEndToEndTest
         game.isNotOver();
 
         // turn 1
-        player.setNextInputs("reroll", ScoreCategory.CHANCE);
+        player.enqueueInput(
+                "reroll",
+                ScoreCategory.CHANCE.toString()
+        );
         game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
@@ -41,7 +44,7 @@ public class YatzyConsoleAppEndToEndTest
         game.displayedScore(chanceScore);
 
         // turn 2
-        player.enqueueInput(ScoreCategory.YATZY);
+        player.enqueueInput(ScoreCategory.YATZY.toString());
         game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
