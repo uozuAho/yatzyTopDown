@@ -22,24 +22,32 @@ public class YatzyConsoleAppEndToEndTest
         game.isNotOver();
 
         // turn 1
-        player.setNextInput(ScoreCategory.CHANCE);
+        player.setNextInputs("reroll", ScoreCategory.CHANCE);
         game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
                 new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
                 new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
         });
-        game.promptedUserForCategory();
+        game.promptedUserForCategoryOrReRoll();
+        // player re-rolls here
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
+        });
+        game.promptedUserForCategoryOrReRoll();
+        // player chooses category here
         game.displayedScore(chanceScore);
 
         // turn 2
-        player.setNextInput(ScoreCategory.YATZY);
+        player.enqueueInput(ScoreCategory.YATZY);
         game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
                 new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
         });
-        game.promptedUserForCategory();
+        game.promptedUserForCategoryOrReRoll();
         game.displayedScore(yatzyScore);
 
         game.isOver();
