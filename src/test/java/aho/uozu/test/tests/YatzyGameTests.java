@@ -51,7 +51,7 @@ public class YatzyGameTests {
             ));
         }});
 
-        game.start();
+        game.runNextPlayerTurn();
     }
 
     // surely there's a more succint way of doing this?!?!?!??!!1

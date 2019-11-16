@@ -2,9 +2,10 @@ package aho.uozu.test;
 
 import aho.uozu.*;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.matchesPattern;
 import static org.junit.Assert.*;
 
 public class YatzyConsoleAppRunner {
@@ -18,8 +19,8 @@ public class YatzyConsoleAppRunner {
         _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller);
     }
 
-    public void start() {
-        _game.start();
+    public void doNextTurn() {
+        _game.doNextTurn();
     }
 
     public void displayedRoll(DiceRoll roll) {
@@ -34,15 +35,24 @@ public class YatzyConsoleAppRunner {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("your score: " + score)));
     }
 
-    public void gameIsOver() {
+    public void isOver() {
         assertTrue(_game.isFinished());
     }
 
-    public void displayedAvailableCategories(ScoreCategoryWithScore[] catScores) {
+    public void isNotOver() {
+        assertFalse(_game.isFinished());
+    }
+
+    public void displayedAvailableCategoriesInAnyOrder(ScoreCategoryWithScore[] catScores) {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("available categories:")));
+        var outputLines = new ArrayList<String>();
+        for (int i = 0; i < catScores.length; i++) {
+            outputLines.add(_consoleOutput.readNextLine());
+        }
         for (var catScore : catScores) {
             var expectedDisplay = String.format("    %s: %d points", catScore.category, catScore.score);
-            assertThat(_consoleOutput.readNextLine(), is(equalTo(expectedDisplay)));
+            var matchFound = outputLines.stream().anyMatch(outputLine -> expectedDisplay.equals(outputLine));
+            assertThat("Found expected category and score in output: " + expectedDisplay, matchFound, is(true));
         }
     }
 }

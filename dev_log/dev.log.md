@@ -189,8 +189,24 @@ I haven't come to terms with the way JMock works yet... So much boilerplate...
 Actually I'll keep the YatzyGameTests class for now, since I'll probably want to 
 test the game class more, later, and I don't want to have to re-learn how to use JMock.
 
+
+## Next slice: game continues until player has chosen all categories
+
+git commit: `1ffe5a2`
+
+Rewrote the e2e test to run until all categories have been selected by the player.
+This breaks the game unit test. Rather than fixing that test, it seems more useful
+to be able to step the game through from the outside, rather than having it run the
+entire game in a closed manner.
+
+todo
+- playability on console
+    - handle bad input from user
+    - only allow valid category input from user
+    - show running total score
+- design: YatzyPlayerMock implementing TextInput seems wrong
+
 # long term todo
 
-- handle bad input from user
 - randomise RandomDiceRoller!
 - make nice readable github page
