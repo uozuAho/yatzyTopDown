@@ -42,7 +42,7 @@ public class YatzyGameTests {
     public void shouldOutputCorrectScoreWithCategories() {
         context.checking(new Expectations() {{
             allowing(playerInterface).showPlayerRolled(with(any(DiceRoll.class)));
-            oneOf(playerInterface).promptForCategoryInput(); will(returnValue(ScoreCategory.CHANCE));
+            oneOf(playerInterface).promptForCategoryOrReRoll(); will(returnValue(new PlayerInput(PlayerInputType.ScoreCategory, ScoreCategory.CHANCE)));
             allowing(playerInterface).showPlayerScore(with(any(int.class)));
             oneOf(playerInterface).showAvailableCategories(with(
                     new AvailableCategoriesMatcher(

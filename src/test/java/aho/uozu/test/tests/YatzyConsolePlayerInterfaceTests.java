@@ -1,5 +1,6 @@
 package aho.uozu.test.tests;
 
+import aho.uozu.PlayerInputType;
 import aho.uozu.ScoreCategory;
 import aho.uozu.YatzyConsolePlayerInterface;
 import aho.uozu.test.TextInputMock;
@@ -22,9 +23,10 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.addInputLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var category = playerInterface.promptForCategoryInput();
+        var playerInput = playerInterface.promptForCategoryOrReRoll();
 
-        assertThat(category, is(equalTo(ScoreCategory.CHANCE)));
+        assertThat(playerInput.type, is(equalTo(PlayerInputType.ScoreCategory)));
+        assertThat(playerInput.value, is(equalTo(ScoreCategory.CHANCE)));
     }
 
     @Test
@@ -34,9 +36,21 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.addInputLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var category = playerInterface.promptForCategoryInput();
+        var playerInput = playerInterface.promptForCategoryOrReRoll();
 
-        assertThat(category, is(equalTo(ScoreCategory.YATZY)));
+        assertThat(playerInput.type, is(equalTo(PlayerInputType.ScoreCategory)));
+        assertThat(playerInput.value, is(equalTo(ScoreCategory.YATZY)));
+    }
+
+    @Test
+    public void shouldReturnReroll() {
+        var textInput = new TextInputMock();
+        textInput.addInputLine("reroll");
+        var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
+
+        var playerInput = playerInterface.promptForCategoryOrReRoll();
+
+        assertThat(playerInput.type, is(equalTo(PlayerInputType.ReRoll)));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -45,6 +59,6 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.addInputLine("garbage!!!");
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        playerInterface.promptForCategoryInput();
+        playerInterface.promptForCategoryOrReRoll();
     }
 }

@@ -5,6 +5,6 @@ import java.util.List;
 public interface YatzyPlayerInterface {
     void showPlayerRolled(DiceRoll roll);
     void showAvailableCategories(List<ScoreCategoryWithScore> categories);
-    ScoreCategory promptForCategoryInput();
+    PlayerInput promptForCategoryOrReRoll();
     void showPlayerScore(int score);
 }

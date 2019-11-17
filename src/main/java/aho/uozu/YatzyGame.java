@@ -29,10 +29,16 @@ public class YatzyGame {
     }
 
     public void runNextPlayerTurn() {
-        rollDice();
-        _playerInterface.showPlayerRolled(getCurrentRoll());
-        _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
-        var category = _playerInterface.promptForCategoryInput();
+        var input = new PlayerInput(PlayerInputType.ReRoll);
+
+        while (input.type == PlayerInputType.ReRoll) {
+            rollDice();
+            _playerInterface.showPlayerRolled(getCurrentRoll());
+            _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
+            input = _playerInterface.promptForCategoryOrReRoll();
+        }
+
+        var category = (ScoreCategory) input.value;
         _availableCategories.remove(category);
         _playerInterface.showPlayerScore(scoreCurrentRoll(category));
     }
