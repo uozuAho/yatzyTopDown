@@ -20,7 +20,7 @@ public class YatzyConsolePlayerInterfaceTests {
     @Parameters({"chance", "CHANCE  ", "   ChaNCE"})
     public void validCategoryInputChance(String input) {
         var textInput = new TextInputMock();
-        textInput.addInputLine(input);
+        textInput.enqueueLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
         var playerInput = playerInterface.promptForCategoryOrReRoll();
@@ -33,7 +33,7 @@ public class YatzyConsolePlayerInterfaceTests {
     @Parameters({"yatzy", "YATZY", "YAtzy    "})
     public void validCategoryInputYatzy(String input) {
         var textInput = new TextInputMock();
-        textInput.addInputLine(input);
+        textInput.enqueueLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
         var playerInput = playerInterface.promptForCategoryOrReRoll();
@@ -45,7 +45,7 @@ public class YatzyConsolePlayerInterfaceTests {
     @Test
     public void shouldReturnReroll() {
         var textInput = new TextInputMock();
-        textInput.addInputLine("reroll");
+        textInput.enqueueLine("reroll");
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
         var playerInput = playerInterface.promptForCategoryOrReRoll();
@@ -56,7 +56,7 @@ public class YatzyConsolePlayerInterfaceTests {
     @Test(expected = IllegalArgumentException.class)
     public void invalidCategoryInputShouldThrow() {
         var textInput = new TextInputMock();
-        textInput.addInputLine("garbage!!!");
+        textInput.enqueueLine("garbage!!!");
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
         playerInterface.promptForCategoryOrReRoll();

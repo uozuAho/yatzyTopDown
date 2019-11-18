@@ -21,7 +21,9 @@ public class TextInputMock implements TextInput {
         return _lines.remove();
     }
 
-    public void addInputLine(String line) {
-        _lines.add(line);
+    public void enqueueLine(String... lines) {
+        for (var line : lines) {
+            _lines.add(line);
+        }
     }
 }

@@ -200,7 +200,7 @@ to be able to step the game through from the outside, rather than having it run 
 entire game in a closed manner.
 
 
-## Next slice: game continues until player has chosen all categories
+## Next slice: player can re-roll dice
 
 
 
@@ -209,5 +209,6 @@ entire game in a closed manner.
     - handle bad input from user
     - only allow valid category input from user
     - show running total score
+- limit re-rolls to 3
 - design: YatzyPlayerMock implementing TextInput seems wrong
 - make nice readable github page
