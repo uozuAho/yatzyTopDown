@@ -200,14 +200,21 @@ to be able to step the game through from the outside, rather than having it run 
 entire game in a closed manner.
 
 
-## Next slice: game continues until player has chosen all categories
+## Next slice: player can re-roll dice
 
+Done. That was pretty easy. I didn't bother implementing re-rolling specific dies.
+
+## Next slice: maximum 3 re-rolls
+
+## Next slice: playability: handle bad input, prettier output
 
 
 # todo
+- split e2e test: reroll?
 - playability on console
     - handle bad input from user
     - only allow valid category input from user
     - show running total score
-- design: YatzyPlayerMock implementing TextInput seems wrong
+- limit re-rolls to 3
 - make nice readable github page
+

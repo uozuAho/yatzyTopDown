@@ -1,5 +1,6 @@
 package aho.uozu.test.tests;
 
+import aho.uozu.PlayerInputType;
 import aho.uozu.ScoreCategory;
 import aho.uozu.YatzyConsolePlayerInterface;
 import aho.uozu.test.TextInputMock;
@@ -19,32 +20,45 @@ public class YatzyConsolePlayerInterfaceTests {
     @Parameters({"chance", "CHANCE  ", "   ChaNCE"})
     public void validCategoryInputChance(String input) {
         var textInput = new TextInputMock();
-        textInput.addInputLine(input);
+        textInput.enqueueLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var category = playerInterface.promptForCategoryInput();
+        var playerInput = playerInterface.promptForCategoryOrReRoll();
 
-        assertThat(category, is(equalTo(ScoreCategory.CHANCE)));
+        assertThat(playerInput.type, is(equalTo(PlayerInputType.ScoreCategory)));
+        assertThat(playerInput.value, is(equalTo(ScoreCategory.CHANCE)));
     }
 
     @Test
     @Parameters({"yatzy", "YATZY", "YAtzy    "})
     public void validCategoryInputYatzy(String input) {
         var textInput = new TextInputMock();
-        textInput.addInputLine(input);
+        textInput.enqueueLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var category = playerInterface.promptForCategoryInput();
+        var playerInput = playerInterface.promptForCategoryOrReRoll();
 
-        assertThat(category, is(equalTo(ScoreCategory.YATZY)));
+        assertThat(playerInput.type, is(equalTo(PlayerInputType.ScoreCategory)));
+        assertThat(playerInput.value, is(equalTo(ScoreCategory.YATZY)));
+    }
+
+    @Test
+    public void shouldReturnReroll() {
+        var textInput = new TextInputMock();
+        textInput.enqueueLine("reroll");
+        var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
+
+        var playerInput = playerInterface.promptForCategoryOrReRoll();
+
+        assertThat(playerInput.type, is(equalTo(PlayerInputType.ReRoll)));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void invalidCategoryInputShouldThrow() {
         var textInput = new TextInputMock();
-        textInput.addInputLine("garbage!!!");
+        textInput.enqueueLine("garbage!!!");
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        playerInterface.promptForCategoryInput();
+        playerInterface.promptForCategoryOrReRoll();
     }
 }

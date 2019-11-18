@@ -23,18 +23,24 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
         }
     }
 
-    public ScoreCategory promptForCategoryInput() {
-        _output.writeLine("enter a category");
-        return waitForCategoryInput();
+    public PlayerInput promptForCategoryOrReRoll() {
+        _output.writeLine("enter a category, or 'reroll'");
+        var rawInput = _input.readLine();
+        if (isReRoll(rawInput)) {
+            return new PlayerInput(PlayerInputType.ReRoll);
+        } else {
+            var category = parseCategory(rawInput);
+            return new PlayerInput(PlayerInputType.ScoreCategory, category);
+        }
+    }
+
+    private boolean isReRoll(String rawInput) {
+        if (rawInput == null) return false;
+        return rawInput.trim().toLowerCase().equals("reroll");
     }
 
     public void showPlayerScore(int score) {
         _output.writeLine("your score: " + score);
-    }
-
-    private ScoreCategory waitForCategoryInput() {
-        var input = _input.readLine();
-        return parseCategory(input);
     }
 
     private ScoreCategory parseCategory(String userInput) {

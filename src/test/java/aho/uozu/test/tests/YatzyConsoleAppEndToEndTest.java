@@ -4,6 +4,7 @@ import aho.uozu.DiceRoll;
 import aho.uozu.ScoreCategory;
 import aho.uozu.ScoreCategoryWithScore;
 import aho.uozu.test.ConstantDiceRoller;
+import aho.uozu.test.TextInputMock;
 import aho.uozu.test.YatzyConsoleAppRunner;
 import org.junit.Test;
 
@@ -16,30 +17,41 @@ public class YatzyConsoleAppEndToEndTest
         var diceRoller = new ConstantDiceRoller(constantRoll);
         final var chanceScore = 5;
         final var yatzyScore = 50;
-        var player = new YatzyPlayerMock();
+        var playerInput = new TextInputMock();
 
-        var game = new YatzyConsoleAppRunner(player, diceRoller);
+        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
         game.isNotOver();
 
         // turn 1
-        player.setNextInput(ScoreCategory.CHANCE);
+        playerInput.enqueueLine(
+                "reroll",
+                ScoreCategory.CHANCE.toString()
+        );
         game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
                 new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
                 new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
         });
-        game.promptedUserForCategory();
+        game.promptedUserForCategoryOrReRoll();
+        // playerInput re-rolls here
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
+        });
+        game.promptedUserForCategoryOrReRoll();
+        // playerInput chooses category here
         game.displayedScore(chanceScore);
 
         // turn 2
-        player.setNextInput(ScoreCategory.YATZY);
+        playerInput.enqueueLine(ScoreCategory.YATZY.toString());
         game.doNextTurn();
         game.displayedRoll(constantRoll);
         game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
                 new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
         });
-        game.promptedUserForCategory();
+        game.promptedUserForCategoryOrReRoll();
         game.displayedScore(yatzyScore);
 
         game.isOver();
