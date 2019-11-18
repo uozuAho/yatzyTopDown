@@ -210,7 +210,6 @@ Done. That was pretty easy. I didn't bother implementing re-rolling specific die
 
 
 # todo
-- split e2e test: reroll?
 - playability on console
     - handle bad input from user
     - only allow valid category input from user

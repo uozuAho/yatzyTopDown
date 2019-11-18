@@ -23,6 +23,40 @@ public class YatzyConsoleAppEndToEndTest
         game.isNotOver();
 
         // turn 1
+        playerInput.enqueueLine(ScoreCategory.CHANCE.toString());
+        game.doNextTurn();
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
+        });
+        game.promptedUserForCategoryOrReRoll();
+        game.displayedScore(chanceScore);
+
+        // turn 2
+        playerInput.enqueueLine(ScoreCategory.YATZY.toString());
+        game.doNextTurn();
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
+        });
+        game.promptedUserForCategoryOrReRoll();
+        game.displayedScore(yatzyScore);
+
+        game.isOver();
+    }
+
+    @Test
+    public void sameCategoriesAreDisplayedWhenPlayerReRolls() {
+        final var constantRoll = new DiceRoll(new int[] {1, 1, 1, 1, 1});
+        var diceRoller = new ConstantDiceRoller(constantRoll);
+        final var chanceScore = 5;
+        final var yatzyScore = 50;
+        var playerInput = new TextInputMock();
+
+        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
+
+        // turn 1
         playerInput.enqueueLine(
                 "reroll",
                 ScoreCategory.CHANCE.toString()
@@ -43,17 +77,5 @@ public class YatzyConsoleAppEndToEndTest
         game.promptedUserForCategoryOrReRoll();
         // playerInput chooses category here
         game.displayedScore(chanceScore);
-
-        // turn 2
-        playerInput.enqueueLine(ScoreCategory.YATZY.toString());
-        game.doNextTurn();
-        game.displayedRoll(constantRoll);
-        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
-                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
-        });
-        game.promptedUserForCategoryOrReRoll();
-        game.displayedScore(yatzyScore);
-
-        game.isOver();
     }
 }
