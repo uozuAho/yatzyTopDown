@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class YatzyGame {
+    private final int MAX_REROLLS = 3;
+
     private final DiceRoller _diceRoller;
     private final ScoreCalculatorFactory _scoreCalculatorFactory;
     private final YatzyPlayerInterface _playerInterface;
@@ -30,17 +32,28 @@ public class YatzyGame {
 
     public void runNextPlayerTurn() {
         PlayerInput input;
+        int _availableReRolls = MAX_REROLLS;
+        var turnIsOver = false;
 
-         do {
+        while (!turnIsOver) {
             rollDice();
             _playerInterface.showPlayerRolled(getCurrentRoll());
             _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
-            input = _playerInterface.promptForCategoryOrReRoll();
-        } while (input.type == PlayerInputType.ReRoll);
-
-        var category = (ScoreCategory) input.value;
-        _availableCategories.remove(category);
-        _playerInterface.showPlayerScore(scoreCurrentRoll(category));
+            if (_availableReRolls > 0) {
+                input = _playerInterface.promptForCategoryOrReRoll();
+            } else {
+                input = _playerInterface.promptForCategory();
+            }
+            if (input.type == PlayerInputType.ReRoll) {
+                _availableReRolls--;
+            }
+            else {
+                var category = (ScoreCategory) input.value;
+                _availableCategories.remove(category);
+                _playerInterface.showPlayerScore(scoreCurrentRoll(category));
+                turnIsOver = true;
+            }
+        }
     }
 
     void rollDice() {
