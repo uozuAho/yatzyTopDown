@@ -116,4 +116,21 @@ public class YatzyConsoleAppEndToEndTest
         game.promptedUserForCategory();
         game.displayedScore(chanceScore);
     }
+
+    @Test
+    public void repromptWhenInputIsBad() {
+        final var constantRoll = new DiceRoll(new int[]{1, 1, 1, 1, 1});
+        var diceRoller = new ConstantDiceRoller(constantRoll);
+        var playerInput = new TextInputMock();
+
+        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
+
+        playerInput.enqueueLine("bad input");
+        game.doNextTurn();
+        game.displayedRoll(constantRoll);
+        game.ignoreOutputLines(2); // category choices
+        game.promptedUserForCategoryOrReRoll();
+        game.displayedIncorrectInputMessage();
+        game.promptedUserForCategoryOrReRoll();
+    }
 }

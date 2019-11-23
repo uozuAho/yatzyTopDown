@@ -59,4 +59,14 @@ public class YatzyConsoleAppRunner {
             assertThat("Found expected category and score in output: " + expectedDisplay, matchFound, is(true));
         }
     }
+
+    public void ignoreOutputLines(int numLines) {
+        for (int i = 0; i < numLines; i++) {
+            _consoleOutput.readNextLine();
+        }
+    }
+
+    public void displayedIncorrectInputMessage() {
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("bad input")));
+    }
 }
