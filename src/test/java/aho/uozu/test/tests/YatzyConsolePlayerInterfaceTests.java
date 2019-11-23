@@ -53,12 +53,28 @@ public class YatzyConsolePlayerInterfaceTests {
         assertThat(playerInput.type, is(equalTo(PlayerInputType.ReRoll)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void invalidCategoryInputShouldThrow() {
+    @Test
+    public void shouldRepromptUntilGoodInput() {
         var textInput = new TextInputMock();
         textInput.enqueueLine("garbage!!!");
+        textInput.enqueueLine("garbage!!!");
+        textInput.enqueueLine(ScoreCategory.CHANCE.toString());
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        playerInterface.promptForCategoryOrReRoll();
+        var input = playerInterface.promptForCategoryOrReRoll();
+
+        assertThat(input.value, is(equalTo(ScoreCategory.CHANCE)));
+    }
+
+    @Test
+    public void promptForCategoryShouldRepromptOnReroll() {
+        var textInput = new TextInputMock();
+        textInput.enqueueLine("reroll");
+        textInput.enqueueLine(ScoreCategory.CHANCE.toString());
+        var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
+
+        var input = playerInterface.promptForCategory();
+
+        assertThat(input.value, is(equalTo(ScoreCategory.CHANCE)));
     }
 }
