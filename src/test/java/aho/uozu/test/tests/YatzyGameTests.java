@@ -41,9 +41,14 @@ public class YatzyGameTests {
     @Test
     public void shouldOutputCorrectScoreWithCategories() {
         context.checking(new Expectations() {{
+            // todo: ignore this?
             allowing(playerInterface).showPlayerRolled(with(any(DiceRoll.class)));
+
             oneOf(playerInterface).promptForCategoryOrReRoll(); will(returnValue(new PlayerInput(PlayerInputType.ScoreCategory, ScoreCategory.CHANCE)));
+
+            // todo: ignore this?
             allowing(playerInterface).showPlayerScore(with(any(int.class)));
+
             oneOf(playerInterface).showAvailableCategories(with(
                     new AvailableCategoriesMatcher(
                             new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),

@@ -210,10 +210,10 @@ Done. That was pretty easy. I didn't bother implementing re-rolling specific die
 
 
 # todo
+- ignore some mock setup in YatzyGame tests?
 - playability on console
     - handle bad input from user
     - only allow valid category input from user
     - show running total score
-- limit re-rolls to 3
 - make nice readable github page
 

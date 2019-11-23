@@ -27,6 +27,10 @@ public class YatzyConsoleAppRunner {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("you rolled: " + roll.toString())));
     }
 
+    public void promptedUserForCategory() {
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("enter a category")));
+    }
+
     public void promptedUserForCategoryOrReRoll() {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("enter a category, or 'reroll'")));
     }
