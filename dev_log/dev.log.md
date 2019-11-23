@@ -213,6 +213,9 @@ Done. Didn't bother refactoring...
 ## Next slice: handle bad input
 
 
+todo
+- reprompt for category input
+
 # todo
 - ignore some mock setup in YatzyGame tests?
 - playability on console

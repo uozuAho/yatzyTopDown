@@ -126,11 +126,13 @@ public class YatzyConsoleAppEndToEndTest
         var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
 
         playerInput.enqueueLine("bad input");
+        playerInput.enqueueLine(ScoreCategory.CHANCE.toString());
         game.doNextTurn();
         game.displayedRoll(constantRoll);
-        game.ignoreOutputLines(2); // category choices
+        game.ignoreOutputLines(3); // category choices
         game.promptedUserForCategoryOrReRoll();
         game.displayedIncorrectInputMessage();
         game.promptedUserForCategoryOrReRoll();
+        game.ignoreOutputLines(1); // score
     }
 }
