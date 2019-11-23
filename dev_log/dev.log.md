@@ -214,7 +214,8 @@ Done. Didn't bother refactoring...
 
 
 todo
-- reprompt for category input
+- separate input validator / reprompt
+- only allow available category (bug! - allows infinite rerolls)
 
 # todo
 - ignore some mock setup in YatzyGame tests?

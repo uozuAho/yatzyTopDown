@@ -25,10 +25,16 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
 
     @Override
     public PlayerInput promptForCategory() {
-        _output.writeLine("enter a category");
-        var rawInput = _input.readLine();
-        var category = parseCategory(rawInput);
-        return new PlayerInput(PlayerInputType.ScoreCategory, category);
+        while (true) {
+            _output.writeLine("enter a category");
+            var rawInput = _input.readLine();
+            try {
+                var category = parseCategory(rawInput);
+                return new PlayerInput(PlayerInputType.ScoreCategory, category);
+            } catch (IllegalArgumentException e) {
+                _output.writeLine("bad input");
+            }
+        }
     }
 
     @Override
