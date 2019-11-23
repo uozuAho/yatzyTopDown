@@ -206,7 +206,11 @@ Done. That was pretty easy. I didn't bother implementing re-rolling specific die
 
 ## Next slice: maximum 3 re-rolls
 
-## Next slice: playability: handle bad input, prettier output
+git commit: `49d0186`
+
+Done. Didn't bother refactoring...
+
+## Next slice: handle bad input
 
 
 # todo
@@ -215,5 +219,6 @@ Done. That was pretty easy. I didn't bother implementing re-rolling specific die
     - handle bad input from user
     - only allow valid category input from user
     - show running total score
+- write 'directors cut' of dev log
 - make nice readable github page
 
