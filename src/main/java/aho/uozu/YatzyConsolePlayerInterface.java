@@ -31,6 +31,10 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
             var rawInput = _input.readLine();
             try {
                 var category = parseCategory(rawInput);
+                if (!availableCategories.contains(category)) {
+                    _output.writeLine("That category is not available!");
+                    continue;
+                }
                 return new PlayerInput(PlayerInputType.ScoreCategory, category);
             } catch (IllegalArgumentException e) {
                 _output.writeLine("bad input");
