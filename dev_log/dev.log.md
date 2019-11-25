@@ -212,6 +212,13 @@ Done. Didn't bother refactoring...
 
 ## Next slice: handle bad input
 
+git commit: `c89fb2a`
+
+I wrote a unit test for handling unavailable categories, which passed, but then
+the console game still allowed it! It's a pretty suitable test for an e2e test
+too. I haven't figured out a good rule for where tests should live yet. Testing
+multiple permutations seems unit-y. Maybe everything else should be as high as
+possible without impeding test times?
 
 todo
 - only allow available category (bug! - allows infinite rerolls)
