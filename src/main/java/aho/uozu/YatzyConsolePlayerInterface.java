@@ -1,5 +1,6 @@
 package aho.uozu;
 
+import java.util.Collection;
 import java.util.List;
 
 public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
@@ -24,7 +25,7 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     }
 
     @Override
-    public PlayerInput promptForCategory() {
+    public PlayerInput promptForCategory(Collection<ScoreCategory> availableCategories) {
         while (true) {
             _output.writeLine("enter a category");
             var rawInput = _input.readLine();
@@ -38,7 +39,7 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     }
 
     @Override
-    public PlayerInput promptForCategoryOrReRoll() {
+    public PlayerInput promptForCategoryOrReRoll(Collection<ScoreCategory> availableCategories) {
         while (true) {
             _output.writeLine("enter a category, or 'reroll'");
             var rawInput = _input.readLine();

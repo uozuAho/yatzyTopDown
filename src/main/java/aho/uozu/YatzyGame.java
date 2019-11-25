@@ -40,9 +40,9 @@ public class YatzyGame {
             _playerInterface.showPlayerRolled(getCurrentRoll());
             _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
             if (_availableReRolls > 0) {
-                input = _playerInterface.promptForCategoryOrReRoll();
+                input = _playerInterface.promptForCategoryOrReRoll(_availableCategories);
             } else {
-                input = _playerInterface.promptForCategory();
+                input = _playerInterface.promptForCategory(_availableCategories);
             }
             if (input.type == PlayerInputType.ReRoll) {
                 _availableReRolls--;

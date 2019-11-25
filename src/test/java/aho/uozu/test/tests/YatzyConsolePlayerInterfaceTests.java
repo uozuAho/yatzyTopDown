@@ -10,12 +10,18 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
 public class YatzyConsolePlayerInterfaceTests {
+    private Collection<ScoreCategory> _allCategoriesAvailable = Arrays.asList(ScoreCategory.all());
+
     @Test
     @Parameters({"chance", "CHANCE  ", "   ChaNCE"})
     public void validCategoryInputChance(String input) {
@@ -23,7 +29,7 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.enqueueLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var playerInput = playerInterface.promptForCategoryOrReRoll();
+        var playerInput = playerInterface.promptForCategoryOrReRoll(_allCategoriesAvailable);
 
         assertThat(playerInput.type, is(equalTo(PlayerInputType.ScoreCategory)));
         assertThat(playerInput.value, is(equalTo(ScoreCategory.CHANCE)));
@@ -36,7 +42,7 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.enqueueLine(input);
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var playerInput = playerInterface.promptForCategoryOrReRoll();
+        var playerInput = playerInterface.promptForCategoryOrReRoll(_allCategoriesAvailable);
 
         assertThat(playerInput.type, is(equalTo(PlayerInputType.ScoreCategory)));
         assertThat(playerInput.value, is(equalTo(ScoreCategory.YATZY)));
@@ -48,7 +54,7 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.enqueueLine("reroll");
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var playerInput = playerInterface.promptForCategoryOrReRoll();
+        var playerInput = playerInterface.promptForCategoryOrReRoll(_allCategoriesAvailable);
 
         assertThat(playerInput.type, is(equalTo(PlayerInputType.ReRoll)));
     }
@@ -61,7 +67,7 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.enqueueLine(ScoreCategory.CHANCE.toString());
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var input = playerInterface.promptForCategoryOrReRoll();
+        var input = playerInterface.promptForCategoryOrReRoll(_allCategoriesAvailable);
 
         assertThat(input.value, is(equalTo(ScoreCategory.CHANCE)));
     }
@@ -73,8 +79,22 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.enqueueLine(ScoreCategory.CHANCE.toString());
         var playerInterface = new YatzyConsolePlayerInterface(new TextOutputMock(), textInput);
 
-        var input = playerInterface.promptForCategory();
+        var input = playerInterface.promptForCategory(_allCategoriesAvailable);
 
         assertThat(input.value, is(equalTo(ScoreCategory.CHANCE)));
+    }
+
+    @Test
+    public void shouldRepromptUntilAvailableCategoryIsChosen() {
+        var textOutput = new TextOutputMock();
+        var textInput = new TextInputMock();
+        var consoleInterface = new YatzyConsolePlayerInterface(textOutput, textInput);
+        textInput.enqueueLine(ScoreCategory.CHANCE.toString());
+        textInput.enqueueLine(ScoreCategory.CHANCE.toString());
+        textInput.enqueueLine(ScoreCategory.YATZY.toString());
+
+        var input = consoleInterface.promptForCategory(Collections.singletonList(ScoreCategory.YATZY));
+
+        assertThat(input.value, is(equalTo(ScoreCategory.YATZY)));
     }
 }
