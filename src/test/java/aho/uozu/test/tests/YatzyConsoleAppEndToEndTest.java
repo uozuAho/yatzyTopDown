@@ -129,10 +129,11 @@ public class YatzyConsoleAppEndToEndTest
         playerInput.enqueueLine(ScoreCategory.CHANCE.toString());
         game.doNextTurn();
         game.displayedRoll(constantRoll);
-        game.ignoreOutputLines(3); // category choices
+        game.displayedAvailableCategories(2);
         game.promptedUserForCategoryOrReRoll();
+        // bad input here
         game.displayedIncorrectInputMessage();
         game.promptedUserForCategoryOrReRoll();
-        game.ignoreOutputLines(1); // score
+        game.displayedScore();
     }
 }
