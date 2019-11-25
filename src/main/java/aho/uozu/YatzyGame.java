@@ -18,11 +18,15 @@ public class YatzyGame {
 
     private DiceRoll _currentRoll;
 
-    public YatzyGame(DiceRoller diceRoller, Collection<ScoreCategory> availableCategories, ScoreCalculatorFactory scoreCalculatorFactory, YatzyPlayerInterface playerInterface) {
+    public YatzyGame(DiceRoller diceRoller,
+                     Collection<ScoreCategory> availableCategories,
+                     ScoreCalculatorFactory scoreCalculatorFactory,
+                     YatzyPlayerInterface playerInterface)
+    {
         _diceRoller = diceRoller;
         _scoreCalculatorFactory = scoreCalculatorFactory;
         _playerInterface = playerInterface;
-        _availableCategories = new HashSet<>(Set.of(ScoreCategory.all()));
+        _availableCategories = new HashSet<>(availableCategories);
     }
 
     public void run() {
