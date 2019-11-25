@@ -223,6 +223,7 @@ possible without impeding test times?
 todo
 - only allow available category (bug! - allows infinite rerolls)
 - separate input validator / reprompt
+- YatzyConsoleApp, game, others - too many constructors - builder?
 
 # todo
 - ignore some mock setup in YatzyGame tests?

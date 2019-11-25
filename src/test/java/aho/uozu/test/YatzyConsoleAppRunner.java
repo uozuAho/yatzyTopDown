@@ -3,6 +3,7 @@ package aho.uozu.test;
 import aho.uozu.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.startsWith;
@@ -19,6 +20,13 @@ public class YatzyConsoleAppRunner {
         _consoleInput = input;
         _consoleOutput = new TextOutputMock();
         _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller);
+    }
+
+    public YatzyConsoleAppRunner(TextInput input, DiceRoller diceRoller, Collection<ScoreCategory> availableCategories) {
+        // todo: consolidate with above constructor
+        _consoleInput = input;
+        _consoleOutput = new TextOutputMock();
+        _game = new YatzyConsoleApp(_consoleInput, _consoleOutput, diceRoller, availableCategories);
     }
 
     public void doNextTurn() {
@@ -75,5 +83,9 @@ public class YatzyConsoleAppRunner {
 
     public void displayedIncorrectInputMessage() {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("bad input")));
+    }
+
+    public void displayedUnavailableCategoryMessage() {
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("category not available!")));
     }
 }

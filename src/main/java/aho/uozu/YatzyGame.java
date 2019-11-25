@@ -2,6 +2,7 @@ package aho.uozu;
 
 import aho.uozu.score_calculators.ScoreCalculatorFactory;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,7 @@ public class YatzyGame {
 
     private DiceRoll _currentRoll;
 
-    public YatzyGame(DiceRoller diceRoller, ScoreCalculatorFactory scoreCalculatorFactory, YatzyPlayerInterface playerInterface) {
+    public YatzyGame(DiceRoller diceRoller, Collection<ScoreCategory> availableCategories, ScoreCalculatorFactory scoreCalculatorFactory, YatzyPlayerInterface playerInterface) {
         _diceRoller = diceRoller;
         _scoreCalculatorFactory = scoreCalculatorFactory;
         _playerInterface = playerInterface;
