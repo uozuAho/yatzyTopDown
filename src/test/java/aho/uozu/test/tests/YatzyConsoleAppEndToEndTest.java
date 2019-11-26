@@ -135,6 +135,7 @@ public class YatzyConsoleAppEndToEndTest
         game.promptedUserForCategoryOrReRoll();
         // bad input here
         game.displayedIncorrectInputMessage();
+        game.displayedAvailableCategories(2);
         game.promptedUserForCategoryOrReRoll();
         game.displayedScore();
     }

@@ -1,7 +1,6 @@
 package aho.uozu;
 
 import java.util.Collection;
-import java.util.List;
 
 public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     private TextOutput _output;
@@ -16,22 +15,15 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
         _output.writeLine("you rolled: " + roll);
     }
 
-    public void showAvailableCategories(List<ScoreCategoryWithScore> categories) {
-        _output.writeLine("available categories:");
-        for (var cat : categories) {
-            _output.writeLine(String.format(
-                    "    %s: %d points", cat.category, cat.score));
-        }
-    }
-
     @Override
-    public PlayerInput promptForCategory(Collection<ScoreCategory> availableCategories) {
+    public PlayerInput promptForCategory(Collection<ScoreCategoryWithScore> availableCategories) {
         while (true) {
+            showAvailableCategories(availableCategories);
             _output.writeLine("enter a category");
             var rawInput = _input.readLine();
             try {
                 var category = parseCategory(rawInput);
-                if (!availableCategories.contains(category)) {
+                if (availableCategories.stream().noneMatch(sc -> sc.category == category)) {
                     _output.writeLine("That category is not available!");
                     continue;
                 }
@@ -43,8 +35,9 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     }
 
     @Override
-    public PlayerInput promptForCategoryOrReRoll(Collection<ScoreCategory> availableCategories) {
+    public PlayerInput promptForCategoryOrReRoll(Collection<ScoreCategoryWithScore> availableCategories) {
         while (true) {
+            showAvailableCategories(availableCategories);
             _output.writeLine("enter a category, or 'reroll'");
             var rawInput = _input.readLine();
             if (isReRoll(rawInput)) {
@@ -52,7 +45,7 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
             } else {
                 try {
                     var category = parseCategory(rawInput);
-                    if (!availableCategories.contains(category)) {
+                    if (availableCategories.stream().noneMatch(sc -> sc.category == category)) {
                         _output.writeLine("That category is not available!");
                         continue;
                     }
@@ -61,6 +54,14 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
                     _output.writeLine("bad input");
                 }
             }
+        }
+    }
+
+    private void showAvailableCategories(Collection<ScoreCategoryWithScore> categories) {
+        _output.writeLine("available categories:");
+        for (var cat : categories) {
+            _output.writeLine(String.format(
+                    "    %s: %d points", cat.category, cat.score));
         }
     }
 

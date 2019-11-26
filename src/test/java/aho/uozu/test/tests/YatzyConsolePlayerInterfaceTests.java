@@ -2,6 +2,7 @@ package aho.uozu.test.tests;
 
 import aho.uozu.PlayerInputType;
 import aho.uozu.ScoreCategory;
+import aho.uozu.ScoreCategoryWithScore;
 import aho.uozu.YatzyConsolePlayerInterface;
 import aho.uozu.test.TextInputMock;
 import aho.uozu.test.TextOutputMock;
@@ -11,8 +12,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -20,7 +22,11 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
 public class YatzyConsolePlayerInterfaceTests {
-    private Collection<ScoreCategory> _allCategoriesAvailable = Arrays.asList(ScoreCategory.all());
+    private static final int dontCareScore = 44;
+    private List<ScoreCategoryWithScore> _allCategoriesAvailable =
+            Arrays.stream(ScoreCategory.all())
+                    .map(category -> new ScoreCategoryWithScore(category, dontCareScore))
+                    .collect(Collectors.toList());
 
     @Test
     @Parameters({"chance", "CHANCE  ", "   ChaNCE"})
@@ -89,11 +95,12 @@ public class YatzyConsolePlayerInterfaceTests {
         var textOutput = new TextOutputMock();
         var textInput = new TextInputMock();
         var consoleInterface = new YatzyConsolePlayerInterface(textOutput, textInput);
+        var onlyYatzyAvailable = Collections.singletonList(new ScoreCategoryWithScore(ScoreCategory.YATZY, dontCareScore));
         textInput.enqueueLine(ScoreCategory.CHANCE.toString());
         textInput.enqueueLine(ScoreCategory.CHANCE.toString());
         textInput.enqueueLine(ScoreCategory.YATZY.toString());
 
-        var input = consoleInterface.promptForCategory(Collections.singletonList(ScoreCategory.YATZY));
+        var input = consoleInterface.promptForCategory(onlyYatzyAvailable);
 
         assertThat(input.value, is(equalTo(ScoreCategory.YATZY)));
     }
@@ -103,11 +110,12 @@ public class YatzyConsolePlayerInterfaceTests {
         var textOutput = new TextOutputMock();
         var textInput = new TextInputMock();
         var consoleInterface = new YatzyConsolePlayerInterface(textOutput, textInput);
+        var onlyYatzyAvailable = Collections.singletonList(new ScoreCategoryWithScore(ScoreCategory.YATZY, dontCareScore));
         textInput.enqueueLine(ScoreCategory.CHANCE.toString());
         textInput.enqueueLine(ScoreCategory.CHANCE.toString());
         textInput.enqueueLine(ScoreCategory.YATZY.toString());
 
-        var input = consoleInterface.promptForCategoryOrReRoll(Collections.singletonList(ScoreCategory.YATZY));
+        var input = consoleInterface.promptForCategoryOrReRoll(onlyYatzyAvailable);
 
         assertThat(input.value, is(equalTo(ScoreCategory.YATZY)));
     }

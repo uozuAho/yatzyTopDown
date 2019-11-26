@@ -5,7 +5,6 @@ import aho.uozu.score_calculators.ScoreCalculatorFactory;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class YatzyGame {
@@ -43,11 +42,11 @@ public class YatzyGame {
         while (!turnIsOver) {
             rollDice();
             _playerInterface.showPlayerRolled(getCurrentRoll());
-            _playerInterface.showAvailableCategories(getAvailableCategoriesWithScores());
+            var availableCategoriesWithScores = getAvailableCategoriesWithScores();
             if (_availableReRolls > 0) {
-                input = _playerInterface.promptForCategoryOrReRoll(_availableCategories);
+                input = _playerInterface.promptForCategoryOrReRoll(availableCategoriesWithScores);
             } else {
-                input = _playerInterface.promptForCategory(_availableCategories);
+                input = _playerInterface.promptForCategory(availableCategoriesWithScores);
             }
             if (input.type == PlayerInputType.ReRoll) {
                 _availableReRolls--;
