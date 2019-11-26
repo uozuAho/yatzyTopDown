@@ -220,6 +220,13 @@ too. I haven't figured out a good rule for where tests should live yet. Testing
 multiple permutations seems unit-y. Maybe everything else should be as high as
 possible without impeding test times?
 
+git commit: `6f6c368`
+
+I fixed the bug and added a unit test to cover the gap. The e2e test fails since
+the listing of available categories doesn't happen on a re-prompt. I'm not sure
+who's responsibility this should be - YatzyGame or the player interface. I'm thinking
+it should be the interface...
+
 todo
 - only allow available category (bug! - allows infinite rerolls)
 - separate input validator / reprompt
