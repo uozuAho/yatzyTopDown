@@ -85,7 +85,7 @@ public class YatzyConsolePlayerInterfaceTests {
     }
 
     @Test
-    public void shouldRepromptUntilAvailableCategoryIsChosen() {
+    public void promptForCategory_shouldRepromptUntilAvailableCategoryIsChosen() {
         var textOutput = new TextOutputMock();
         var textInput = new TextInputMock();
         var consoleInterface = new YatzyConsolePlayerInterface(textOutput, textInput);
@@ -94,6 +94,20 @@ public class YatzyConsolePlayerInterfaceTests {
         textInput.enqueueLine(ScoreCategory.YATZY.toString());
 
         var input = consoleInterface.promptForCategory(Collections.singletonList(ScoreCategory.YATZY));
+
+        assertThat(input.value, is(equalTo(ScoreCategory.YATZY)));
+    }
+
+    @Test
+    public void promptForCategoryOrReRoll_shouldRepromptUntilAvailableCategoryIsChosen() {
+        var textOutput = new TextOutputMock();
+        var textInput = new TextInputMock();
+        var consoleInterface = new YatzyConsolePlayerInterface(textOutput, textInput);
+        textInput.enqueueLine(ScoreCategory.CHANCE.toString());
+        textInput.enqueueLine(ScoreCategory.CHANCE.toString());
+        textInput.enqueueLine(ScoreCategory.YATZY.toString());
+
+        var input = consoleInterface.promptForCategoryOrReRoll(Collections.singletonList(ScoreCategory.YATZY));
 
         assertThat(input.value, is(equalTo(ScoreCategory.YATZY)));
     }

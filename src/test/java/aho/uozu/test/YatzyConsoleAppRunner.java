@@ -86,6 +86,6 @@ public class YatzyConsoleAppRunner {
     }
 
     public void displayedUnavailableCategoryMessage() {
-        assertThat(_consoleOutput.readNextLine(), is(equalTo("category not available!")));
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("That category is not available!")));
     }
 }
