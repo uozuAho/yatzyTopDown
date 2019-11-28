@@ -212,13 +212,71 @@ Done. Didn't bother refactoring...
 
 ## Next slice: handle bad input
 
+git commit: `c89fb2a`
+
+I wrote a unit test for handling unavailable categories, which passed, but then
+the console game still allowed it! It's a pretty suitable test for an e2e test
+too. I haven't figured out a good rule for where tests should live yet. Testing
+multiple permutations seems unit-y. Maybe everything else should be as high as
+possible without impeding test times?
+
+git commit: `6f6c368`
+
+I fixed the bug and added a unit test to cover the gap. The e2e test fails since
+the listing of available categories doesn't happen on a re-prompt. I'm not sure
+who's responsibility this should be - YatzyGame or the player interface. I'm thinking
+it should be the interface...
+
+git commit: `e206c11`
+
+I put the re-prompt behaviour in the player interface. This means the game has
+to pass more information to the player interface - the available categories and
+their associated scores. I think this is OK, since other interfaces such as GUIs
+wouldn't have the issue of a player entering incorrect commands/categories, so
+it's more of a user interface concern.
+
+todo
+- separate input validator / reprompt
 
 # todo
-- ignore some mock setup in YatzyGame tests?
 - playability on console
-    - handle bad input from user
-    - only allow valid category input from user
     - show running total score
+    - reroll on category-only input returns 'bad input': prompt for category
+- YatzyConsoleApp, game, others - too many constructors - builder?
+- keep adding to thoughts below
 - write 'directors cut' of dev log
 - make nice readable github page
 
+# Thoughts
+
+It's getting towards the end, and I'd better start noting down my thoughts
+before I forget them all. 
+
+Random thoughts
+- I didn't end up with many unit tests. Partly because I'm lazy, partly
+  because JMock is too verbose, which led to hard to read tests, which
+  led to me deleting them in favour of the e2e tests that didn't use
+  JMock.
+- This took a _long_ time to complete. I hope it's not because top down
+  TDD is inherently harder and involves a lot more rework... Rather,
+  java's not my preferred language, I'm used to bottom up TDD, JMock sucks...
+  anything else?
+- Is the 'test pyramid' right? The e2e tests have been much more helpful
+  in this project than the unit tests. I guess it depends on the definition
+  of a 'unit'. Is it a class? I understand that slow tests with external 
+  dependencies are annoying, but so are unit tests for every single class,
+  that need to change every time that class changes. Maybe a 'test diamond'
+  is better...
+
+Top down TDD:
+pros
+- encourages BDD style e2e tests, which:
+    - describe system behaviour in an easy to read way
+    - force implementations to focus on readability
+
+cons
+- initial skeleton takes a while to get working
+- hard to do in a team?
+    - never tried in practice, but this exercise has involved changing
+      many classes each time a feature is implemented (todo: has it?),
+      which means higher chance of merge conflicts in a team

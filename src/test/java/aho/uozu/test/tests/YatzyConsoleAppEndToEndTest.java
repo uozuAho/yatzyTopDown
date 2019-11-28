@@ -8,6 +8,8 @@ import aho.uozu.test.TextInputMock;
 import aho.uozu.test.YatzyConsoleAppRunner;
 import org.junit.Test;
 
+import java.util.Collections;
+
 public class YatzyConsoleAppEndToEndTest
 {
     @Test
@@ -115,5 +117,51 @@ public class YatzyConsoleAppEndToEndTest
         // this time, choosing a category is the only option
         game.promptedUserForCategory();
         game.displayedScore(chanceScore);
+    }
+
+    @Test
+    public void repromptWhenInputIsBad() {
+        final var constantRoll = new DiceRoll(new int[]{1, 1, 1, 1, 1});
+        var diceRoller = new ConstantDiceRoller(constantRoll);
+        var playerInput = new TextInputMock();
+
+        var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
+
+        playerInput.enqueueLine("bad input");
+        playerInput.enqueueLine(ScoreCategory.CHANCE.toString());
+        game.doNextTurn();
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategories(2);
+        game.promptedUserForCategoryOrReRoll();
+        // bad input here
+        game.displayedIncorrectInputMessage();
+        game.displayedAvailableCategories(2);
+        game.promptedUserForCategoryOrReRoll();
+        game.displayedScore();
+    }
+
+    @Test
+    public void givenUserInputsUnavailableCategory_repromptForCategory() {
+        final var constantRoll = new DiceRoll(new int[]{1, 1, 1, 1, 1});
+        var diceRoller = new ConstantDiceRoller(constantRoll);
+        var playerInput = new TextInputMock();
+        var availableCategories = Collections.singletonList(ScoreCategory.YATZY);
+        var availableCategory = availableCategories.get(0);
+        var unavailableCategory = ScoreCategory.CHANCE;
+
+        var game = new YatzyConsoleAppRunner(playerInput, diceRoller, availableCategories);
+
+        playerInput.enqueueLine(unavailableCategory.toString());
+        playerInput.enqueueLine(availableCategory.toString());
+        game.doNextTurn();
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategories(1);
+        game.promptedUserForCategoryOrReRoll();
+        // player chooses unavailable category here
+        game.displayedUnavailableCategoryMessage();
+        game.displayedAvailableCategories(1);
+        game.promptedUserForCategoryOrReRoll();
+        // player chooses available category here
+        game.displayedScore();
     }
 }

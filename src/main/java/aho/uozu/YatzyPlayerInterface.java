@@ -1,11 +1,10 @@
 package aho.uozu;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface YatzyPlayerInterface {
     void showPlayerRolled(DiceRoll roll);
-    void showAvailableCategories(List<ScoreCategoryWithScore> categories);
-    PlayerInput promptForCategory();
-    PlayerInput promptForCategoryOrReRoll();
+    PlayerInput promptForCategory(Collection<ScoreCategoryWithScore> availableCategories);
+    PlayerInput promptForCategoryOrReRoll(Collection<ScoreCategoryWithScore> availableCategories);
     void showPlayerScore(int score);
 }
