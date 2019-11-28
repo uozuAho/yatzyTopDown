@@ -227,17 +227,22 @@ the listing of available categories doesn't happen on a re-prompt. I'm not sure
 who's responsibility this should be - YatzyGame or the player interface. I'm thinking
 it should be the interface...
 
+git commit: `e206c11`
+
+I put the re-prompt behaviour in the player interface. This means the game has
+to pass more information to the player interface - the available categories and
+their associated scores. I think this is OK, since other interfaces such as GUIs
+wouldn't have the issue of a player entering incorrect commands/categories, so
+it's more of a user interface concern.
+
 todo
-- only allow available category (bug! - allows infinite rerolls)
 - separate input validator / reprompt
-- YatzyConsoleApp, game, others - too many constructors - builder?
 
 # todo
-- ignore some mock setup in YatzyGame tests?
 - playability on console
-    - handle bad input from user
-    - only allow valid category input from user
     - show running total score
+    - reroll on category-only input returns 'bad input': prompt for category
+- YatzyConsoleApp, game, others - too many constructors - builder?
 - keep adding to thoughts below
 - write 'directors cut' of dev log
 - make nice readable github page
