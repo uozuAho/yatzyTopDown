@@ -16,3 +16,10 @@ running the game, to play the latest version.
 # Run all tests
 
 Run `mvn test` on the console.
+
+
+# todo
+
+- YatzyConsoleApp, game, others - too many constructors - builder?
+- write 'directors cut' of dev log
+- make nice readable github page

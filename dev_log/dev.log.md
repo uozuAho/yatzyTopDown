@@ -243,12 +243,8 @@ splitting out an 'input re-prompter' class may be beneficial.
 
 ## Next slice: nearing the end, cleanup
 
+done
 
-# todo
-- YatzyConsoleApp, game, others - too many constructors - builder?
-- keep adding to thoughts below
-- write 'directors cut' of dev log
-- make nice readable github page
 
 # Thoughts
 
