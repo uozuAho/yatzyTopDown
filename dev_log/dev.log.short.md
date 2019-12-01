@@ -53,11 +53,11 @@ For the above, I came up with these initial requirements:
 
 After a lot more effort than expected, I ended up with this:
 
-## TODO
-- add the refactor step that happened here
-- also describe what took so long
-
 ![skeleton implementation](./img/02_skeleton_e2e_plus_runner.png)
+
+- **todo:** There was some refactoring in here. Document if it fits.
+- **note:** At this point in development, I hadn't checked the correct spelling
+            of Yahtzee :facepalm:
 
 Not pictured, but also included:
 
@@ -80,6 +80,10 @@ public void shouldScoreOneCategoryThenFinish()
     game.gameIsOver();
 }
 ```
+
+This test is quite different to the tests that I'm used to reading. The assertions are
+hidden away in the `YatzyConsoleAppRunner`. As a result, the test essentially reads as
+a list of steps in the game.
 
 # References
 
