@@ -11,7 +11,7 @@ public class YatzyConsoleApp
 
     public static void main(String[] args) {
         var app = new YatzyConsoleApp(
-                () -> System.console().readLine(),
+                () -> System.console().readLine("> "),
                 System.out::println);
         app.run();
     }
