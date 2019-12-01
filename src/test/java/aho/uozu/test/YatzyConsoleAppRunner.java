@@ -88,4 +88,8 @@ public class YatzyConsoleAppRunner {
     public void displayedUnavailableCategoryMessage() {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("That category is not available!")));
     }
+
+    public void displayedCannotReRollMessage() {
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("You have no re-rolls remaining!")));
+    }
 }

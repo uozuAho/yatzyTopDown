@@ -85,7 +85,6 @@ public class YatzyConsoleAppEndToEndTest
         final var constantRoll = new DiceRoll(new int[] {1, 1, 1, 1, 1});
         var diceRoller = new ConstantDiceRoller(constantRoll);
         final var chanceScore = 5;
-        final var yatzyScore = 50;
         var playerInput = new TextInputMock();
 
         var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
@@ -94,28 +93,30 @@ public class YatzyConsoleAppEndToEndTest
                 "reroll",
                 "reroll",
                 "reroll",
+                "reroll",
                 ScoreCategory.CHANCE.toString()
         );
 
         game.doNextTurn();
-        // 3 re-rolls
-        for (int i = 0; i < 3; i++) {
-            game.displayedRoll(constantRoll);
-            game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
-                    new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
-                    new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
-            });
-            game.promptedUserForCategoryOrReRoll();
-            // player re-rolls here
-        }
-
         game.displayedRoll(constantRoll);
-        game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
-                new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
-                new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
-        });
-        // this time, choosing a category is the only option
+        game.displayedAvailableCategories(2);
+        game.promptedUserForCategoryOrReRoll();
+        // re-roll 1 here
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategories(2);
+        game.promptedUserForCategoryOrReRoll();
+        // re-roll 2 here
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategories(2);
+        game.promptedUserForCategoryOrReRoll();
+        // re-roll 3 here
+        game.displayedRoll(constantRoll);
+        game.displayedAvailableCategories(2);
         game.promptedUserForCategory();
+        // re-roll attempt 4 here
+        game.displayedCannotReRollMessage();
+        game.promptedUserForCategory();
+        // player chooses chance here
         game.displayedScore(chanceScore);
     }
 

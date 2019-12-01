@@ -241,6 +241,9 @@ without creating the same or many more lines of code. If there were more input p
 splitting out an 'input re-prompter' class may be beneficial.
 
 
+## Next slice: nearing the end, cleanup
+
+
 # todo
 - playability on console
     - show running total score
