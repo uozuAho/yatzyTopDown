@@ -51,7 +51,35 @@ For the above, I came up with these initial requirements:
 - The game displays a score
 - The game ends
 
+After a lot more effort than expected, I ended up with this:
 
+## TODO
+- add the refactor step that happened here
+- also describe what took so long
+
+![skeleton implementation](./img/02_skeleton_e2e_plus_runner.png)
+
+Not pictured, but also included:
+
+- maven config that runs tests & builds the package
+- a script to run the game
+
+The only end to end test at this point looks like this:
+
+```java
+@Test
+public void shouldScoreOneCategoryThenFinish()
+{
+    var input = new TextInputMock();
+    var game = new YatzyConsoleAppRunner(input);
+    input.addInputLine("chance");
+    game.start();
+    game.displayedRoll();
+    game.promptedUserForCategory();
+    game.displayedScore();
+    game.gameIsOver();
+}
+```
 
 # References
 
