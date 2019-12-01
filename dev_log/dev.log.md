@@ -270,6 +270,10 @@ Random thoughts
   of times after getting the test suite green, I played the game, and found that
   the aesthetics were bad, or that there was a test case I hadn't thought of,
   resulting in a bug.
+- I usually add features to existing software. This project starts from scratch,
+  so doesn't serve as an ideal example of how to work with existing software.
+  However, once the 'walking skeleton' is in place, the rest of the process can
+  be thought of as adding features to an existing application.
 
 Top down TDD:
 pros
