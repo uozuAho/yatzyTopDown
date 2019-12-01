@@ -245,9 +245,6 @@ splitting out an 'input re-prompter' class may be beneficial.
 
 
 # todo
-- playability on console
-    - show running total score
-    - reroll on category-only input returns 'bad input': prompt for category
 - YatzyConsoleApp, game, others - too many constructors - builder?
 - keep adding to thoughts below
 - write 'directors cut' of dev log
