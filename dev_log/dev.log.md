@@ -235,8 +235,11 @@ their associated scores. I think this is OK, since other interfaces such as GUIs
 wouldn't have the issue of a player entering incorrect commands/categories, so
 it's more of a user interface concern.
 
-todo
-- separate input validator / reprompt
+The two methods doing re-prompting for correct input in `YatzyConsolePlayerInterface`
+stink of duplication, but I couldn't find a satisfactory way to remove that duplication
+without creating the same or many more lines of code. If there were more input prompts,
+splitting out an 'input re-prompter' class may be beneficial.
+
 
 # todo
 - playability on console
