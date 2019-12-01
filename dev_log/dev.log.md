@@ -241,10 +241,10 @@ without creating the same or many more lines of code. If there were more input p
 splitting out an 'input re-prompter' class may be beneficial.
 
 
+## Next slice: nearing the end, cleanup
+
+
 # todo
-- playability on console
-    - show running total score
-    - reroll on category-only input returns 'bad input': prompt for category
 - YatzyConsoleApp, game, others - too many constructors - builder?
 - keep adding to thoughts below
 - write 'directors cut' of dev log
@@ -270,6 +270,10 @@ Random thoughts
   dependencies are annoying, but so are unit tests for every single class,
   that need to change every time that class changes. Maybe a 'test diamond'
   is better...
+- TDD/tests don't completely negate the need for manual verification. A number
+  of times after getting the test suite green, I played the game, and found that
+  the aesthetics were bad, or that there was a test case I hadn't thought of,
+  resulting in a bug.
 
 Top down TDD:
 pros
