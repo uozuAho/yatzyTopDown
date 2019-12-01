@@ -19,8 +19,7 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     public PlayerInput promptForCategory(Collection<ScoreCategoryWithScore> availableCategories) {
         while (true) {
             showAvailableCategories(availableCategories);
-            _output.writeLine("enter a category");
-            var rawInput = _input.readLine();
+            var rawInput = prompt("Enter a category");
             if (isReRoll(rawInput)) {
                 _output.writeLine("You have no re-rolls remaining!");
                 continue;
@@ -42,8 +41,7 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
     public PlayerInput promptForCategoryOrReRoll(Collection<ScoreCategoryWithScore> availableCategories) {
         while (true) {
             showAvailableCategories(availableCategories);
-            _output.writeLine("enter a category, or 'reroll'");
-            var rawInput = _input.readLine();
+            var rawInput = prompt("Enter a category, or 'reroll'");
             if (isReRoll(rawInput)) {
                 return new PlayerInput(PlayerInputType.ReRoll);
             } else {
@@ -61,21 +59,34 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
         }
     }
 
+    @Override
+    public void showPlayerScore(int score) {
+        _output.writeLine("your score: " + score);
+    }
+
+    private String prompt(String promptMessage) {
+        outputBlankLine();
+        _output.writeLine(promptMessage);
+        outputBlankLine();
+        return _input.readLine();
+    }
+
     private void showAvailableCategories(Collection<ScoreCategoryWithScore> categories) {
-        _output.writeLine("available categories:");
+        outputBlankLine();
+        _output.writeLine("Available categories:");
         for (var cat : categories) {
             _output.writeLine(String.format(
                     "    %s: %d points", cat.category, cat.score));
         }
     }
 
+    private void outputBlankLine() {
+        _output.writeLine("");
+    }
+
     private boolean isReRoll(String rawInput) {
         if (rawInput == null) return false;
         return rawInput.trim().toLowerCase().equals("reroll");
-    }
-
-    public void showPlayerScore(int score) {
-        _output.writeLine("your score: " + score);
     }
 
     private ScoreCategory parseCategory(String userInput) {

@@ -38,11 +38,19 @@ public class YatzyConsoleAppRunner {
     }
 
     public void promptedUserForCategory() {
-        assertThat(_consoleOutput.readNextLine(), is(equalTo("enter a category")));
+        expectBlankLine();
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("Enter a category")));
+        expectBlankLine();
     }
 
     public void promptedUserForCategoryOrReRoll() {
-        assertThat(_consoleOutput.readNextLine(), is(equalTo("enter a category, or 'reroll'")));
+        expectBlankLine();
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("Enter a category, or 'reroll'")));
+        expectBlankLine();
+    }
+
+    private void expectBlankLine() {
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("")));
     }
 
     public void displayedScore() {
@@ -62,21 +70,21 @@ public class YatzyConsoleAppRunner {
     }
 
     public void displayedAvailableCategories(int numCategories) {
-        assertThat(_consoleOutput.readNextLine(), is(equalTo("available categories:")));
+        displayedAvailableCategoriesHeader();
         for (int i = 0; i < numCategories; i++) {
             assertThat(_consoleOutput.readNextLine(), matchesPattern("    .+: \\d+ points"));
         }
     }
 
     public void displayedAvailableCategoriesInAnyOrder(ScoreCategoryWithScore[] catScores) {
-        assertThat(_consoleOutput.readNextLine(), is(equalTo("available categories:")));
+        displayedAvailableCategoriesHeader();
         var outputLines = new ArrayList<String>();
         for (int i = 0; i < catScores.length; i++) {
             outputLines.add(_consoleOutput.readNextLine());
         }
         for (var catScore : catScores) {
             var expectedDisplay = String.format("    %s: %d points", catScore.category, catScore.score);
-            var matchFound = outputLines.stream().anyMatch(outputLine -> expectedDisplay.equals(outputLine));
+            var matchFound = outputLines.stream().anyMatch(expectedDisplay::equals);
             assertThat("Found expected category and score in output: " + expectedDisplay, matchFound, is(true));
         }
     }
@@ -91,5 +99,10 @@ public class YatzyConsoleAppRunner {
 
     public void displayedCannotReRollMessage() {
         assertThat(_consoleOutput.readNextLine(), is(equalTo("You have no re-rolls remaining!")));
+    }
+
+    private void displayedAvailableCategoriesHeader() {
+        expectBlankLine();
+        assertThat(_consoleOutput.readNextLine(), is(equalTo("Available categories:")));
     }
 }
