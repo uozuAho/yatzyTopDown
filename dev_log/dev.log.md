@@ -273,6 +273,10 @@ Random thoughts
   dependencies are annoying, but so are unit tests for every single class,
   that need to change every time that class changes. Maybe a 'test diamond'
   is better...
+- TDD/tests don't completely negate the need for manual verification. A number
+  of times after getting the test suite green, I played the game, and found that
+  the aesthetics were bad, or that there was a test case I hadn't thought of,
+  resulting in a bug.
 
 Top down TDD:
 pros

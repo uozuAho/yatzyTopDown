@@ -21,6 +21,10 @@ public class YatzyConsolePlayerInterface implements YatzyPlayerInterface {
             showAvailableCategories(availableCategories);
             _output.writeLine("enter a category");
             var rawInput = _input.readLine();
+            if (isReRoll(rawInput)) {
+                _output.writeLine("You have no re-rolls remaining!");
+                continue;
+            }
             try {
                 var category = parseCategory(rawInput);
                 if (availableCategories.stream().noneMatch(sc -> sc.category == category)) {

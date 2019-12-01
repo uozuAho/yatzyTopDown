@@ -115,6 +115,7 @@ public class YatzyConsoleAppEndToEndTest
         game.promptedUserForCategory();
         // re-roll attempt 4 here
         game.displayedCannotReRollMessage();
+        game.displayedAvailableCategories(2);
         game.promptedUserForCategory();
         // player chooses chance here
         game.displayedScore(chanceScore);
