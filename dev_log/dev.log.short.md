@@ -176,10 +176,71 @@ The app now looks like this:
 
 ![score calculator factory added](./img/05_score_calculator_factory.jpg)
 
+At this point, I've got 3 end to end tests:
+
+```java
+@Test
+public void shouldScoreOneCategoryThenFinish()
+{
+    var playerInput = new TextInputMock();
+    playerInput.addInputLine("chance");
+    final var constantRoll = new Roll(new int[] {1, 1, 1, 1, 1});
+    var diceRoller = new ConstantDiceRoller(constantRoll);
+
+    var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
+
+    game.start();
+    game.displayedRoll(constantRoll);
+    game.promptedUserForCategory();
+    game.displayedScore(5);
+    game.gameIsOver();
+}
+```
+
+```java
+@Test
+public void withADifferentRoll_shouldScoreOneCategoryThenFinish()
+{
+    var playerInput = new TextInputMock();
+    playerInput.addInputLine("chance");
+    final var constantRoll = new Roll(new int[] {2, 2, 2, 2, 2});
+    var diceRoller = new ConstantDiceRoller(constantRoll);
+
+    var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
+
+    game.start();
+    game.displayedRoll(constantRoll);
+    game.promptedUserForCategory();
+    game.displayedScore(10);
+    game.gameIsOver();
+}
+```
+
+```java
+@Test
+public void whenPlayerChoosesYatzy_shouldGetYatzyScore()
+{
+    var playerInput = new TextInputMock();
+    playerInput.addInputLine("yatzy");
+    final var constantRoll = new Roll(new int[] {3, 3, 3, 3, 3});
+    var diceRoller = new ConstantDiceRoller(constantRoll);
+
+    var game = new YatzyConsoleAppRunner(playerInput, diceRoller);
+
+    game.start();
+    game.displayedRoll(constantRoll);
+    game.promptedUserForCategory();
+    game.displayedScore(50);
+    game.gameIsOver();
+}
+```
+
 
 # Todo
 
+- document in 'test first' fashion. Don't show new features before the tests
 - pick a consistent diagram format
+
 
 # References
 
