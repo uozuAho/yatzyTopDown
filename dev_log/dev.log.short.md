@@ -85,6 +85,55 @@ This test is quite different to the tests that I'm used to reading. The assertio
 hidden away in the `YatzyConsoleAppRunner`. As a result, the test essentially reads as
 a list of steps in the game.
 
+git tag: `02_better_skeleton`
+
+
+# Refactor: extract dice
+
+Currently, the game implementation is very simple, and is not easily extendable. That's fine -
+it does everything it needs to do to satisfy the current requirements.
+
+**todo:** why did I do this now?? Justify....
+
+```java
+public void start() {
+    output.writeLine("you rolled: 1, 1, 1, 1, 1");
+    output.writeLine("enter a category");
+    waitForUserInput();
+    output.writeLine("your score: 0");
+}
+
+public void waitForUserInput() {
+    input.readLine();
+}
+```
+
+Before moving onto the next requirement, it's pretty obvious that just printing the same dice
+roll every time is going to hinder progress very soon. So, I decided to extract it out.
+
+![skeleton implementation](./img/03_dice_roller.png)
+
+This lets the e2e test control the dice, which looks like this:
+
+```java
+@Test
+public void shouldScoreOneCategoryThenFinish()
+{
+    var input = new TextInputMock();
+    input.addInputLine("chance");
+    final var constantRoll = new Roll(new int[] {1, 1, 1, 1, 1});
+    var diceRoller = new ConstantDiceRoller(constantRoll);
+
+    var game = new YatzyConsoleAppRunner(input, diceRoller);
+
+    game.start();
+    game.displayedRoll(constantRoll);
+    game.promptedUserForCategory();
+    game.displayedScore();
+    game.gameIsOver();
+}
+```
+
 # References
 
 [Growing Object-Oriented Software Guided by Tests][tdd book]
