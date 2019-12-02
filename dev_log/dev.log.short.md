@@ -134,6 +134,53 @@ public void shouldScoreOneCategoryThenFinish()
 }
 ```
 
+
+# Next feature: calculate score
+
+Currently the game just outputs a score of 0 every time. For this feature, I want to calculate
+the score based on the values on the dice. For now, this can be a simple sum of the dice values,
+which is how the 'chance' category is scored. For now, I'll do it in `YatzyConsoleApp`:
+
+```java
+private int calculateScore(Roll roll) {
+    return Arrays.stream(roll.getValues()).sum();
+}
+```
+
+
+# Next feature: add a category (yatzy [sic])
+
+The next feature is to add another scoring category, 'Yatzy'. This gives 50 points if all the
+dice values are the same, otherwise zero. It's quite obvious (to me) that this is begging for
+the strategy pattern, so I decide to extract out a `ScoreCalculatorFactory` and use it in
+`YatzyConsoleApp`:
+
+```java
+public interface ScoreCalculatorFactory {
+    ScoreCalculator calculatorFor(ScoreCategory category);
+}
+```
+
+and in `YatzyConsoleApp`:
+
+```java
+private int calculateScore(Roll roll, ScoreCategory category) {
+    var calculator = _scoreCalculatorFactory.calculatorFor(category);
+    return calculator.calculateScore(roll);
+}
+```
+
+The app now looks like this:
+
+![score calculator factory added](./img/05.1_score_calc_factory.png)
+
+![score calculator factory added](./img/05_score_calculator_factory.jpg)
+
+
+# Todo
+
+- pick a consistent diagram format
+
 # References
 
 [Growing Object-Oriented Software Guided by Tests][tdd book]
