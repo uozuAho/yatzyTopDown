@@ -35,6 +35,7 @@ authors refer to this as a 'walking skeleton'. It serves a number of purposes:
     - the working application and end-to-end test provide two avenues for feedback
 - to start integrating with dependent systems as soon as possible, to identify
   any unknowns / incompatibilities etc.
+- to have something to put in your CI/CD pipeline, so that you can get that set up
 
 My Yahtzee walking skeleton will be:
 
@@ -239,6 +240,7 @@ public void whenPlayerChoosesYatzy_shouldGetYatzyScore()
 # Todo
 
 - document in 'test first' fashion. Don't show new features before the tests
+- How did my approach differ to books eg mini slices decided before
 - pick a consistent diagram format
 
 
