@@ -12,9 +12,9 @@ test-driven development (TDD) techniques advocated by
 [Growing Object-Oriented Software Guided by Tests][1]. I'll refer to that text
 as the 'TDD book' from now on.
 
-# The software
+# The app
 
-The required software is a console based [Yahtzee][2] game. In short, this is a
+The required app is a console based [Yahtzee][2] game. In short, this is a
 game where a player repeatedly rolls 5 dice, then chooses a particular scoring
 'category' to score each dice roll. Once all the categories are chosen, the game
 is over.
