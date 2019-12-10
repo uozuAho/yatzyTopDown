@@ -17,6 +17,14 @@ running the game, to play the latest version.
 
 Run `mvn test` on the console.
 
+# Run github pages locally
+
+See https://help.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll
+
+then
+
+    cd docs
+    bundle exec jekyll serve
 
 # todo
 
