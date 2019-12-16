@@ -8,32 +8,177 @@ nav_order: 10
 
 # The walking skeleton
 
-The first step in the process is to find a minimal subset of the given
-requirements and implement them, so that the development feedback loop can
-begin. The [TDD book][1] authors refer to this as a 'walking skeleton'. It
-serves a number of purposes:
+As described in the [intro](/pages/00_intro.html), I want to make a console
+based Yahtzee game.
+
+The first step in the process is to look at the requirements for the
+application, and work out the smallest possible application that can satisfy one
+of the requirements, or at least part of a requirement. This initial, bare-bones
+application will start the TDD process, allowing me to grow the application into
+its final required state, usings tests to guide me. The [TDD book][1] authors
+refer to this initial application as a 'walking skeleton'. It serves a number of
+purposes:
 
 - to start the development feedback loop
-    - the working application and end-to-end test provide two avenues for
-      feedback
 - to start integrating with dependent systems as soon as possible, to identify
   any unknowns / incompatibilities etc.
-- to have something to put in your CI/CD pipeline, so that you can get that set
-  up
+- to have a software artifact to use in a CI/CD pipeline
 
-For my walking skeleton, I came up with these initial requirements:
-
-![end goal](./img/02_skeleton.jpg)
+Since this is a simple console application with no external dependencies, and I
+have no need for a build pipeline, only the first purpose is important. For my
+walking skeleton, I came up with these initial requirements:
 
 - The game displays the dice roll to the player
 - The player chooses a category
 - The game displays a score
 - The game ends
 
-## The first test
+Also, in the absence of a build pipeline, I want an easy way for me (and other
+developers) to run the tests, and the application itself.
 
-Before we add any functionality, we write an end-to-end test. My first test
-ended up looking like this:
+
+# The first test
+
+Now that the 'walking skeleton' requirements have been determined, I need to
+express them as an acceptance test. This is the rule with any form of TDD: The
+test comes first, it fails, we fix it, then clean things up. This is more well
+known as 'red, green, refactor'.
+
+git tag: `walking_skeleton_red`
+
+```java
+@Test
+public void shouldScoreOneCategoryThenFinish()
+{
+    var game = new YatzyConsoleAppRunner();
+    game.start();
+    game.displaysRoll();
+    game.playerChoosesCategory(ScoreCategory.CHANCE);
+    game.displaysScore();
+    game.isFinished();
+}
+```
+
+The above test is in a similar style to that used in the [TDD book][1]. It is
+quite different to the tests that I'm used to reading. I'm very used to
+low-level tests of class behaviour, usually with a setup block, an 'act' block,
+and an assertion or two at the end. This test reads almost exactly like the list
+of requirements. This is made possible by `YatzyConsoleAppRunner`, which hides
+the game setup and assertions.
+
+**Note:** At this point in development, I hadn't checked the correct spelling
+          of Yahtzee :facepalm:
+
+    git tag: `walking_skeleton_green`
+
+After trialling a few ways to make console input and output testable, I settled
+on the following design, and got the test passing.
+
+![skeleton implementation](./img/walking_skeleton_green.svg)
+
+It turned out to be hard to make the acceptance test run as written above, so I
+had to change it a little:
+
+```java
+@Test
+public void shouldScoreOneCategoryThenFinish()
+{
+    var input = new ConsoleInputMock();
+    var game = new YatzyConsoleAppRunner(input);
+    input.addInputLine("chance");
+    game.start();
+    game.displayedRollAndPromptedUserForCategory();
+    game.displayedScore();
+    game.gameIsOver();
+}
+```
+
+It was going to be too much hassle to be able to insert the player input at the
+step it was needed, so the line `input.addInputLine("chance");` adds the player
+input at the start of the test. I also needed to create a `ConsoleInputMock()`
+and pass it to the app runner, so that the test had control over the player's
+input.
+
+`YatzyConsoleAppRunner` looks like this:
+
+```java
+public class YatzyConsoleAppRunner {
+    private YatzyConsoleApp game;
+    private ConsoleOutputMock consoleOutput;
+    private ConsoleInput consoleInput;
+
+    public YatzyConsoleAppRunner(ConsoleInput input) {
+        consoleInput = input;
+    }
+
+    public void start() {
+        consoleOutput = new ConsoleOutputMock();
+        game = new YatzyConsoleApp(consoleInput, consoleOutput);
+    }
+
+    public void displayedRollAndPromptedUserForCategory() {
+        assertThat(consoleOutput.readNextLine(), is(equalTo("you rolled: 1, 1, 1, 1, 1")));
+        assertThat(consoleOutput.readNextLine(), is(equalTo("enter a category")));
+    }
+
+    public void displayedScore() {
+        assertThat(consoleOutput.readNextLine(), is(equalTo("your score: 0")));
+    }
+
+    public void gameIsOver() {
+        assertTrue(game.isFinished());
+    }
+}
+```
+
+The application itself, `YatzyConsoleApp` does only what it needs to in order
+to pass the acceptance test. This is an important rule of TDD, and prevents
+over-engineering:
+
+```java
+public class YatzyConsoleApp
+{
+    private final ConsoleInput consoleInput;
+    private final ConsoleOutput consoleOutput;
+
+    public static void main(String[] args)
+    {
+        var app = new YatzyConsoleApp(() -> System.console().readLine(), System.out::println);
+    }
+
+    public YatzyConsoleApp(ConsoleInput consoleInput, ConsoleOutput consoleOutput) {
+        this.consoleInput = consoleInput;
+        this.consoleOutput = consoleOutput;
+
+        consoleOutput.writeLine("you rolled: 1, 1, 1, 1, 1");
+        consoleOutput.writeLine("enter a category");
+        waitForUserInput();
+        consoleOutput.writeLine("your score: 0");
+    }
+
+    public boolean isFinished() {
+        return true;
+    }
+
+    public void waitForUserInput() {
+        consoleInput.readLine();
+    }
+}
+```
+
+git tag: `walking_skeleton_refactored`
+
+Then I refactored:
+
+![skeleton implementation](./img/walking_skeleton_refactored.svg)
+
+since the text inputs weren't necessarily related to a console
+
+for the tests:
+
+displayedRollAndPromptedUserForCategory was obvious: don't want "and" in a method
+displayedRoll
+promptedUserForCategory
 
 ```java
 @Test
@@ -50,25 +195,23 @@ public void shouldScoreOneCategoryThenFinish()
 }
 ```
 
-This test is quite different to the tests that I'm used to reading. The
-assertions are hidden away in the `YatzyConsoleAppRunner`. As a result, the test
-essentially reads as a list of steps in the game.
+![skeleton refactored](./img/walking_skeleton_refactored.svg)
 
-After a lot more effort than expected, I ended up with this:
 
-![skeleton implementation](./img/02_skeleton_e2e_plus_runner.png)
+# Additional niceties
 
-- **todo:** There was some refactoring in here. Document if it fits.
-- **note:** At this point in development, I hadn't checked the correct spelling
-            of Yahtzee :facepalm:
+A maven config that runs tests & builds the package. This came for free when
+setting up the project. A user can run all tests and build the package by running
+`mvn package`.
 
-Not pictured, but also included:
+A script to run the game. Rather than having to remember
+`java -jar target/yatzy-1.0-SNAPSHOT.jar` to run the game, I added a `run_game`
+script.
 
-- maven config that runs tests & builds the package
-- a script to run the game
-- a readme documenting how to run the game and run the tests
+A readme describing the above. By reading this, a new developer should have everything
+they need to get started developing and testing the project.
 
-git tag: `02_better_skeleton`
+Now would be the time to add a build pipeline, but this is out of scope for this exercise.
 
 
 [1]: http://www.growing-object-oriented-software.com/
