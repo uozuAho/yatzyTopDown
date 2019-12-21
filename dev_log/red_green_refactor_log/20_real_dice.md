@@ -101,4 +101,3 @@ Implementation:
 # todo
 - show YatzyConsoleAppRunner once at start
 - show YatzyConsoleApp once at start
-- color added classes green

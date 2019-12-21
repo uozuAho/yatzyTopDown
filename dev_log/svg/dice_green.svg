@@ -50,7 +50,7 @@
 <!-- 4 -->
 <g id="node4" class="node">
 <title>4</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="250.9201,-.5 250.9201,-74.9 363.8673,-74.9 363.8673,-.5 250.9201,-.5"/>
+<polygon fill="#98fb98" stroke="#000000" points="250.9201,-.5 250.9201,-74.9 363.8673,-74.9 363.8673,-.5 250.9201,-.5"/>
 <text text-anchor="middle" x="307.3937" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#000000">&lt;&lt;DiceRoller&gt;&gt;</text>
 <polyline fill="none" stroke="#000000" points="250.9201,-50.1 363.8673,-50.1 "/>
 <text text-anchor="middle" x="307.3937" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>
@@ -66,7 +66,7 @@
 <!-- 5 -->
 <g id="node5" class="node">
 <title>5</title>
-<polygon fill="#f2f2f2" stroke="#000000" points="382.2283,-.5 382.2283,-74.9 460.5591,-74.9 460.5591,-.5 382.2283,-.5"/>
+<polygon fill="#98fb98" stroke="#000000" points="382.2283,-.5 382.2283,-74.9 460.5591,-74.9 460.5591,-.5 382.2283,-.5"/>
 <text text-anchor="middle" x="421.3937" y="-58.3" font-family="Times,serif" font-size="14.00" fill="#000000">Roll</text>
 <polyline fill="none" stroke="#000000" points="382.2283,-50.1 460.5591,-50.1 "/>
 <text text-anchor="middle" x="421.3937" y="-33.5" font-family="Times,serif" font-size="14.00" fill="#000000"> </text>

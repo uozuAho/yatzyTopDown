@@ -5,8 +5,8 @@ node[shape=record,style=filled,fillcolor=gray95]
 1[label = "{YatzyConsoleApp||+start()\l+isFinished()\l+waitForUserInput()}"]
 2[label = "{\<\<TextInput\>\>||+readLine()}"]
 3[label = "{\<\<TextOutput\>\>||+writeLine()}"]
-4[label = "{\<\<DiceRoller\>\>||+nextRoll(): Roll}"]
-5[label = "{Roll||+toString()}"]
+4[label = "{\<\<DiceRoller\>\>||+nextRoll(): Roll}", fillcolor=palegreen]
+5[label = "{Roll||+toString()}", fillcolor=palegreen]
 
 1->2
 1->3
