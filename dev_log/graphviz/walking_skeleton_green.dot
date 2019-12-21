@@ -3,9 +3,8 @@ size="5,5"
 node[shape=record,style=filled,fillcolor=gray95]
 
 1[label = "{YatzyConsoleApp||+isFinished()\l+waitForUserInput()}"]
-2[label = "{ConsoleInput||+readLine()}"]
-3[label = "{ConsoleOutput||+writeLine()}"]
-4[label = "{ScoreCategory|+CHANCE|}"]
+2[label = "{\<\<ConsoleInput\>\>||+readLine()}"]
+3[label = "{\<\<ConsoleOutput\>\>||+writeLine()}"]
 
 1->2
 1->3

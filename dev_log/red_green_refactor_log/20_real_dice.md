@@ -2,6 +2,8 @@
 
 <h2 style="color: white; background: red">RED</h2>
 
+`git tag: dice_red`
+
 End-to-end test:
 
 ```java
@@ -42,6 +44,8 @@ public void withADifferentRoll_shouldScoreOneCategoryThenFinish()
 
 <h2 style="color: white; background: green">GREEN</h2>
 
+`git tag: dice_green`
+
 End-to-end test change:
 
 ```java
@@ -66,6 +70,8 @@ Implementation:
 ![](../svg/dice_green.svg)
 
 <h2 style="color: black; background: yellow">REFACTOR</h2>
+
+`git tag: dice_refactored`
 
 End-to-end test change:
 
@@ -93,6 +99,6 @@ Implementation:
 ![](../svg/dice_refactored.svg)
 
 # todo
-- remove score category, not used, my mistake
-- add git tags
-- consistent diagram notation
+- show YatzyConsoleAppRunner once at start
+- show YatzyConsoleApp once at start
+- color added classes green
