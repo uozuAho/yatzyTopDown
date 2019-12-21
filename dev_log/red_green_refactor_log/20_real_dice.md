@@ -97,7 +97,3 @@ public void shouldScoreOneCategoryThenFinish()
 Implementation:
 
 ![](../svg/dice_refactored.svg)
-
-# todo
-- show YatzyConsoleAppRunner once at start
-- show YatzyConsoleApp once at start
