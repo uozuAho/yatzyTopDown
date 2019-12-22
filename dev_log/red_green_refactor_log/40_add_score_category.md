@@ -36,3 +36,7 @@ public void whenPlayerChoosesYatzy_shouldGetYatzyScore()
 `git tag: add_category_refactor_1`
 
 ![](../svg/add_category_refactor_1.svg)
+
+`git tag: add_category_refactor_2`
+
+![](../svg/add_category_refactor_2.svg)
