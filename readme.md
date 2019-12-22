@@ -17,6 +17,16 @@ running the game, to play the latest version.
 
 Run `mvn test` on the console.
 
+# Docs
+
+I've tried a number of ways to document the process, and settled on using
+vscode's markdown preview for the first draft. This is under
+dev_log/red_green_refactor_log. Other docs:
+
+- Original dev log: dev_log/dev.log.md
+- Shortened dev log (incomplete): dev_log/dev.log.short.md
+- GitHub pages: docs/
+
 # Run github pages locally
 
 See https://help.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll
@@ -25,9 +35,3 @@ then
 
     cd docs
     bundle exec jekyll serve
-
-# todo
-
-- YatzyConsoleApp, game, others - too many constructors - builder?
-- write 'directors cut' of dev log
-- make nice readable github page
