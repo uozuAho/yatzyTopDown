@@ -33,3 +33,6 @@ public void whenPlayerChoosesYatzy_shouldGetYatzyScore()
 
 <h2 style="color: black; background: yellow">REFACTOR</h2>
 
+`git tag: add_category_refactor_1`
+
+![](../svg/add_category_refactor_1.svg)
