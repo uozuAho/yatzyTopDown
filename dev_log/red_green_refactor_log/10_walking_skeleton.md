@@ -138,4 +138,4 @@ public void shouldScoreOneCategoryThenFinish()
 
 Implementation:
 
-![](../svg/walking_skeleton_refactored_copy.svg)
+![](../svg/walking_skeleton_refactored.svg)
