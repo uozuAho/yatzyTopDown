@@ -1,27 +1,22 @@
 # The end
 
-- I like these style of e2e tests - not only do they serve as a guide to
-  implementing the application, they are a clear statement of the application's
-  requirements and expected behaviour, which we lack in the bottom-up,
-  class-focused TDD that we do.
-
-Pros
+**Pros**
 - clear set of acceptance tests describing the application's behaviour
 - e2e tests rarely need to change when implementations change
 
-Cons
+**Cons**
 - code 'churn' - harder for teams to do top-down TDD?
 
-Good for
+**Good for**
 - designing software
-- writing readable code
-- clearly stating requirements in tests
+- writing readable code & tests
+- specifying expected end-user application behaviour as runnable tests (BDD?)
 
-Doesn't help
-- test coverage, eg. unit testing corner cases
+**Doesn't help**
 - designing good software
+- test coverage, eg. unit testing corner cases
 
-Future work
+**Future work**
 - Try this in an existing project
     - more dependencies
     - multiple people working in the same code base

@@ -58,3 +58,47 @@ Note: this is the only e2e test at this point. Does it cover all implemented fea
 ![](../svg/end_when_no_categories_green.svg)
 
 <h2 style="color: black; background: yellow">REFACTOR</h2>
+
+`git tag: end_when_no_categories_refactored`
+
+![](../svg/end_when_no_categories_refactored.svg)
+
+End-to-end test:
+
+```java
+@Test
+public void gameShouldContinueUntilAllCategoriesAreChosen()
+{
+    final var constantRoll = new DiceRoll(new int[] {1, 1, 1, 1, 1});
+    var diceRoller = new ConstantDiceRoller(constantRoll);
+    final var chanceScore = 5;                            // <-- extract expected scores
+    final var yatzyScore = 50;
+    var player = new YatzyPlayerMock();
+
+    var game = new YatzyConsoleAppRunner(player, diceRoller);
+    game.isNotOver();                                     // <-- cheeky extra assertion
+
+    // turn 1
+    player.setNextInput(ScoreCategory.CHANCE);            // <-- set player input just before turn
+    game.doNextTurn();                                    // <-- extract ability to run single turn
+    game.displayedRoll(constantRoll);
+    game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+            new ScoreCategoryWithScore(ScoreCategory.CHANCE, chanceScore),
+            new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
+    });
+    game.promptedUserForCategory();
+    game.displayedScore(chanceScore);
+
+    // turn 2
+    player.setNextInput(ScoreCategory.YATZY);
+    game.doNextTurn();
+    game.displayedRoll(constantRoll);
+    game.displayedAvailableCategoriesInAnyOrder(new ScoreCategoryWithScore[] {
+            new ScoreCategoryWithScore(ScoreCategory.YATZY, yatzyScore)
+    });
+    game.promptedUserForCategory();
+    game.displayedScore(yatzyScore);
+
+    game.isOver();
+}
+```
