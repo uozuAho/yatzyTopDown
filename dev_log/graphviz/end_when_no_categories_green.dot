@@ -1,0 +1,51 @@
+digraph end_when_no_categories_green {
+size="5,5"
+node[shape=record,style=filled,fillcolor=gray95]
+
+1[label = "{YatzyConsoleApp||+start()\l+isFinished()}"]
+2[label = "{\<\<TextInput\>\>||+readLine()}"]
+3[label = "{\<\<TextOutput\>\>||+writeLine()}"]
+4[label = "{\<\<DiceRoller\>\>||+nextRoll(): DiceRoll}"]
+5[label = "{DiceRoll||+toString()\l+getValues(): int[]}"]
+7[label = "{RandomDiceRoller||}"]
+8[label = "{ScoreCategory|+CHANCE\l+YATZY|+fromString(String)}"]
+9[label = "{\<\<ScoreCalculatorFactory\>\>||+calculatorFor(ScoreCategory)}"]
+10[label = "{YatzyScoreCalculator||}"]
+11[label = "{ChanceScoreCalculator||}"]
+12[label = "{DefaultScoreCalculatorFactory||}"]
+13[label = "{\<\<ScoreCalculator\>\>||+calculateScore(DiceRoll)}"]
+14[label = "{YatzyGame|
+    -currentRoll\l-availableCategories|
+    +start()
+    \l+rollDice()
+    \l+getCurrentRoll()
+    \l+getAvailableCategoriesWithScores()
+    \l+scoreCurrentRoll(ScoreCategory)
+    \l+isFinished()}"]
+15[label = "{\<\<YatzyPlayerInterface\>\>||
+    showPlayerRolled(DiceRoll)
+    \lshowAvailableCategories(List<ScoreCategoryWithScore>)
+    \lpromptForCategoryInput(): ScoreCategory
+    \lshowPlayerScore()}"]
+16[label = "{YatzyConsolePlayerInterface||}"]
+17[label = "{ScoreCategoryWithScore|+category\l+score|}"]
+
+1->14
+1->16
+7->4 [style=dashed,arrowhead=onormal]
+9->10
+9->11
+12->9 [style=dashed,arrowhead=onormal]
+10->13 [style=dashed,arrowhead=onormal]
+11->13 [style=dashed,arrowhead=onormal]
+14->4
+14->5
+14->9
+14->13
+14->15
+14->17
+16->2
+16->3
+16->15 [style=dashed,arrowhead=onormal]
+16->17
+}

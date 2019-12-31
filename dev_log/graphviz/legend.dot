@@ -1,0 +1,15 @@
+digraph legend {
+size="5,5"
+node[shape=record,style=filled,fillcolor=gray95]
+
+1[label = "{\<\<Interface\>\>||}"]
+2[label = "{\<\<AnotherInterface\>\>||}"]
+3[label = "{Class|
+    +publicProperty
+    \l-privateProperty|
+    +publicMethod(ParameterType)
+    \l-privateMethod(): ReturnType}"]
+
+3->1 [label=implements,style=dashed,arrowhead=onormal]
+3->2 [label="uses/depends on"]
+}

@@ -1,0 +1,31 @@
+digraph add_category_refactor_3 {
+size="5,5"
+node[shape=record,style=filled,fillcolor=gray95]
+
+1[label = "{YatzyConsoleApp||+start()\l+isFinished()\l-calculateScore(Roll, ScoreCategory): int\l-waitForUserInput()}"]
+2[label = "{\<\<TextInput\>\>||+readLine()}"]
+3[label = "{\<\<TextOutput\>\>||+writeLine()}"]
+4[label = "{\<\<DiceRoller\>\>||+nextRoll(): Roll}"]
+5[label = "{Roll||+toString()\l+getValues(): int[]}"]
+7[label = "{RandomDiceRoller||}"]
+8[label = "{ScoreCategory|+CHANCE\l+YATZY|+fromString(String)}"]
+9[label = "{\<\<ScoreCalculatorFactory\>\>||+calculatorFor(ScoreCategory)}", fillcolor=palegreen]
+10[label = "{YatzyScoreCalculator||+calculateScore(Roll)}"]
+11[label = "{ChanceScoreCalculator||+calculateScore(Roll)}"]
+12[label = "{DefaultScoreCalculatorFactory||+calculatorFor(ScoreCategory)}", fillcolor=palegreen]
+13[label = "{\<\<ScoreCalculator\>\>||+calculateScore(Roll)}"]
+
+1->2
+1->3
+1->4
+1->5
+1->8
+1->9
+1->13
+7->4 [style=dashed,arrowhead=onormal]
+9->10
+9->11
+12->9 [style=dashed,arrowhead=onormal]
+10->13 [style=dashed,arrowhead=onormal]
+11->13 [style=dashed,arrowhead=onormal]
+}
