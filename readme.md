@@ -25,7 +25,7 @@ dev_log/red_green_refactor_log. Other docs:
 
 - Original dev log: dev_log/dev.log.md
 - Shortened dev log (incomplete): dev_log/dev.log.short.md
-- GitHub pages: docs/
+- GitHub pages (incomplete): docs/
 
 # Run github pages locally
 

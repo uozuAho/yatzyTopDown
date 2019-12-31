@@ -44,3 +44,5 @@ public void whenPlayerChoosesYatzy_shouldGetYatzyScore()
 `git tag: add_category_refactor_3`
 
 ![](../svg/add_category_refactor_3.svg)
+
+NOTE: I added some unit tests for score calculators at this point.
