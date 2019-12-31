@@ -39,7 +39,7 @@ public void shouldScoreOneCategoryThenFinish()
 }
 ```
 
-Implementation:
+## Implementation
 
 ![](../svg/walking_skeleton_green.svg)
 
@@ -136,6 +136,6 @@ public void shouldScoreOneCategoryThenFinish()
 }
 ```
 
-Implementation:
+## Implementation
 
 ![](../svg/walking_skeleton_refactored.svg)

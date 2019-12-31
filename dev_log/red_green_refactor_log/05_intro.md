@@ -2,6 +2,14 @@
 
 Heavily influenced by: ![](../img/GOOSGBT_cover.jpg)
 
+# Why?
+
+- It's another tool we can use to design our software
+- Helps to write domain-focused code and tests
+- The resulting end to end tests read like specifications
+  of intended application behaviour (eg. BDD/cucumber) -
+  which I think we could use more of in our code
+
 # General conventions
 
 In each slide, I add a feature, and cover a red-green-refactor 'round'
@@ -23,7 +31,9 @@ public void EndToEndTestForANewFeature() {
 
 <h2 style="color: white; background: green">GREEN</h2>
 
-Class diagram
+Class diagram:
+
+![](../svg/legend.svg)
 
 - Only application classes are shown (no tests)
 

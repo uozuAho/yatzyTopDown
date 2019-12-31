@@ -1,20 +1,22 @@
 # The end
 
-**Pros**
-- clear set of acceptance tests describing the application's behaviour
-- e2e tests rarely need to change when implementations change
-
-**Cons**
-- code 'churn' - harder for teams to do top-down TDD?
-
 **Good for**
 - designing software
 - writing readable code & tests
-- specifying expected end-user application behaviour as runnable tests (BDD?)
+  - e2e tests are readable for non-tech people
+  - the application is clearly specified by runnable e2e tests
+- flexible tests - e2e tests rarely need to change when implementations change
 
 **Doesn't help**
 - designing good software
 - test coverage, eg. unit testing corner cases
+
+**Not good for**
+- code 'churn' - harder for teams to do top-down TDD?
+
+**Other notes**
+- There's a surprising amount of work to get the walking 
+  skeleton running and passing the first test
 
 **Future work**
 - Try this in an existing project
